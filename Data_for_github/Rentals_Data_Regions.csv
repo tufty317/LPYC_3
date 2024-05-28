@@ -1,0 +1,955 @@
+"","Month","New_date","Region","Price","New_region","Final_date","highlight_flag","Region_factor","label"
+"1","Jan-15","01/01/2015","North.East",531,"North East",2015-01-01,FALSE,"North East",NA
+"2","Jan-15","01/01/2015","North.West",592,"North West",2015-01-01,FALSE,"North West",NA
+"3","Jan-15","01/01/2015","Yorkshire.and.the.Humber",585,"Yorkshire and the Humber",2015-01-01,FALSE,"Yorkshire and the Humber",NA
+"4","Jan-15","01/01/2015","East.Midlands",564,"East Midlands",2015-01-01,FALSE,"East Midlands",NA
+"5","Jan-15","01/01/2015","West.Midlands",613,"West Midlands",2015-01-01,FALSE,"West Midlands",NA
+"6","Jan-15","01/01/2015","East",800,"East",2015-01-01,TRUE,"East",NA
+"7","Jan-15","01/01/2015","London",1576,"London",2015-01-01,TRUE,"London",NA
+"8","Jan-15","01/01/2015","South.East",932,"South East",2015-01-01,TRUE,"South East",NA
+"9","Jan-15","01/01/2015","South.West",779,"South West",2015-01-01,FALSE,"South West",NA
+"10","Feb-15","01/02/2015","North.East",531,"North East",2015-02-01,FALSE,"North East",NA
+"11","Feb-15","01/02/2015","North.West",593,"North West",2015-02-01,FALSE,"North West",NA
+"12","Feb-15","01/02/2015","Yorkshire.and.the.Humber",584,"Yorkshire and the Humber",2015-02-01,FALSE,"Yorkshire and the Humber",NA
+"13","Feb-15","01/02/2015","East.Midlands",565,"East Midlands",2015-02-01,FALSE,"East Midlands",NA
+"14","Feb-15","01/02/2015","West.Midlands",615,"West Midlands",2015-02-01,FALSE,"West Midlands",NA
+"15","Feb-15","01/02/2015","East",805,"East",2015-02-01,TRUE,"East",NA
+"16","Feb-15","01/02/2015","London",1581,"London",2015-02-01,TRUE,"London",NA
+"17","Feb-15","01/02/2015","South.East",932,"South East",2015-02-01,TRUE,"South East",NA
+"18","Feb-15","01/02/2015","South.West",780,"South West",2015-02-01,FALSE,"South West",NA
+"19","Mar-15","01/03/2015","North.East",532,"North East",2015-03-01,FALSE,"North East",NA
+"20","Mar-15","01/03/2015","North.West",594,"North West",2015-03-01,FALSE,"North West",NA
+"21","Mar-15","01/03/2015","Yorkshire.and.the.Humber",585,"Yorkshire and the Humber",2015-03-01,FALSE,"Yorkshire and the Humber",NA
+"22","Mar-15","01/03/2015","East.Midlands",565,"East Midlands",2015-03-01,FALSE,"East Midlands",NA
+"23","Mar-15","01/03/2015","West.Midlands",617,"West Midlands",2015-03-01,FALSE,"West Midlands",NA
+"24","Mar-15","01/03/2015","East",808,"East",2015-03-01,TRUE,"East",NA
+"25","Mar-15","01/03/2015","London",1593,"London",2015-03-01,TRUE,"London",NA
+"26","Mar-15","01/03/2015","South.East",934,"South East",2015-03-01,TRUE,"South East",NA
+"27","Mar-15","01/03/2015","South.West",782,"South West",2015-03-01,FALSE,"South West",NA
+"28","Apr-15","01/04/2015","North.East",532,"North East",2015-04-01,FALSE,"North East",NA
+"29","Apr-15","01/04/2015","North.West",595,"North West",2015-04-01,FALSE,"North West",NA
+"30","Apr-15","01/04/2015","Yorkshire.and.the.Humber",584,"Yorkshire and the Humber",2015-04-01,FALSE,"Yorkshire and the Humber",NA
+"31","Apr-15","01/04/2015","East.Midlands",566,"East Midlands",2015-04-01,FALSE,"East Midlands",NA
+"32","Apr-15","01/04/2015","West.Midlands",618,"West Midlands",2015-04-01,FALSE,"West Midlands",NA
+"33","Apr-15","01/04/2015","East",810,"East",2015-04-01,TRUE,"East",NA
+"34","Apr-15","01/04/2015","London",1598,"London",2015-04-01,TRUE,"London",NA
+"35","Apr-15","01/04/2015","South.East",937,"South East",2015-04-01,TRUE,"South East",NA
+"36","Apr-15","01/04/2015","South.West",784,"South West",2015-04-01,FALSE,"South West",NA
+"37","May-15","01/05/2015","North.East",532,"North East",2015-05-01,FALSE,"North East",NA
+"38","May-15","01/05/2015","North.West",595,"North West",2015-05-01,FALSE,"North West",NA
+"39","May-15","01/05/2015","Yorkshire.and.the.Humber",584,"Yorkshire and the Humber",2015-05-01,FALSE,"Yorkshire and the Humber",NA
+"40","May-15","01/05/2015","East.Midlands",567,"East Midlands",2015-05-01,FALSE,"East Midlands",NA
+"41","May-15","01/05/2015","West.Midlands",620,"West Midlands",2015-05-01,FALSE,"West Midlands",NA
+"42","May-15","01/05/2015","East",814,"East",2015-05-01,TRUE,"East",NA
+"43","May-15","01/05/2015","London",1611,"London",2015-05-01,TRUE,"London",NA
+"44","May-15","01/05/2015","South.East",938,"South East",2015-05-01,TRUE,"South East",NA
+"45","May-15","01/05/2015","South.West",786,"South West",2015-05-01,FALSE,"South West",NA
+"46","Jun-15","01/06/2015","North.East",533,"North East",2015-06-01,FALSE,"North East",NA
+"47","Jun-15","01/06/2015","North.West",595,"North West",2015-06-01,FALSE,"North West",NA
+"48","Jun-15","01/06/2015","Yorkshire.and.the.Humber",582,"Yorkshire and the Humber",2015-06-01,FALSE,"Yorkshire and the Humber",NA
+"49","Jun-15","01/06/2015","East.Midlands",568,"East Midlands",2015-06-01,FALSE,"East Midlands",NA
+"50","Jun-15","01/06/2015","West.Midlands",621,"West Midlands",2015-06-01,FALSE,"West Midlands",NA
+"51","Jun-15","01/06/2015","East",817,"East",2015-06-01,TRUE,"East",NA
+"52","Jun-15","01/06/2015","London",1615,"London",2015-06-01,TRUE,"London",NA
+"53","Jun-15","01/06/2015","South.East",941,"South East",2015-06-01,TRUE,"South East",NA
+"54","Jun-15","01/06/2015","South.West",786,"South West",2015-06-01,FALSE,"South West",NA
+"55","Jul-15","01/07/2015","North.East",533,"North East",2015-07-01,FALSE,"North East",NA
+"56","Jul-15","01/07/2015","North.West",596,"North West",2015-07-01,FALSE,"North West",NA
+"57","Jul-15","01/07/2015","Yorkshire.and.the.Humber",583,"Yorkshire and the Humber",2015-07-01,FALSE,"Yorkshire and the Humber",NA
+"58","Jul-15","01/07/2015","East.Midlands",570,"East Midlands",2015-07-01,FALSE,"East Midlands",NA
+"59","Jul-15","01/07/2015","West.Midlands",622,"West Midlands",2015-07-01,FALSE,"West Midlands",NA
+"60","Jul-15","01/07/2015","East",820,"East",2015-07-01,TRUE,"East",NA
+"61","Jul-15","01/07/2015","London",1620,"London",2015-07-01,TRUE,"London",NA
+"62","Jul-15","01/07/2015","South.East",943,"South East",2015-07-01,TRUE,"South East",NA
+"63","Jul-15","01/07/2015","South.West",788,"South West",2015-07-01,FALSE,"South West",NA
+"64","Aug-15","01/08/2015","North.East",534,"North East",2015-08-01,FALSE,"North East",NA
+"65","Aug-15","01/08/2015","North.West",597,"North West",2015-08-01,FALSE,"North West",NA
+"66","Aug-15","01/08/2015","Yorkshire.and.the.Humber",584,"Yorkshire and the Humber",2015-08-01,FALSE,"Yorkshire and the Humber",NA
+"67","Aug-15","01/08/2015","East.Midlands",571,"East Midlands",2015-08-01,FALSE,"East Midlands",NA
+"68","Aug-15","01/08/2015","West.Midlands",623,"West Midlands",2015-08-01,FALSE,"West Midlands",NA
+"69","Aug-15","01/08/2015","East",824,"East",2015-08-01,TRUE,"East",NA
+"70","Aug-15","01/08/2015","London",1633,"London",2015-08-01,TRUE,"London",NA
+"71","Aug-15","01/08/2015","South.East",946,"South East",2015-08-01,TRUE,"South East",NA
+"72","Aug-15","01/08/2015","South.West",792,"South West",2015-08-01,FALSE,"South West",NA
+"73","Sep-15","01/09/2015","North.East",534,"North East",2015-09-01,FALSE,"North East",NA
+"74","Sep-15","01/09/2015","North.West",598,"North West",2015-09-01,FALSE,"North West",NA
+"75","Sep-15","01/09/2015","Yorkshire.and.the.Humber",585,"Yorkshire and the Humber",2015-09-01,FALSE,"Yorkshire and the Humber",NA
+"76","Sep-15","01/09/2015","East.Midlands",573,"East Midlands",2015-09-01,FALSE,"East Midlands",NA
+"77","Sep-15","01/09/2015","West.Midlands",625,"West Midlands",2015-09-01,FALSE,"West Midlands",NA
+"78","Sep-15","01/09/2015","East",828,"East",2015-09-01,TRUE,"East",NA
+"79","Sep-15","01/09/2015","London",1636,"London",2015-09-01,TRUE,"London",NA
+"80","Sep-15","01/09/2015","South.East",950,"South East",2015-09-01,TRUE,"South East",NA
+"81","Sep-15","01/09/2015","South.West",793,"South West",2015-09-01,FALSE,"South West",NA
+"82","Oct-15","01/10/2015","North.East",534,"North East",2015-10-01,FALSE,"North East",NA
+"83","Oct-15","01/10/2015","North.West",599,"North West",2015-10-01,FALSE,"North West",NA
+"84","Oct-15","01/10/2015","Yorkshire.and.the.Humber",585,"Yorkshire and the Humber",2015-10-01,FALSE,"Yorkshire and the Humber",NA
+"85","Oct-15","01/10/2015","East.Midlands",574,"East Midlands",2015-10-01,FALSE,"East Midlands",NA
+"86","Oct-15","01/10/2015","West.Midlands",626,"West Midlands",2015-10-01,FALSE,"West Midlands",NA
+"87","Oct-15","01/10/2015","East",833,"East",2015-10-01,TRUE,"East",NA
+"88","Oct-15","01/10/2015","London",1640,"London",2015-10-01,TRUE,"London",NA
+"89","Oct-15","01/10/2015","South.East",952,"South East",2015-10-01,TRUE,"South East",NA
+"90","Oct-15","01/10/2015","South.West",794,"South West",2015-10-01,FALSE,"South West",NA
+"91","Nov-15","01/11/2015","North.East",535,"North East",2015-11-01,FALSE,"North East",NA
+"92","Nov-15","01/11/2015","North.West",601,"North West",2015-11-01,FALSE,"North West",NA
+"93","Nov-15","01/11/2015","Yorkshire.and.the.Humber",586,"Yorkshire and the Humber",2015-11-01,FALSE,"Yorkshire and the Humber",NA
+"94","Nov-15","01/11/2015","East.Midlands",574,"East Midlands",2015-11-01,FALSE,"East Midlands",NA
+"95","Nov-15","01/11/2015","West.Midlands",627,"West Midlands",2015-11-01,FALSE,"West Midlands",NA
+"96","Nov-15","01/11/2015","East",836,"East",2015-11-01,TRUE,"East",NA
+"97","Nov-15","01/11/2015","London",1640,"London",2015-11-01,TRUE,"London",NA
+"98","Nov-15","01/11/2015","South.East",957,"South East",2015-11-01,TRUE,"South East",NA
+"99","Nov-15","01/11/2015","South.West",797,"South West",2015-11-01,FALSE,"South West",NA
+"100","Dec-15","01/12/2015","North.East",535,"North East",2015-12-01,FALSE,"North East",NA
+"101","Dec-15","01/12/2015","North.West",601,"North West",2015-12-01,FALSE,"North West",NA
+"102","Dec-15","01/12/2015","Yorkshire.and.the.Humber",586,"Yorkshire and the Humber",2015-12-01,FALSE,"Yorkshire and the Humber",NA
+"103","Dec-15","01/12/2015","East.Midlands",574,"East Midlands",2015-12-01,FALSE,"East Midlands",NA
+"104","Dec-15","01/12/2015","West.Midlands",631,"West Midlands",2015-12-01,FALSE,"West Midlands",NA
+"105","Dec-15","01/12/2015","East",839,"East",2015-12-01,TRUE,"East",NA
+"106","Dec-15","01/12/2015","London",1644,"London",2015-12-01,TRUE,"London",NA
+"107","Dec-15","01/12/2015","South.East",960,"South East",2015-12-01,TRUE,"South East",NA
+"108","Dec-15","01/12/2015","South.West",799,"South West",2015-12-01,FALSE,"South West",NA
+"109","Jan-16","01/01/2016","North.East",536,"North East",2016-01-01,FALSE,"North East",NA
+"110","Jan-16","01/01/2016","North.West",601,"North West",2016-01-01,FALSE,"North West",NA
+"111","Jan-16","01/01/2016","Yorkshire.and.the.Humber",586,"Yorkshire and the Humber",2016-01-01,FALSE,"Yorkshire and the Humber",NA
+"112","Jan-16","01/01/2016","East.Midlands",576,"East Midlands",2016-01-01,FALSE,"East Midlands",NA
+"113","Jan-16","01/01/2016","West.Midlands",632,"West Midlands",2016-01-01,FALSE,"West Midlands",NA
+"114","Jan-16","01/01/2016","East",843,"East",2016-01-01,TRUE,"East",NA
+"115","Jan-16","01/01/2016","London",1652,"London",2016-01-01,TRUE,"London",NA
+"116","Jan-16","01/01/2016","South.East",963,"South East",2016-01-01,TRUE,"South East",NA
+"117","Jan-16","01/01/2016","South.West",800,"South West",2016-01-01,FALSE,"South West",NA
+"118","Feb-16","01/02/2016","North.East",537,"North East",2016-02-01,FALSE,"North East",NA
+"119","Feb-16","01/02/2016","North.West",602,"North West",2016-02-01,FALSE,"North West",NA
+"120","Feb-16","01/02/2016","Yorkshire.and.the.Humber",585,"Yorkshire and the Humber",2016-02-01,FALSE,"Yorkshire and the Humber",NA
+"121","Feb-16","01/02/2016","East.Midlands",576,"East Midlands",2016-02-01,FALSE,"East Midlands",NA
+"122","Feb-16","01/02/2016","West.Midlands",634,"West Midlands",2016-02-01,FALSE,"West Midlands",NA
+"123","Feb-16","01/02/2016","East",847,"East",2016-02-01,TRUE,"East",NA
+"124","Feb-16","01/02/2016","London",1652,"London",2016-02-01,TRUE,"London",NA
+"125","Feb-16","01/02/2016","South.East",967,"South East",2016-02-01,TRUE,"South East",NA
+"126","Feb-16","01/02/2016","South.West",803,"South West",2016-02-01,FALSE,"South West",NA
+"127","Mar-16","01/03/2016","North.East",537,"North East",2016-03-01,FALSE,"North East",NA
+"128","Mar-16","01/03/2016","North.West",603,"North West",2016-03-01,FALSE,"North West",NA
+"129","Mar-16","01/03/2016","Yorkshire.and.the.Humber",587,"Yorkshire and the Humber",2016-03-01,FALSE,"Yorkshire and the Humber",NA
+"130","Mar-16","01/03/2016","East.Midlands",577,"East Midlands",2016-03-01,FALSE,"East Midlands",NA
+"131","Mar-16","01/03/2016","West.Midlands",636,"West Midlands",2016-03-01,FALSE,"West Midlands",NA
+"132","Mar-16","01/03/2016","East",851,"East",2016-03-01,TRUE,"East",NA
+"133","Mar-16","01/03/2016","London",1659,"London",2016-03-01,TRUE,"London",NA
+"134","Mar-16","01/03/2016","South.East",970,"South East",2016-03-01,TRUE,"South East",NA
+"135","Mar-16","01/03/2016","South.West",806,"South West",2016-03-01,FALSE,"South West",NA
+"136","Apr-16","01/04/2016","North.East",538,"North East",2016-04-01,FALSE,"North East",NA
+"137","Apr-16","01/04/2016","North.West",605,"North West",2016-04-01,FALSE,"North West",NA
+"138","Apr-16","01/04/2016","Yorkshire.and.the.Humber",588,"Yorkshire and the Humber",2016-04-01,FALSE,"Yorkshire and the Humber",NA
+"139","Apr-16","01/04/2016","East.Midlands",578,"East Midlands",2016-04-01,FALSE,"East Midlands",NA
+"140","Apr-16","01/04/2016","West.Midlands",637,"West Midlands",2016-04-01,FALSE,"West Midlands",NA
+"141","Apr-16","01/04/2016","East",855,"East",2016-04-01,TRUE,"East",NA
+"142","Apr-16","01/04/2016","London",1663,"London",2016-04-01,TRUE,"London",NA
+"143","Apr-16","01/04/2016","South.East",975,"South East",2016-04-01,TRUE,"South East",NA
+"144","Apr-16","01/04/2016","South.West",809,"South West",2016-04-01,FALSE,"South West",NA
+"145","May-16","01/05/2016","North.East",538,"North East",2016-05-01,FALSE,"North East",NA
+"146","May-16","01/05/2016","North.West",606,"North West",2016-05-01,FALSE,"North West",NA
+"147","May-16","01/05/2016","Yorkshire.and.the.Humber",589,"Yorkshire and the Humber",2016-05-01,FALSE,"Yorkshire and the Humber",NA
+"148","May-16","01/05/2016","East.Midlands",580,"East Midlands",2016-05-01,FALSE,"East Midlands",NA
+"149","May-16","01/05/2016","West.Midlands",637,"West Midlands",2016-05-01,FALSE,"West Midlands",NA
+"150","May-16","01/05/2016","East",858,"East",2016-05-01,TRUE,"East",NA
+"151","May-16","01/05/2016","London",1673,"London",2016-05-01,TRUE,"London",NA
+"152","May-16","01/05/2016","South.East",979,"South East",2016-05-01,TRUE,"South East",NA
+"153","May-16","01/05/2016","South.West",812,"South West",2016-05-01,FALSE,"South West",NA
+"154","Jun-16","01/06/2016","North.East",539,"North East",2016-06-01,FALSE,"North East",NA
+"155","Jun-16","01/06/2016","North.West",607,"North West",2016-06-01,FALSE,"North West",NA
+"156","Jun-16","01/06/2016","Yorkshire.and.the.Humber",590,"Yorkshire and the Humber",2016-06-01,FALSE,"Yorkshire and the Humber",NA
+"157","Jun-16","01/06/2016","East.Midlands",581,"East Midlands",2016-06-01,FALSE,"East Midlands",NA
+"158","Jun-16","01/06/2016","West.Midlands",639,"West Midlands",2016-06-01,FALSE,"West Midlands",NA
+"159","Jun-16","01/06/2016","East",862,"East",2016-06-01,TRUE,"East",NA
+"160","Jun-16","01/06/2016","London",1670,"London",2016-06-01,TRUE,"London",NA
+"161","Jun-16","01/06/2016","South.East",982,"South East",2016-06-01,TRUE,"South East",NA
+"162","Jun-16","01/06/2016","South.West",816,"South West",2016-06-01,FALSE,"South West",NA
+"163","Jul-16","01/07/2016","North.East",542,"North East",2016-07-01,FALSE,"North East",NA
+"164","Jul-16","01/07/2016","North.West",608,"North West",2016-07-01,FALSE,"North West",NA
+"165","Jul-16","01/07/2016","Yorkshire.and.the.Humber",591,"Yorkshire and the Humber",2016-07-01,FALSE,"Yorkshire and the Humber",NA
+"166","Jul-16","01/07/2016","East.Midlands",584,"East Midlands",2016-07-01,FALSE,"East Midlands",NA
+"167","Jul-16","01/07/2016","West.Midlands",640,"West Midlands",2016-07-01,FALSE,"West Midlands",NA
+"168","Jul-16","01/07/2016","East",865,"East",2016-07-01,TRUE,"East",NA
+"169","Jul-16","01/07/2016","London",1679,"London",2016-07-01,TRUE,"London",NA
+"170","Jul-16","01/07/2016","South.East",986,"South East",2016-07-01,TRUE,"South East",NA
+"171","Jul-16","01/07/2016","South.West",820,"South West",2016-07-01,FALSE,"South West",NA
+"172","Aug-16","01/08/2016","North.East",543,"North East",2016-08-01,FALSE,"North East",NA
+"173","Aug-16","01/08/2016","North.West",610,"North West",2016-08-01,FALSE,"North West",NA
+"174","Aug-16","01/08/2016","Yorkshire.and.the.Humber",592,"Yorkshire and the Humber",2016-08-01,FALSE,"Yorkshire and the Humber",NA
+"175","Aug-16","01/08/2016","East.Midlands",586,"East Midlands",2016-08-01,FALSE,"East Midlands",NA
+"176","Aug-16","01/08/2016","West.Midlands",643,"West Midlands",2016-08-01,FALSE,"West Midlands",NA
+"177","Aug-16","01/08/2016","East",869,"East",2016-08-01,TRUE,"East",NA
+"178","Aug-16","01/08/2016","London",1684,"London",2016-08-01,TRUE,"London",NA
+"179","Aug-16","01/08/2016","South.East",991,"South East",2016-08-01,TRUE,"South East",NA
+"180","Aug-16","01/08/2016","South.West",822,"South West",2016-08-01,FALSE,"South West",NA
+"181","Sep-16","01/09/2016","North.East",545,"North East",2016-09-01,FALSE,"North East",NA
+"182","Sep-16","01/09/2016","North.West",611,"North West",2016-09-01,FALSE,"North West",NA
+"183","Sep-16","01/09/2016","Yorkshire.and.the.Humber",594,"Yorkshire and the Humber",2016-09-01,FALSE,"Yorkshire and the Humber",NA
+"184","Sep-16","01/09/2016","East.Midlands",587,"East Midlands",2016-09-01,FALSE,"East Midlands",NA
+"185","Sep-16","01/09/2016","West.Midlands",645,"West Midlands",2016-09-01,FALSE,"West Midlands",NA
+"186","Sep-16","01/09/2016","East",873,"East",2016-09-01,TRUE,"East",NA
+"187","Sep-16","01/09/2016","London",1687,"London",2016-09-01,TRUE,"London",NA
+"188","Sep-16","01/09/2016","South.East",995,"South East",2016-09-01,TRUE,"South East",NA
+"189","Sep-16","01/09/2016","South.West",824,"South West",2016-09-01,FALSE,"South West",NA
+"190","Oct-16","01/10/2016","North.East",546,"North East",2016-10-01,FALSE,"North East",NA
+"191","Oct-16","01/10/2016","North.West",612,"North West",2016-10-01,FALSE,"North West",NA
+"192","Oct-16","01/10/2016","Yorkshire.and.the.Humber",595,"Yorkshire and the Humber",2016-10-01,FALSE,"Yorkshire and the Humber",NA
+"193","Oct-16","01/10/2016","East.Midlands",588,"East Midlands",2016-10-01,FALSE,"East Midlands",NA
+"194","Oct-16","01/10/2016","West.Midlands",648,"West Midlands",2016-10-01,FALSE,"West Midlands",NA
+"195","Oct-16","01/10/2016","East",876,"East",2016-10-01,TRUE,"East",NA
+"196","Oct-16","01/10/2016","London",1691,"London",2016-10-01,TRUE,"London",NA
+"197","Oct-16","01/10/2016","South.East",999,"South East",2016-10-01,TRUE,"South East",NA
+"198","Oct-16","01/10/2016","South.West",828,"South West",2016-10-01,FALSE,"South West",NA
+"199","Nov-16","01/11/2016","North.East",548,"North East",2016-11-01,FALSE,"North East",NA
+"200","Nov-16","01/11/2016","North.West",612,"North West",2016-11-01,FALSE,"North West",NA
+"201","Nov-16","01/11/2016","Yorkshire.and.the.Humber",595,"Yorkshire and the Humber",2016-11-01,FALSE,"Yorkshire and the Humber",NA
+"202","Nov-16","01/11/2016","East.Midlands",591,"East Midlands",2016-11-01,FALSE,"East Midlands",NA
+"203","Nov-16","01/11/2016","West.Midlands",650,"West Midlands",2016-11-01,FALSE,"West Midlands",NA
+"204","Nov-16","01/11/2016","East",880,"East",2016-11-01,TRUE,"East",NA
+"205","Nov-16","01/11/2016","London",1697,"London",2016-11-01,TRUE,"London",NA
+"206","Nov-16","01/11/2016","South.East",1003,"South East",2016-11-01,TRUE,"South East",NA
+"207","Nov-16","01/11/2016","South.West",832,"South West",2016-11-01,FALSE,"South West",NA
+"208","Dec-16","01/12/2016","North.East",549,"North East",2016-12-01,FALSE,"North East",NA
+"209","Dec-16","01/12/2016","North.West",614,"North West",2016-12-01,FALSE,"North West",NA
+"210","Dec-16","01/12/2016","Yorkshire.and.the.Humber",598,"Yorkshire and the Humber",2016-12-01,FALSE,"Yorkshire and the Humber",NA
+"211","Dec-16","01/12/2016","East.Midlands",593,"East Midlands",2016-12-01,FALSE,"East Midlands",NA
+"212","Dec-16","01/12/2016","West.Midlands",651,"West Midlands",2016-12-01,FALSE,"West Midlands",NA
+"213","Dec-16","01/12/2016","East",882,"East",2016-12-01,TRUE,"East",NA
+"214","Dec-16","01/12/2016","London",1698,"London",2016-12-01,TRUE,"London",NA
+"215","Dec-16","01/12/2016","South.East",1006,"South East",2016-12-01,TRUE,"South East",NA
+"216","Dec-16","01/12/2016","South.West",836,"South West",2016-12-01,FALSE,"South West",NA
+"217","Jan-17","01/01/2017","North.East",549,"North East",2017-01-01,FALSE,"North East",NA
+"218","Jan-17","01/01/2017","North.West",615,"North West",2017-01-01,FALSE,"North West",NA
+"219","Jan-17","01/01/2017","Yorkshire.and.the.Humber",599,"Yorkshire and the Humber",2017-01-01,FALSE,"Yorkshire and the Humber",NA
+"220","Jan-17","01/01/2017","East.Midlands",595,"East Midlands",2017-01-01,FALSE,"East Midlands",NA
+"221","Jan-17","01/01/2017","West.Midlands",652,"West Midlands",2017-01-01,FALSE,"West Midlands",NA
+"222","Jan-17","01/01/2017","East",887,"East",2017-01-01,TRUE,"East",NA
+"223","Jan-17","01/01/2017","London",1706,"London",2017-01-01,TRUE,"London",NA
+"224","Jan-17","01/01/2017","South.East",1008,"South East",2017-01-01,TRUE,"South East",NA
+"225","Jan-17","01/01/2017","South.West",837,"South West",2017-01-01,FALSE,"South West",NA
+"226","Feb-17","01/02/2017","North.East",551,"North East",2017-02-01,FALSE,"North East",NA
+"227","Feb-17","01/02/2017","North.West",616,"North West",2017-02-01,FALSE,"North West",NA
+"228","Feb-17","01/02/2017","Yorkshire.and.the.Humber",599,"Yorkshire and the Humber",2017-02-01,FALSE,"Yorkshire and the Humber",NA
+"229","Feb-17","01/02/2017","East.Midlands",597,"East Midlands",2017-02-01,FALSE,"East Midlands",NA
+"230","Feb-17","01/02/2017","West.Midlands",651,"West Midlands",2017-02-01,FALSE,"West Midlands",NA
+"231","Feb-17","01/02/2017","East",889,"East",2017-02-01,TRUE,"East",NA
+"232","Feb-17","01/02/2017","London",1705,"London",2017-02-01,TRUE,"London",NA
+"233","Feb-17","01/02/2017","South.East",1010,"South East",2017-02-01,TRUE,"South East",NA
+"234","Feb-17","01/02/2017","South.West",838,"South West",2017-02-01,FALSE,"South West",NA
+"235","Mar-17","01/03/2017","North.East",551,"North East",2017-03-01,FALSE,"North East",NA
+"236","Mar-17","01/03/2017","North.West",618,"North West",2017-03-01,FALSE,"North West",NA
+"237","Mar-17","01/03/2017","Yorkshire.and.the.Humber",601,"Yorkshire and the Humber",2017-03-01,FALSE,"Yorkshire and the Humber",NA
+"238","Mar-17","01/03/2017","East.Midlands",597,"East Midlands",2017-03-01,FALSE,"East Midlands",NA
+"239","Mar-17","01/03/2017","West.Midlands",652,"West Midlands",2017-03-01,FALSE,"West Midlands",NA
+"240","Mar-17","01/03/2017","East",892,"East",2017-03-01,TRUE,"East",NA
+"241","Mar-17","01/03/2017","London",1702,"London",2017-03-01,TRUE,"London",NA
+"242","Mar-17","01/03/2017","South.East",1012,"South East",2017-03-01,TRUE,"South East",NA
+"243","Mar-17","01/03/2017","South.West",840,"South West",2017-03-01,FALSE,"South West",NA
+"244","Apr-17","01/04/2017","North.East",551,"North East",2017-04-01,FALSE,"North East",NA
+"245","Apr-17","01/04/2017","North.West",620,"North West",2017-04-01,FALSE,"North West",NA
+"246","Apr-17","01/04/2017","Yorkshire.and.the.Humber",605,"Yorkshire and the Humber",2017-04-01,FALSE,"Yorkshire and the Humber",NA
+"247","Apr-17","01/04/2017","East.Midlands",600,"East Midlands",2017-04-01,FALSE,"East Midlands",NA
+"248","Apr-17","01/04/2017","West.Midlands",654,"West Midlands",2017-04-01,FALSE,"West Midlands",NA
+"249","Apr-17","01/04/2017","East",894,"East",2017-04-01,TRUE,"East",NA
+"250","Apr-17","01/04/2017","London",1706,"London",2017-04-01,TRUE,"London",NA
+"251","Apr-17","01/04/2017","South.East",1015,"South East",2017-04-01,TRUE,"South East",NA
+"252","Apr-17","01/04/2017","South.West",841,"South West",2017-04-01,FALSE,"South West",NA
+"253","May-17","01/05/2017","North.East",551,"North East",2017-05-01,FALSE,"North East",NA
+"254","May-17","01/05/2017","North.West",621,"North West",2017-05-01,FALSE,"North West",NA
+"255","May-17","01/05/2017","Yorkshire.and.the.Humber",605,"Yorkshire and the Humber",2017-05-01,FALSE,"Yorkshire and the Humber",NA
+"256","May-17","01/05/2017","East.Midlands",601,"East Midlands",2017-05-01,FALSE,"East Midlands",NA
+"257","May-17","01/05/2017","West.Midlands",655,"West Midlands",2017-05-01,FALSE,"West Midlands",NA
+"258","May-17","01/05/2017","East",896,"East",2017-05-01,TRUE,"East",NA
+"259","May-17","01/05/2017","London",1702,"London",2017-05-01,TRUE,"London",NA
+"260","May-17","01/05/2017","South.East",1016,"South East",2017-05-01,TRUE,"South East",NA
+"261","May-17","01/05/2017","South.West",842,"South West",2017-05-01,FALSE,"South West",NA
+"262","Jun-17","01/06/2017","North.East",551,"North East",2017-06-01,FALSE,"North East",NA
+"263","Jun-17","01/06/2017","North.West",621,"North West",2017-06-01,FALSE,"North West",NA
+"264","Jun-17","01/06/2017","Yorkshire.and.the.Humber",604,"Yorkshire and the Humber",2017-06-01,FALSE,"Yorkshire and the Humber",NA
+"265","Jun-17","01/06/2017","East.Midlands",602,"East Midlands",2017-06-01,FALSE,"East Midlands",NA
+"266","Jun-17","01/06/2017","West.Midlands",658,"West Midlands",2017-06-01,FALSE,"West Midlands",NA
+"267","Jun-17","01/06/2017","East",899,"East",2017-06-01,TRUE,"East",NA
+"268","Jun-17","01/06/2017","London",1711,"London",2017-06-01,TRUE,"London",NA
+"269","Jun-17","01/06/2017","South.East",1018,"South East",2017-06-01,TRUE,"South East",NA
+"270","Jun-17","01/06/2017","South.West",845,"South West",2017-06-01,FALSE,"South West",NA
+"271","Jul-17","01/07/2017","North.East",552,"North East",2017-07-01,FALSE,"North East",NA
+"272","Jul-17","01/07/2017","North.West",623,"North West",2017-07-01,FALSE,"North West",NA
+"273","Jul-17","01/07/2017","Yorkshire.and.the.Humber",605,"Yorkshire and the Humber",2017-07-01,FALSE,"Yorkshire and the Humber",NA
+"274","Jul-17","01/07/2017","East.Midlands",604,"East Midlands",2017-07-01,FALSE,"East Midlands",NA
+"275","Jul-17","01/07/2017","West.Midlands",662,"West Midlands",2017-07-01,FALSE,"West Midlands",NA
+"276","Jul-17","01/07/2017","East",901,"East",2017-07-01,TRUE,"East",NA
+"277","Jul-17","01/07/2017","London",1709,"London",2017-07-01,TRUE,"London",NA
+"278","Jul-17","01/07/2017","South.East",1020,"South East",2017-07-01,TRUE,"South East",NA
+"279","Jul-17","01/07/2017","South.West",847,"South West",2017-07-01,FALSE,"South West",NA
+"280","Aug-17","01/08/2017","North.East",552,"North East",2017-08-01,FALSE,"North East",NA
+"281","Aug-17","01/08/2017","North.West",624,"North West",2017-08-01,FALSE,"North West",NA
+"282","Aug-17","01/08/2017","Yorkshire.and.the.Humber",606,"Yorkshire and the Humber",2017-08-01,FALSE,"Yorkshire and the Humber",NA
+"283","Aug-17","01/08/2017","East.Midlands",606,"East Midlands",2017-08-01,FALSE,"East Midlands",NA
+"284","Aug-17","01/08/2017","West.Midlands",663,"West Midlands",2017-08-01,FALSE,"West Midlands",NA
+"285","Aug-17","01/08/2017","East",902,"East",2017-08-01,TRUE,"East",NA
+"286","Aug-17","01/08/2017","London",1707,"London",2017-08-01,TRUE,"London",NA
+"287","Aug-17","01/08/2017","South.East",1022,"South East",2017-08-01,TRUE,"South East",NA
+"288","Aug-17","01/08/2017","South.West",849,"South West",2017-08-01,FALSE,"South West",NA
+"289","Sep-17","01/09/2017","North.East",552,"North East",2017-09-01,FALSE,"North East",NA
+"290","Sep-17","01/09/2017","North.West",626,"North West",2017-09-01,FALSE,"North West",NA
+"291","Sep-17","01/09/2017","Yorkshire.and.the.Humber",607,"Yorkshire and the Humber",2017-09-01,FALSE,"Yorkshire and the Humber",NA
+"292","Sep-17","01/09/2017","East.Midlands",608,"East Midlands",2017-09-01,FALSE,"East Midlands",NA
+"293","Sep-17","01/09/2017","West.Midlands",665,"West Midlands",2017-09-01,FALSE,"West Midlands",NA
+"294","Sep-17","01/09/2017","East",905,"East",2017-09-01,TRUE,"East",NA
+"295","Sep-17","01/09/2017","London",1702,"London",2017-09-01,TRUE,"London",NA
+"296","Sep-17","01/09/2017","South.East",1023,"South East",2017-09-01,TRUE,"South East",NA
+"297","Sep-17","01/09/2017","South.West",852,"South West",2017-09-01,FALSE,"South West",NA
+"298","Oct-17","01/10/2017","North.East",552,"North East",2017-10-01,FALSE,"North East",NA
+"299","Oct-17","01/10/2017","North.West",627,"North West",2017-10-01,FALSE,"North West",NA
+"300","Oct-17","01/10/2017","Yorkshire.and.the.Humber",608,"Yorkshire and the Humber",2017-10-01,FALSE,"Yorkshire and the Humber",NA
+"301","Oct-17","01/10/2017","East.Midlands",610,"East Midlands",2017-10-01,FALSE,"East Midlands",NA
+"302","Oct-17","01/10/2017","West.Midlands",665,"West Midlands",2017-10-01,FALSE,"West Midlands",NA
+"303","Oct-17","01/10/2017","East",908,"East",2017-10-01,TRUE,"East",NA
+"304","Oct-17","01/10/2017","London",1701,"London",2017-10-01,TRUE,"London",NA
+"305","Oct-17","01/10/2017","South.East",1024,"South East",2017-10-01,TRUE,"South East",NA
+"306","Oct-17","01/10/2017","South.West",853,"South West",2017-10-01,FALSE,"South West",NA
+"307","Nov-17","01/11/2017","North.East",552,"North East",2017-11-01,FALSE,"North East",NA
+"308","Nov-17","01/11/2017","North.West",630,"North West",2017-11-01,FALSE,"North West",NA
+"309","Nov-17","01/11/2017","Yorkshire.and.the.Humber",609,"Yorkshire and the Humber",2017-11-01,FALSE,"Yorkshire and the Humber",NA
+"310","Nov-17","01/11/2017","East.Midlands",613,"East Midlands",2017-11-01,FALSE,"East Midlands",NA
+"311","Nov-17","01/11/2017","West.Midlands",665,"West Midlands",2017-11-01,FALSE,"West Midlands",NA
+"312","Nov-17","01/11/2017","East",908,"East",2017-11-01,TRUE,"East",NA
+"313","Nov-17","01/11/2017","London",1700,"London",2017-11-01,TRUE,"London",NA
+"314","Nov-17","01/11/2017","South.East",1024,"South East",2017-11-01,TRUE,"South East",NA
+"315","Nov-17","01/11/2017","South.West",856,"South West",2017-11-01,FALSE,"South West",NA
+"316","Dec-17","01/12/2017","North.East",553,"North East",2017-12-01,FALSE,"North East",NA
+"317","Dec-17","01/12/2017","North.West",632,"North West",2017-12-01,FALSE,"North West",NA
+"318","Dec-17","01/12/2017","Yorkshire.and.the.Humber",610,"Yorkshire and the Humber",2017-12-01,FALSE,"Yorkshire and the Humber",NA
+"319","Dec-17","01/12/2017","East.Midlands",614,"East Midlands",2017-12-01,FALSE,"East Midlands",NA
+"320","Dec-17","01/12/2017","West.Midlands",667,"West Midlands",2017-12-01,FALSE,"West Midlands",NA
+"321","Dec-17","01/12/2017","East",911,"East",2017-12-01,TRUE,"East",NA
+"322","Dec-17","01/12/2017","London",1700,"London",2017-12-01,TRUE,"London",NA
+"323","Dec-17","01/12/2017","South.East",1026,"South East",2017-12-01,TRUE,"South East",NA
+"324","Dec-17","01/12/2017","South.West",858,"South West",2017-12-01,FALSE,"South West",NA
+"325","Jan-18","01/01/2018","North.East",552,"North East",2018-01-01,FALSE,"North East",NA
+"326","Jan-18","01/01/2018","North.West",633,"North West",2018-01-01,FALSE,"North West",NA
+"327","Jan-18","01/01/2018","Yorkshire.and.the.Humber",610,"Yorkshire and the Humber",2018-01-01,FALSE,"Yorkshire and the Humber",NA
+"328","Jan-18","01/01/2018","East.Midlands",615,"East Midlands",2018-01-01,FALSE,"East Midlands",NA
+"329","Jan-18","01/01/2018","West.Midlands",668,"West Midlands",2018-01-01,FALSE,"West Midlands",NA
+"330","Jan-18","01/01/2018","East",911,"East",2018-01-01,TRUE,"East",NA
+"331","Jan-18","01/01/2018","London",1694,"London",2018-01-01,TRUE,"London",NA
+"332","Jan-18","01/01/2018","South.East",1026,"South East",2018-01-01,TRUE,"South East",NA
+"333","Jan-18","01/01/2018","South.West",858,"South West",2018-01-01,FALSE,"South West",NA
+"334","Feb-18","01/02/2018","North.East",552,"North East",2018-02-01,FALSE,"North East",NA
+"335","Feb-18","01/02/2018","North.West",634,"North West",2018-02-01,FALSE,"North West",NA
+"336","Feb-18","01/02/2018","Yorkshire.and.the.Humber",610,"Yorkshire and the Humber",2018-02-01,FALSE,"Yorkshire and the Humber",NA
+"337","Feb-18","01/02/2018","East.Midlands",617,"East Midlands",2018-02-01,FALSE,"East Midlands",NA
+"338","Feb-18","01/02/2018","West.Midlands",669,"West Midlands",2018-02-01,FALSE,"West Midlands",NA
+"339","Feb-18","01/02/2018","East",914,"East",2018-02-01,TRUE,"East",NA
+"340","Feb-18","01/02/2018","London",1691,"London",2018-02-01,TRUE,"London",NA
+"341","Feb-18","01/02/2018","South.East",1027,"South East",2018-02-01,TRUE,"South East",NA
+"342","Feb-18","01/02/2018","South.West",859,"South West",2018-02-01,FALSE,"South West",NA
+"343","Mar-18","01/03/2018","North.East",553,"North East",2018-03-01,FALSE,"North East",NA
+"344","Mar-18","01/03/2018","North.West",634,"North West",2018-03-01,FALSE,"North West",NA
+"345","Mar-18","01/03/2018","Yorkshire.and.the.Humber",611,"Yorkshire and the Humber",2018-03-01,FALSE,"Yorkshire and the Humber",NA
+"346","Mar-18","01/03/2018","East.Midlands",618,"East Midlands",2018-03-01,FALSE,"East Midlands",NA
+"347","Mar-18","01/03/2018","West.Midlands",670,"West Midlands",2018-03-01,FALSE,"West Midlands",NA
+"348","Mar-18","01/03/2018","East",915,"East",2018-03-01,TRUE,"East",NA
+"349","Mar-18","01/03/2018","London",1684,"London",2018-03-01,TRUE,"London",NA
+"350","Mar-18","01/03/2018","South.East",1028,"South East",2018-03-01,TRUE,"South East",NA
+"351","Mar-18","01/03/2018","South.West",859,"South West",2018-03-01,FALSE,"South West",NA
+"352","Apr-18","01/04/2018","North.East",552,"North East",2018-04-01,FALSE,"North East",NA
+"353","Apr-18","01/04/2018","North.West",635,"North West",2018-04-01,FALSE,"North West",NA
+"354","Apr-18","01/04/2018","Yorkshire.and.the.Humber",612,"Yorkshire and the Humber",2018-04-01,FALSE,"Yorkshire and the Humber",NA
+"355","Apr-18","01/04/2018","East.Midlands",619,"East Midlands",2018-04-01,FALSE,"East Midlands",NA
+"356","Apr-18","01/04/2018","West.Midlands",673,"West Midlands",2018-04-01,FALSE,"West Midlands",NA
+"357","Apr-18","01/04/2018","East",916,"East",2018-04-01,TRUE,"East",NA
+"358","Apr-18","01/04/2018","London",1681,"London",2018-04-01,TRUE,"London",NA
+"359","Apr-18","01/04/2018","South.East",1029,"South East",2018-04-01,TRUE,"South East",NA
+"360","Apr-18","01/04/2018","South.West",861,"South West",2018-04-01,FALSE,"South West",NA
+"361","May-18","01/05/2018","North.East",551,"North East",2018-05-01,FALSE,"North East",NA
+"362","May-18","01/05/2018","North.West",637,"North West",2018-05-01,FALSE,"North West",NA
+"363","May-18","01/05/2018","Yorkshire.and.the.Humber",613,"Yorkshire and the Humber",2018-05-01,FALSE,"Yorkshire and the Humber",NA
+"364","May-18","01/05/2018","East.Midlands",622,"East Midlands",2018-05-01,FALSE,"East Midlands",NA
+"365","May-18","01/05/2018","West.Midlands",674,"West Midlands",2018-05-01,FALSE,"West Midlands",NA
+"366","May-18","01/05/2018","East",916,"East",2018-05-01,TRUE,"East",NA
+"367","May-18","01/05/2018","London",1678,"London",2018-05-01,TRUE,"London",NA
+"368","May-18","01/05/2018","South.East",1029,"South East",2018-05-01,TRUE,"South East",NA
+"369","May-18","01/05/2018","South.West",862,"South West",2018-05-01,FALSE,"South West",NA
+"370","Jun-18","01/06/2018","North.East",553,"North East",2018-06-01,FALSE,"North East",NA
+"371","Jun-18","01/06/2018","North.West",637,"North West",2018-06-01,FALSE,"North West",NA
+"372","Jun-18","01/06/2018","Yorkshire.and.the.Humber",613,"Yorkshire and the Humber",2018-06-01,FALSE,"Yorkshire and the Humber",NA
+"373","Jun-18","01/06/2018","East.Midlands",624,"East Midlands",2018-06-01,FALSE,"East Midlands",NA
+"374","Jun-18","01/06/2018","West.Midlands",674,"West Midlands",2018-06-01,FALSE,"West Midlands",NA
+"375","Jun-18","01/06/2018","East",917,"East",2018-06-01,TRUE,"East",NA
+"376","Jun-18","01/06/2018","London",1683,"London",2018-06-01,TRUE,"London",NA
+"377","Jun-18","01/06/2018","South.East",1030,"South East",2018-06-01,TRUE,"South East",NA
+"378","Jun-18","01/06/2018","South.West",863,"South West",2018-06-01,FALSE,"South West",NA
+"379","Jul-18","01/07/2018","North.East",553,"North East",2018-07-01,FALSE,"North East",NA
+"380","Jul-18","01/07/2018","North.West",638,"North West",2018-07-01,FALSE,"North West",NA
+"381","Jul-18","01/07/2018","Yorkshire.and.the.Humber",613,"Yorkshire and the Humber",2018-07-01,FALSE,"Yorkshire and the Humber",NA
+"382","Jul-18","01/07/2018","East.Midlands",624,"East Midlands",2018-07-01,FALSE,"East Midlands",NA
+"383","Jul-18","01/07/2018","West.Midlands",676,"West Midlands",2018-07-01,FALSE,"West Midlands",NA
+"384","Jul-18","01/07/2018","East",919,"East",2018-07-01,TRUE,"East",NA
+"385","Jul-18","01/07/2018","London",1683,"London",2018-07-01,TRUE,"London",NA
+"386","Jul-18","01/07/2018","South.East",1033,"South East",2018-07-01,TRUE,"South East",NA
+"387","Jul-18","01/07/2018","South.West",864,"South West",2018-07-01,FALSE,"South West",NA
+"388","Aug-18","01/08/2018","North.East",554,"North East",2018-08-01,FALSE,"North East",NA
+"389","Aug-18","01/08/2018","North.West",640,"North West",2018-08-01,FALSE,"North West",NA
+"390","Aug-18","01/08/2018","Yorkshire.and.the.Humber",614,"Yorkshire and the Humber",2018-08-01,FALSE,"Yorkshire and the Humber",NA
+"391","Aug-18","01/08/2018","East.Midlands",626,"East Midlands",2018-08-01,FALSE,"East Midlands",NA
+"392","Aug-18","01/08/2018","West.Midlands",676,"West Midlands",2018-08-01,FALSE,"West Midlands",NA
+"393","Aug-18","01/08/2018","East",920,"East",2018-08-01,TRUE,"East",NA
+"394","Aug-18","01/08/2018","London",1685,"London",2018-08-01,TRUE,"London",NA
+"395","Aug-18","01/08/2018","South.East",1034,"South East",2018-08-01,TRUE,"South East",NA
+"396","Aug-18","01/08/2018","South.West",867,"South West",2018-08-01,FALSE,"South West",NA
+"397","Sep-18","01/09/2018","North.East",554,"North East",2018-09-01,FALSE,"North East",NA
+"398","Sep-18","01/09/2018","North.West",641,"North West",2018-09-01,FALSE,"North West",NA
+"399","Sep-18","01/09/2018","Yorkshire.and.the.Humber",616,"Yorkshire and the Humber",2018-09-01,FALSE,"Yorkshire and the Humber",NA
+"400","Sep-18","01/09/2018","East.Midlands",634,"East Midlands",2018-09-01,FALSE,"East Midlands",NA
+"401","Sep-18","01/09/2018","West.Midlands",678,"West Midlands",2018-09-01,FALSE,"West Midlands",NA
+"402","Sep-18","01/09/2018","East",922,"East",2018-09-01,TRUE,"East",NA
+"403","Sep-18","01/09/2018","London",1685,"London",2018-09-01,TRUE,"London",NA
+"404","Sep-18","01/09/2018","South.East",1035,"South East",2018-09-01,TRUE,"South East",NA
+"405","Sep-18","01/09/2018","South.West",867,"South West",2018-09-01,FALSE,"South West",NA
+"406","Oct-18","01/10/2018","North.East",556,"North East",2018-10-01,FALSE,"North East",NA
+"407","Oct-18","01/10/2018","North.West",642,"North West",2018-10-01,FALSE,"North West",NA
+"408","Oct-18","01/10/2018","Yorkshire.and.the.Humber",616,"Yorkshire and the Humber",2018-10-01,FALSE,"Yorkshire and the Humber",NA
+"409","Oct-18","01/10/2018","East.Midlands",637,"East Midlands",2018-10-01,FALSE,"East Midlands",NA
+"410","Oct-18","01/10/2018","West.Midlands",681,"West Midlands",2018-10-01,FALSE,"West Midlands",NA
+"411","Oct-18","01/10/2018","East",923,"East",2018-10-01,TRUE,"East",NA
+"412","Oct-18","01/10/2018","London",1689,"London",2018-10-01,TRUE,"London",NA
+"413","Oct-18","01/10/2018","South.East",1037,"South East",2018-10-01,TRUE,"South East",NA
+"414","Oct-18","01/10/2018","South.West",869,"South West",2018-10-01,FALSE,"South West",NA
+"415","Nov-18","01/11/2018","North.East",555,"North East",2018-11-01,FALSE,"North East",NA
+"416","Nov-18","01/11/2018","North.West",643,"North West",2018-11-01,FALSE,"North West",NA
+"417","Nov-18","01/11/2018","Yorkshire.and.the.Humber",618,"Yorkshire and the Humber",2018-11-01,FALSE,"Yorkshire and the Humber",NA
+"418","Nov-18","01/11/2018","East.Midlands",642,"East Midlands",2018-11-01,FALSE,"East Midlands",NA
+"419","Nov-18","01/11/2018","West.Midlands",682,"West Midlands",2018-11-01,FALSE,"West Midlands",NA
+"420","Nov-18","01/11/2018","East",925,"East",2018-11-01,TRUE,"East",NA
+"421","Nov-18","01/11/2018","London",1691,"London",2018-11-01,TRUE,"London",NA
+"422","Nov-18","01/11/2018","South.East",1039,"South East",2018-11-01,TRUE,"South East",NA
+"423","Nov-18","01/11/2018","South.West",871,"South West",2018-11-01,FALSE,"South West",NA
+"424","Dec-18","01/12/2018","North.East",555,"North East",2018-12-01,FALSE,"North East",NA
+"425","Dec-18","01/12/2018","North.West",642,"North West",2018-12-01,FALSE,"North West",NA
+"426","Dec-18","01/12/2018","Yorkshire.and.the.Humber",618,"Yorkshire and the Humber",2018-12-01,FALSE,"Yorkshire and the Humber",NA
+"427","Dec-18","01/12/2018","East.Midlands",642,"East Midlands",2018-12-01,FALSE,"East Midlands",NA
+"428","Dec-18","01/12/2018","West.Midlands",683,"West Midlands",2018-12-01,FALSE,"West Midlands",NA
+"429","Dec-18","01/12/2018","East",925,"East",2018-12-01,TRUE,"East",NA
+"430","Dec-18","01/12/2018","London",1696,"London",2018-12-01,TRUE,"London",NA
+"431","Dec-18","01/12/2018","South.East",1041,"South East",2018-12-01,TRUE,"South East",NA
+"432","Dec-18","01/12/2018","South.West",873,"South West",2018-12-01,FALSE,"South West",NA
+"433","Jan-19","01/01/2019","North.East",555,"North East",2019-01-01,FALSE,"North East",NA
+"434","Jan-19","01/01/2019","North.West",642,"North West",2019-01-01,FALSE,"North West",NA
+"435","Jan-19","01/01/2019","Yorkshire.and.the.Humber",620,"Yorkshire and the Humber",2019-01-01,FALSE,"Yorkshire and the Humber",NA
+"436","Jan-19","01/01/2019","East.Midlands",644,"East Midlands",2019-01-01,FALSE,"East Midlands",NA
+"437","Jan-19","01/01/2019","West.Midlands",684,"West Midlands",2019-01-01,FALSE,"West Midlands",NA
+"438","Jan-19","01/01/2019","East",927,"East",2019-01-01,TRUE,"East",NA
+"439","Jan-19","01/01/2019","London",1698,"London",2019-01-01,TRUE,"London",NA
+"440","Jan-19","01/01/2019","South.East",1042,"South East",2019-01-01,TRUE,"South East",NA
+"441","Jan-19","01/01/2019","South.West",873,"South West",2019-01-01,FALSE,"South West",NA
+"442","Feb-19","01/02/2019","North.East",555,"North East",2019-02-01,FALSE,"North East",NA
+"443","Feb-19","01/02/2019","North.West",642,"North West",2019-02-01,FALSE,"North West",NA
+"444","Feb-19","01/02/2019","Yorkshire.and.the.Humber",621,"Yorkshire and the Humber",2019-02-01,FALSE,"Yorkshire and the Humber",NA
+"445","Feb-19","01/02/2019","East.Midlands",644,"East Midlands",2019-02-01,FALSE,"East Midlands",NA
+"446","Feb-19","01/02/2019","West.Midlands",685,"West Midlands",2019-02-01,FALSE,"West Midlands",NA
+"447","Feb-19","01/02/2019","East",930,"East",2019-02-01,TRUE,"East",NA
+"448","Feb-19","01/02/2019","London",1701,"London",2019-02-01,TRUE,"London",NA
+"449","Feb-19","01/02/2019","South.East",1044,"South East",2019-02-01,TRUE,"South East",NA
+"450","Feb-19","01/02/2019","South.West",874,"South West",2019-02-01,FALSE,"South West",NA
+"451","Mar-19","01/03/2019","North.East",556,"North East",2019-03-01,FALSE,"North East",NA
+"452","Mar-19","01/03/2019","North.West",643,"North West",2019-03-01,FALSE,"North West",NA
+"453","Mar-19","01/03/2019","Yorkshire.and.the.Humber",622,"Yorkshire and the Humber",2019-03-01,FALSE,"Yorkshire and the Humber",NA
+"454","Mar-19","01/03/2019","East.Midlands",645,"East Midlands",2019-03-01,FALSE,"East Midlands",NA
+"455","Mar-19","01/03/2019","West.Midlands",685,"West Midlands",2019-03-01,FALSE,"West Midlands",NA
+"456","Mar-19","01/03/2019","East",931,"East",2019-03-01,TRUE,"East",NA
+"457","Mar-19","01/03/2019","London",1707,"London",2019-03-01,TRUE,"London",NA
+"458","Mar-19","01/03/2019","South.East",1044,"South East",2019-03-01,TRUE,"South East",NA
+"459","Mar-19","01/03/2019","South.West",875,"South West",2019-03-01,FALSE,"South West",NA
+"460","Apr-19","01/04/2019","North.East",556,"North East",2019-04-01,FALSE,"North East",NA
+"461","Apr-19","01/04/2019","North.West",645,"North West",2019-04-01,FALSE,"North West",NA
+"462","Apr-19","01/04/2019","Yorkshire.and.the.Humber",623,"Yorkshire and the Humber",2019-04-01,FALSE,"Yorkshire and the Humber",NA
+"463","Apr-19","01/04/2019","East.Midlands",646,"East Midlands",2019-04-01,FALSE,"East Midlands",NA
+"464","Apr-19","01/04/2019","West.Midlands",687,"West Midlands",2019-04-01,FALSE,"West Midlands",NA
+"465","Apr-19","01/04/2019","East",931,"East",2019-04-01,TRUE,"East",NA
+"466","Apr-19","01/04/2019","London",1700,"London",2019-04-01,TRUE,"London",NA
+"467","Apr-19","01/04/2019","South.East",1045,"South East",2019-04-01,TRUE,"South East",NA
+"468","Apr-19","01/04/2019","South.West",876,"South West",2019-04-01,FALSE,"South West",NA
+"469","May-19","01/05/2019","North.East",557,"North East",2019-05-01,FALSE,"North East",NA
+"470","May-19","01/05/2019","North.West",645,"North West",2019-05-01,FALSE,"North West",NA
+"471","May-19","01/05/2019","Yorkshire.and.the.Humber",624,"Yorkshire and the Humber",2019-05-01,FALSE,"Yorkshire and the Humber",NA
+"472","May-19","01/05/2019","East.Midlands",648,"East Midlands",2019-05-01,FALSE,"East Midlands",NA
+"473","May-19","01/05/2019","West.Midlands",687,"West Midlands",2019-05-01,FALSE,"West Midlands",NA
+"474","May-19","01/05/2019","East",933,"East",2019-05-01,TRUE,"East",NA
+"475","May-19","01/05/2019","London",1717,"London",2019-05-01,TRUE,"London",NA
+"476","May-19","01/05/2019","South.East",1047,"South East",2019-05-01,TRUE,"South East",NA
+"477","May-19","01/05/2019","South.West",879,"South West",2019-05-01,FALSE,"South West",NA
+"478","Jun-19","01/06/2019","North.East",557,"North East",2019-06-01,FALSE,"North East",NA
+"479","Jun-19","01/06/2019","North.West",646,"North West",2019-06-01,FALSE,"North West",NA
+"480","Jun-19","01/06/2019","Yorkshire.and.the.Humber",625,"Yorkshire and the Humber",2019-06-01,FALSE,"Yorkshire and the Humber",NA
+"481","Jun-19","01/06/2019","East.Midlands",648,"East Midlands",2019-06-01,FALSE,"East Midlands",NA
+"482","Jun-19","01/06/2019","West.Midlands",686,"West Midlands",2019-06-01,FALSE,"West Midlands",NA
+"483","Jun-19","01/06/2019","East",935,"East",2019-06-01,TRUE,"East",NA
+"484","Jun-19","01/06/2019","London",1717,"London",2019-06-01,TRUE,"London",NA
+"485","Jun-19","01/06/2019","South.East",1048,"South East",2019-06-01,TRUE,"South East",NA
+"486","Jun-19","01/06/2019","South.West",880,"South West",2019-06-01,FALSE,"South West",NA
+"487","Jul-19","01/07/2019","North.East",559,"North East",2019-07-01,FALSE,"North East",NA
+"488","Jul-19","01/07/2019","North.West",647,"North West",2019-07-01,FALSE,"North West",NA
+"489","Jul-19","01/07/2019","Yorkshire.and.the.Humber",626,"Yorkshire and the Humber",2019-07-01,FALSE,"Yorkshire and the Humber",NA
+"490","Jul-19","01/07/2019","East.Midlands",649,"East Midlands",2019-07-01,FALSE,"East Midlands",NA
+"491","Jul-19","01/07/2019","West.Midlands",687,"West Midlands",2019-07-01,FALSE,"West Midlands",NA
+"492","Jul-19","01/07/2019","East",936,"East",2019-07-01,TRUE,"East",NA
+"493","Jul-19","01/07/2019","London",1717,"London",2019-07-01,TRUE,"London",NA
+"494","Jul-19","01/07/2019","South.East",1051,"South East",2019-07-01,TRUE,"South East",NA
+"495","Jul-19","01/07/2019","South.West",881,"South West",2019-07-01,FALSE,"South West",NA
+"496","Aug-19","01/08/2019","North.East",557,"North East",2019-08-01,FALSE,"North East",NA
+"497","Aug-19","01/08/2019","North.West",648,"North West",2019-08-01,FALSE,"North West",NA
+"498","Aug-19","01/08/2019","Yorkshire.and.the.Humber",627,"Yorkshire and the Humber",2019-08-01,FALSE,"Yorkshire and the Humber",NA
+"499","Aug-19","01/08/2019","East.Midlands",650,"East Midlands",2019-08-01,FALSE,"East Midlands",NA
+"500","Aug-19","01/08/2019","West.Midlands",689,"West Midlands",2019-08-01,FALSE,"West Midlands",NA
+"501","Aug-19","01/08/2019","East",938,"East",2019-08-01,TRUE,"East",NA
+"502","Aug-19","01/08/2019","London",1718,"London",2019-08-01,TRUE,"London",NA
+"503","Aug-19","01/08/2019","South.East",1053,"South East",2019-08-01,TRUE,"South East",NA
+"504","Aug-19","01/08/2019","South.West",881,"South West",2019-08-01,FALSE,"South West",NA
+"505","Sep-19","01/09/2019","North.East",558,"North East",2019-09-01,FALSE,"North East",NA
+"506","Sep-19","01/09/2019","North.West",649,"North West",2019-09-01,FALSE,"North West",NA
+"507","Sep-19","01/09/2019","Yorkshire.and.the.Humber",631,"Yorkshire and the Humber",2019-09-01,FALSE,"Yorkshire and the Humber",NA
+"508","Sep-19","01/09/2019","East.Midlands",652,"East Midlands",2019-09-01,FALSE,"East Midlands",NA
+"509","Sep-19","01/09/2019","West.Midlands",692,"West Midlands",2019-09-01,FALSE,"West Midlands",NA
+"510","Sep-19","01/09/2019","East",940,"East",2019-09-01,TRUE,"East",NA
+"511","Sep-19","01/09/2019","London",1726,"London",2019-09-01,TRUE,"London",NA
+"512","Sep-19","01/09/2019","South.East",1054,"South East",2019-09-01,TRUE,"South East",NA
+"513","Sep-19","01/09/2019","South.West",884,"South West",2019-09-01,FALSE,"South West",NA
+"514","Oct-19","01/10/2019","North.East",560,"North East",2019-10-01,FALSE,"North East",NA
+"515","Oct-19","01/10/2019","North.West",650,"North West",2019-10-01,FALSE,"North West",NA
+"516","Oct-19","01/10/2019","Yorkshire.and.the.Humber",632,"Yorkshire and the Humber",2019-10-01,FALSE,"Yorkshire and the Humber",NA
+"517","Oct-19","01/10/2019","East.Midlands",655,"East Midlands",2019-10-01,FALSE,"East Midlands",NA
+"518","Oct-19","01/10/2019","West.Midlands",695,"West Midlands",2019-10-01,FALSE,"West Midlands",NA
+"519","Oct-19","01/10/2019","East",941,"East",2019-10-01,TRUE,"East",NA
+"520","Oct-19","01/10/2019","London",1729,"London",2019-10-01,TRUE,"London",NA
+"521","Oct-19","01/10/2019","South.East",1055,"South East",2019-10-01,TRUE,"South East",NA
+"522","Oct-19","01/10/2019","South.West",885,"South West",2019-10-01,FALSE,"South West",NA
+"523","Nov-19","01/11/2019","North.East",561,"North East",2019-11-01,FALSE,"North East",NA
+"524","Nov-19","01/11/2019","North.West",651,"North West",2019-11-01,FALSE,"North West",NA
+"525","Nov-19","01/11/2019","Yorkshire.and.the.Humber",634,"Yorkshire and the Humber",2019-11-01,FALSE,"Yorkshire and the Humber",NA
+"526","Nov-19","01/11/2019","East.Midlands",656,"East Midlands",2019-11-01,FALSE,"East Midlands",NA
+"527","Nov-19","01/11/2019","West.Midlands",696,"West Midlands",2019-11-01,FALSE,"West Midlands",NA
+"528","Nov-19","01/11/2019","East",942,"East",2019-11-01,TRUE,"East",NA
+"529","Nov-19","01/11/2019","London",1736,"London",2019-11-01,TRUE,"London",NA
+"530","Nov-19","01/11/2019","South.East",1056,"South East",2019-11-01,TRUE,"South East",NA
+"531","Nov-19","01/11/2019","South.West",887,"South West",2019-11-01,FALSE,"South West",NA
+"532","Dec-19","01/12/2019","North.East",561,"North East",2019-12-01,FALSE,"North East",NA
+"533","Dec-19","01/12/2019","North.West",651,"North West",2019-12-01,FALSE,"North West",NA
+"534","Dec-19","01/12/2019","Yorkshire.and.the.Humber",636,"Yorkshire and the Humber",2019-12-01,FALSE,"Yorkshire and the Humber",NA
+"535","Dec-19","01/12/2019","East.Midlands",656,"East Midlands",2019-12-01,FALSE,"East Midlands",NA
+"536","Dec-19","01/12/2019","West.Midlands",696,"West Midlands",2019-12-01,FALSE,"West Midlands",NA
+"537","Dec-19","01/12/2019","East",943,"East",2019-12-01,TRUE,"East",NA
+"538","Dec-19","01/12/2019","London",1742,"London",2019-12-01,TRUE,"London",NA
+"539","Dec-19","01/12/2019","South.East",1057,"South East",2019-12-01,TRUE,"South East",NA
+"540","Dec-19","01/12/2019","South.West",888,"South West",2019-12-01,FALSE,"South West",NA
+"541","Jan-20","01/01/2020","North.East",562,"North East",2020-01-01,FALSE,"North East",NA
+"542","Jan-20","01/01/2020","North.West",654,"North West",2020-01-01,FALSE,"North West",NA
+"543","Jan-20","01/01/2020","Yorkshire.and.the.Humber",637,"Yorkshire and the Humber",2020-01-01,FALSE,"Yorkshire and the Humber",NA
+"544","Jan-20","01/01/2020","East.Midlands",655,"East Midlands",2020-01-01,FALSE,"East Midlands",NA
+"545","Jan-20","01/01/2020","West.Midlands",698,"West Midlands",2020-01-01,FALSE,"West Midlands",NA
+"546","Jan-20","01/01/2020","East",944,"East",2020-01-01,TRUE,"East",NA
+"547","Jan-20","01/01/2020","London",1740,"London",2020-01-01,TRUE,"London",NA
+"548","Jan-20","01/01/2020","South.East",1058,"South East",2020-01-01,TRUE,"South East",NA
+"549","Jan-20","01/01/2020","South.West",891,"South West",2020-01-01,FALSE,"South West",NA
+"550","Feb-20","01/02/2020","North.East",562,"North East",2020-02-01,FALSE,"North East",NA
+"551","Feb-20","01/02/2020","North.West",654,"North West",2020-02-01,FALSE,"North West",NA
+"552","Feb-20","01/02/2020","Yorkshire.and.the.Humber",638,"Yorkshire and the Humber",2020-02-01,FALSE,"Yorkshire and the Humber",NA
+"553","Feb-20","01/02/2020","East.Midlands",657,"East Midlands",2020-02-01,FALSE,"East Midlands",NA
+"554","Feb-20","01/02/2020","West.Midlands",699,"West Midlands",2020-02-01,FALSE,"West Midlands",NA
+"555","Feb-20","01/02/2020","East",945,"East",2020-02-01,TRUE,"East",NA
+"556","Feb-20","01/02/2020","London",1745,"London",2020-02-01,TRUE,"London",NA
+"557","Feb-20","01/02/2020","South.East",1059,"South East",2020-02-01,TRUE,"South East",NA
+"558","Feb-20","01/02/2020","South.West",892,"South West",2020-02-01,FALSE,"South West",NA
+"559","Mar-20","01/03/2020","North.East",562,"North East",2020-03-01,FALSE,"North East",NA
+"560","Mar-20","01/03/2020","North.West",654,"North West",2020-03-01,FALSE,"North West",NA
+"561","Mar-20","01/03/2020","Yorkshire.and.the.Humber",639,"Yorkshire and the Humber",2020-03-01,FALSE,"Yorkshire and the Humber",NA
+"562","Mar-20","01/03/2020","East.Midlands",658,"East Midlands",2020-03-01,FALSE,"East Midlands",NA
+"563","Mar-20","01/03/2020","West.Midlands",699,"West Midlands",2020-03-01,FALSE,"West Midlands",NA
+"564","Mar-20","01/03/2020","East",945,"East",2020-03-01,TRUE,"East",NA
+"565","Mar-20","01/03/2020","London",1748,"London",2020-03-01,TRUE,"London",NA
+"566","Mar-20","01/03/2020","South.East",1059,"South East",2020-03-01,TRUE,"South East",NA
+"567","Mar-20","01/03/2020","South.West",894,"South West",2020-03-01,FALSE,"South West",NA
+"568","Apr-20","01/04/2020","North.East",563,"North East",2020-04-01,FALSE,"North East",NA
+"569","Apr-20","01/04/2020","North.West",657,"North West",2020-04-01,FALSE,"North West",NA
+"570","Apr-20","01/04/2020","Yorkshire.and.the.Humber",639,"Yorkshire and the Humber",2020-04-01,FALSE,"Yorkshire and the Humber",NA
+"571","Apr-20","01/04/2020","East.Midlands",659,"East Midlands",2020-04-01,FALSE,"East Midlands",NA
+"572","Apr-20","01/04/2020","West.Midlands",699,"West Midlands",2020-04-01,FALSE,"West Midlands",NA
+"573","Apr-20","01/04/2020","East",945,"East",2020-04-01,TRUE,"East",NA
+"574","Apr-20","01/04/2020","London",1742,"London",2020-04-01,TRUE,"London",NA
+"575","Apr-20","01/04/2020","South.East",1060,"South East",2020-04-01,TRUE,"South East",NA
+"576","Apr-20","01/04/2020","South.West",894,"South West",2020-04-01,FALSE,"South West",NA
+"577","May-20","01/05/2020","North.East",563,"North East",2020-05-01,FALSE,"North East",NA
+"578","May-20","01/05/2020","North.West",658,"North West",2020-05-01,FALSE,"North West",NA
+"579","May-20","01/05/2020","Yorkshire.and.the.Humber",641,"Yorkshire and the Humber",2020-05-01,FALSE,"Yorkshire and the Humber",NA
+"580","May-20","01/05/2020","East.Midlands",660,"East Midlands",2020-05-01,FALSE,"East Midlands",NA
+"581","May-20","01/05/2020","West.Midlands",702,"West Midlands",2020-05-01,FALSE,"West Midlands",NA
+"582","May-20","01/05/2020","East",946,"East",2020-05-01,TRUE,"East",NA
+"583","May-20","01/05/2020","London",1744,"London",2020-05-01,TRUE,"London",NA
+"584","May-20","01/05/2020","South.East",1062,"South East",2020-05-01,TRUE,"South East",NA
+"585","May-20","01/05/2020","South.West",895,"South West",2020-05-01,FALSE,"South West",NA
+"586","Jun-20","01/06/2020","North.East",564,"North East",2020-06-01,FALSE,"North East",NA
+"587","Jun-20","01/06/2020","North.West",659,"North West",2020-06-01,FALSE,"North West",NA
+"588","Jun-20","01/06/2020","Yorkshire.and.the.Humber",641,"Yorkshire and the Humber",2020-06-01,FALSE,"Yorkshire and the Humber",NA
+"589","Jun-20","01/06/2020","East.Midlands",661,"East Midlands",2020-06-01,FALSE,"East Midlands",NA
+"590","Jun-20","01/06/2020","West.Midlands",703,"West Midlands",2020-06-01,FALSE,"West Midlands",NA
+"591","Jun-20","01/06/2020","East",946,"East",2020-06-01,TRUE,"East",NA
+"592","Jun-20","01/06/2020","London",1743,"London",2020-06-01,TRUE,"London",NA
+"593","Jun-20","01/06/2020","South.East",1063,"South East",2020-06-01,TRUE,"South East",NA
+"594","Jun-20","01/06/2020","South.West",897,"South West",2020-06-01,FALSE,"South West",NA
+"595","Jul-20","01/07/2020","North.East",565,"North East",2020-07-01,FALSE,"North East",NA
+"596","Jul-20","01/07/2020","North.West",660,"North West",2020-07-01,FALSE,"North West",NA
+"597","Jul-20","01/07/2020","Yorkshire.and.the.Humber",643,"Yorkshire and the Humber",2020-07-01,FALSE,"Yorkshire and the Humber",NA
+"598","Jul-20","01/07/2020","East.Midlands",661,"East Midlands",2020-07-01,FALSE,"East Midlands",NA
+"599","Jul-20","01/07/2020","West.Midlands",705,"West Midlands",2020-07-01,FALSE,"West Midlands",NA
+"600","Jul-20","01/07/2020","East",946,"East",2020-07-01,TRUE,"East",NA
+"601","Jul-20","01/07/2020","London",1745,"London",2020-07-01,TRUE,"London",NA
+"602","Jul-20","01/07/2020","South.East",1063,"South East",2020-07-01,TRUE,"South East",NA
+"603","Jul-20","01/07/2020","South.West",898,"South West",2020-07-01,FALSE,"South West",NA
+"604","Aug-20","01/08/2020","North.East",565,"North East",2020-08-01,FALSE,"North East",NA
+"605","Aug-20","01/08/2020","North.West",663,"North West",2020-08-01,FALSE,"North West",NA
+"606","Aug-20","01/08/2020","Yorkshire.and.the.Humber",644,"Yorkshire and the Humber",2020-08-01,FALSE,"Yorkshire and the Humber",NA
+"607","Aug-20","01/08/2020","East.Midlands",662,"East Midlands",2020-08-01,FALSE,"East Midlands",NA
+"608","Aug-20","01/08/2020","West.Midlands",708,"West Midlands",2020-08-01,FALSE,"West Midlands",NA
+"609","Aug-20","01/08/2020","East",948,"East",2020-08-01,TRUE,"East",NA
+"610","Aug-20","01/08/2020","London",1745,"London",2020-08-01,TRUE,"London",NA
+"611","Aug-20","01/08/2020","South.East",1061,"South East",2020-08-01,TRUE,"South East",NA
+"612","Aug-20","01/08/2020","South.West",901,"South West",2020-08-01,FALSE,"South West",NA
+"613","Sep-20","01/09/2020","North.East",568,"North East",2020-09-01,FALSE,"North East",NA
+"614","Sep-20","01/09/2020","North.West",664,"North West",2020-09-01,FALSE,"North West",NA
+"615","Sep-20","01/09/2020","Yorkshire.and.the.Humber",645,"Yorkshire and the Humber",2020-09-01,FALSE,"Yorkshire and the Humber",NA
+"616","Sep-20","01/09/2020","East.Midlands",666,"East Midlands",2020-09-01,FALSE,"East Midlands",NA
+"617","Sep-20","01/09/2020","West.Midlands",709,"West Midlands",2020-09-01,FALSE,"West Midlands",NA
+"618","Sep-20","01/09/2020","East",949,"East",2020-09-01,TRUE,"East",NA
+"619","Sep-20","01/09/2020","London",1746,"London",2020-09-01,TRUE,"London",NA
+"620","Sep-20","01/09/2020","South.East",1063,"South East",2020-09-01,TRUE,"South East",NA
+"621","Sep-20","01/09/2020","South.West",904,"South West",2020-09-01,FALSE,"South West",NA
+"622","Oct-20","01/10/2020","North.East",570,"North East",2020-10-01,FALSE,"North East",NA
+"623","Oct-20","01/10/2020","North.West",665,"North West",2020-10-01,FALSE,"North West",NA
+"624","Oct-20","01/10/2020","Yorkshire.and.the.Humber",647,"Yorkshire and the Humber",2020-10-01,FALSE,"Yorkshire and the Humber",NA
+"625","Oct-20","01/10/2020","East.Midlands",668,"East Midlands",2020-10-01,FALSE,"East Midlands",NA
+"626","Oct-20","01/10/2020","West.Midlands",711,"West Midlands",2020-10-01,FALSE,"West Midlands",NA
+"627","Oct-20","01/10/2020","East",951,"East",2020-10-01,TRUE,"East",NA
+"628","Oct-20","01/10/2020","London",1746,"London",2020-10-01,TRUE,"London",NA
+"629","Oct-20","01/10/2020","South.East",1066,"South East",2020-10-01,TRUE,"South East",NA
+"630","Oct-20","01/10/2020","South.West",908,"South West",2020-10-01,FALSE,"South West",NA
+"631","Nov-20","01/11/2020","North.East",573,"North East",2020-11-01,FALSE,"North East",NA
+"632","Nov-20","01/11/2020","North.West",667,"North West",2020-11-01,FALSE,"North West",NA
+"633","Nov-20","01/11/2020","Yorkshire.and.the.Humber",646,"Yorkshire and the Humber",2020-11-01,FALSE,"Yorkshire and the Humber",NA
+"634","Nov-20","01/11/2020","East.Midlands",669,"East Midlands",2020-11-01,FALSE,"East Midlands",NA
+"635","Nov-20","01/11/2020","West.Midlands",710,"West Midlands",2020-11-01,FALSE,"West Midlands",NA
+"636","Nov-20","01/11/2020","East",951,"East",2020-11-01,TRUE,"East",NA
+"637","Nov-20","01/11/2020","London",1742,"London",2020-11-01,TRUE,"London",NA
+"638","Nov-20","01/11/2020","South.East",1066,"South East",2020-11-01,TRUE,"South East",NA
+"639","Nov-20","01/11/2020","South.West",910,"South West",2020-11-01,FALSE,"South West",NA
+"640","Dec-20","01/12/2020","North.East",574,"North East",2020-12-01,FALSE,"North East",NA
+"641","Dec-20","01/12/2020","North.West",669,"North West",2020-12-01,FALSE,"North West",NA
+"642","Dec-20","01/12/2020","Yorkshire.and.the.Humber",646,"Yorkshire and the Humber",2020-12-01,FALSE,"Yorkshire and the Humber",NA
+"643","Dec-20","01/12/2020","East.Midlands",671,"East Midlands",2020-12-01,FALSE,"East Midlands",NA
+"644","Dec-20","01/12/2020","West.Midlands",709,"West Midlands",2020-12-01,FALSE,"West Midlands",NA
+"645","Dec-20","01/12/2020","East",954,"East",2020-12-01,TRUE,"East",NA
+"646","Dec-20","01/12/2020","London",1737,"London",2020-12-01,TRUE,"London",NA
+"647","Dec-20","01/12/2020","South.East",1069,"South East",2020-12-01,TRUE,"South East",NA
+"648","Dec-20","01/12/2020","South.West",914,"South West",2020-12-01,FALSE,"South West",NA
+"649","Jan-21","01/01/2021","North.East",574,"North East",2021-01-01,FALSE,"North East",NA
+"650","Jan-21","01/01/2021","North.West",671,"North West",2021-01-01,FALSE,"North West",NA
+"651","Jan-21","01/01/2021","Yorkshire.and.the.Humber",646,"Yorkshire and the Humber",2021-01-01,FALSE,"Yorkshire and the Humber",NA
+"652","Jan-21","01/01/2021","East.Midlands",671,"East Midlands",2021-01-01,FALSE,"East Midlands",NA
+"653","Jan-21","01/01/2021","West.Midlands",712,"West Midlands",2021-01-01,FALSE,"West Midlands",NA
+"654","Jan-21","01/01/2021","East",957,"East",2021-01-01,TRUE,"East",NA
+"655","Jan-21","01/01/2021","London",1736,"London",2021-01-01,TRUE,"London",NA
+"656","Jan-21","01/01/2021","South.East",1071,"South East",2021-01-01,TRUE,"South East",NA
+"657","Jan-21","01/01/2021","South.West",912,"South West",2021-01-01,FALSE,"South West",NA
+"658","Feb-21","01/02/2021","North.East",575,"North East",2021-02-01,FALSE,"North East",NA
+"659","Feb-21","01/02/2021","North.West",672,"North West",2021-02-01,FALSE,"North West",NA
+"660","Feb-21","01/02/2021","Yorkshire.and.the.Humber",647,"Yorkshire and the Humber",2021-02-01,FALSE,"Yorkshire and the Humber",NA
+"661","Feb-21","01/02/2021","East.Midlands",674,"East Midlands",2021-02-01,FALSE,"East Midlands",NA
+"662","Feb-21","01/02/2021","West.Midlands",712,"West Midlands",2021-02-01,FALSE,"West Midlands",NA
+"663","Feb-21","01/02/2021","East",964,"East",2021-02-01,TRUE,"East",NA
+"664","Feb-21","01/02/2021","London",1735,"London",2021-02-01,TRUE,"London",NA
+"665","Feb-21","01/02/2021","South.East",1072,"South East",2021-02-01,TRUE,"South East",NA
+"666","Feb-21","01/02/2021","South.West",917,"South West",2021-02-01,FALSE,"South West",NA
+"667","Mar-21","01/03/2021","North.East",576,"North East",2021-03-01,FALSE,"North East",NA
+"668","Mar-21","01/03/2021","North.West",672,"North West",2021-03-01,FALSE,"North West",NA
+"669","Mar-21","01/03/2021","Yorkshire.and.the.Humber",649,"Yorkshire and the Humber",2021-03-01,FALSE,"Yorkshire and the Humber",NA
+"670","Mar-21","01/03/2021","East.Midlands",676,"East Midlands",2021-03-01,FALSE,"East Midlands",NA
+"671","Mar-21","01/03/2021","West.Midlands",716,"West Midlands",2021-03-01,FALSE,"West Midlands",NA
+"672","Mar-21","01/03/2021","East",967,"East",2021-03-01,TRUE,"East",NA
+"673","Mar-21","01/03/2021","London",1730,"London",2021-03-01,TRUE,"London",NA
+"674","Mar-21","01/03/2021","South.East",1074,"South East",2021-03-01,TRUE,"South East",NA
+"675","Mar-21","01/03/2021","South.West",922,"South West",2021-03-01,FALSE,"South West",NA
+"676","Apr-21","01/04/2021","North.East",577,"North East",2021-04-01,FALSE,"North East",NA
+"677","Apr-21","01/04/2021","North.West",674,"North West",2021-04-01,FALSE,"North West",NA
+"678","Apr-21","01/04/2021","Yorkshire.and.the.Humber",651,"Yorkshire and the Humber",2021-04-01,FALSE,"Yorkshire and the Humber",NA
+"679","Apr-21","01/04/2021","East.Midlands",678,"East Midlands",2021-04-01,FALSE,"East Midlands",NA
+"680","Apr-21","01/04/2021","West.Midlands",720,"West Midlands",2021-04-01,FALSE,"West Midlands",NA
+"681","Apr-21","01/04/2021","East",971,"East",2021-04-01,TRUE,"East",NA
+"682","Apr-21","01/04/2021","London",1721,"London",2021-04-01,TRUE,"London",NA
+"683","Apr-21","01/04/2021","South.East",1074,"South East",2021-04-01,TRUE,"South East",NA
+"684","Apr-21","01/04/2021","South.West",926,"South West",2021-04-01,FALSE,"South West",NA
+"685","May-21","01/05/2021","North.East",578,"North East",2021-05-01,FALSE,"North East",NA
+"686","May-21","01/05/2021","North.West",676,"North West",2021-05-01,FALSE,"North West",NA
+"687","May-21","01/05/2021","Yorkshire.and.the.Humber",654,"Yorkshire and the Humber",2021-05-01,FALSE,"Yorkshire and the Humber",NA
+"688","May-21","01/05/2021","East.Midlands",681,"East Midlands",2021-05-01,FALSE,"East Midlands",NA
+"689","May-21","01/05/2021","West.Midlands",723,"West Midlands",2021-05-01,FALSE,"West Midlands",NA
+"690","May-21","01/05/2021","East",974,"East",2021-05-01,TRUE,"East",NA
+"691","May-21","01/05/2021","London",1711,"London",2021-05-01,TRUE,"London",NA
+"692","May-21","01/05/2021","South.East",1077,"South East",2021-05-01,TRUE,"South East",NA
+"693","May-21","01/05/2021","South.West",928,"South West",2021-05-01,FALSE,"South West",NA
+"694","Jun-21","01/06/2021","North.East",579,"North East",2021-06-01,FALSE,"North East",NA
+"695","Jun-21","01/06/2021","North.West",678,"North West",2021-06-01,FALSE,"North West",NA
+"696","Jun-21","01/06/2021","Yorkshire.and.the.Humber",655,"Yorkshire and the Humber",2021-06-01,FALSE,"Yorkshire and the Humber",NA
+"697","Jun-21","01/06/2021","East.Midlands",682,"East Midlands",2021-06-01,FALSE,"East Midlands",NA
+"698","Jun-21","01/06/2021","West.Midlands",726,"West Midlands",2021-06-01,FALSE,"West Midlands",NA
+"699","Jun-21","01/06/2021","East",977,"East",2021-06-01,TRUE,"East",NA
+"700","Jun-21","01/06/2021","London",1712,"London",2021-06-01,TRUE,"London",NA
+"701","Jun-21","01/06/2021","South.East",1080,"South East",2021-06-01,TRUE,"South East",NA
+"702","Jun-21","01/06/2021","South.West",931,"South West",2021-06-01,FALSE,"South West",NA
+"703","Jul-21","01/07/2021","North.East",580,"North East",2021-07-01,FALSE,"North East",NA
+"704","Jul-21","01/07/2021","North.West",680,"North West",2021-07-01,FALSE,"North West",NA
+"705","Jul-21","01/07/2021","Yorkshire.and.the.Humber",658,"Yorkshire and the Humber",2021-07-01,FALSE,"Yorkshire and the Humber",NA
+"706","Jul-21","01/07/2021","East.Midlands",683,"East Midlands",2021-07-01,FALSE,"East Midlands",NA
+"707","Jul-21","01/07/2021","West.Midlands",729,"West Midlands",2021-07-01,FALSE,"West Midlands",NA
+"708","Jul-21","01/07/2021","East",980,"East",2021-07-01,TRUE,"East",NA
+"709","Jul-21","01/07/2021","London",1705,"London",2021-07-01,TRUE,"London",NA
+"710","Jul-21","01/07/2021","South.East",1083,"South East",2021-07-01,TRUE,"South East",NA
+"711","Jul-21","01/07/2021","South.West",935,"South West",2021-07-01,FALSE,"South West",NA
+"712","Aug-21","01/08/2021","North.East",581,"North East",2021-08-01,FALSE,"North East",NA
+"713","Aug-21","01/08/2021","North.West",683,"North West",2021-08-01,FALSE,"North West",NA
+"714","Aug-21","01/08/2021","Yorkshire.and.the.Humber",661,"Yorkshire and the Humber",2021-08-01,FALSE,"Yorkshire and the Humber",NA
+"715","Aug-21","01/08/2021","East.Midlands",686,"East Midlands",2021-08-01,FALSE,"East Midlands",NA
+"716","Aug-21","01/08/2021","West.Midlands",731,"West Midlands",2021-08-01,FALSE,"West Midlands",NA
+"717","Aug-21","01/08/2021","East",983,"East",2021-08-01,TRUE,"East",NA
+"718","Aug-21","01/08/2021","London",1706,"London",2021-08-01,TRUE,"London",NA
+"719","Aug-21","01/08/2021","South.East",1087,"South East",2021-08-01,TRUE,"South East",NA
+"720","Aug-21","01/08/2021","South.West",940,"South West",2021-08-01,FALSE,"South West",NA
+"721","Sep-21","01/09/2021","North.East",584,"North East",2021-09-01,FALSE,"North East",NA
+"722","Sep-21","01/09/2021","North.West",686,"North West",2021-09-01,FALSE,"North West",NA
+"723","Sep-21","01/09/2021","Yorkshire.and.the.Humber",662,"Yorkshire and the Humber",2021-09-01,FALSE,"Yorkshire and the Humber",NA
+"724","Sep-21","01/09/2021","East.Midlands",688,"East Midlands",2021-09-01,FALSE,"East Midlands",NA
+"725","Sep-21","01/09/2021","West.Midlands",733,"West Midlands",2021-09-01,FALSE,"West Midlands",NA
+"726","Sep-21","01/09/2021","East",987,"East",2021-09-01,TRUE,"East",NA
+"727","Sep-21","01/09/2021","London",1707,"London",2021-09-01,TRUE,"London",NA
+"728","Sep-21","01/09/2021","South.East",1089,"South East",2021-09-01,TRUE,"South East",NA
+"729","Sep-21","01/09/2021","South.West",945,"South West",2021-09-01,FALSE,"South West",NA
+"730","Oct-21","01/10/2021","North.East",585,"North East",2021-10-01,FALSE,"North East",NA
+"731","Oct-21","01/10/2021","North.West",689,"North West",2021-10-01,FALSE,"North West",NA
+"732","Oct-21","01/10/2021","Yorkshire.and.the.Humber",666,"Yorkshire and the Humber",2021-10-01,FALSE,"Yorkshire and the Humber",NA
+"733","Oct-21","01/10/2021","East.Midlands",690,"East Midlands",2021-10-01,FALSE,"East Midlands",NA
+"734","Oct-21","01/10/2021","West.Midlands",735,"West Midlands",2021-10-01,FALSE,"West Midlands",NA
+"735","Oct-21","01/10/2021","East",992,"East",2021-10-01,TRUE,"East",NA
+"736","Oct-21","01/10/2021","London",1711,"London",2021-10-01,TRUE,"London",NA
+"737","Oct-21","01/10/2021","South.East",1096,"South East",2021-10-01,TRUE,"South East",NA
+"738","Oct-21","01/10/2021","South.West",949,"South West",2021-10-01,FALSE,"South West",NA
+"739","Nov-21","01/11/2021","North.East",586,"North East",2021-11-01,FALSE,"North East",NA
+"740","Nov-21","01/11/2021","North.West",691,"North West",2021-11-01,FALSE,"North West",NA
+"741","Nov-21","01/11/2021","Yorkshire.and.the.Humber",668,"Yorkshire and the Humber",2021-11-01,FALSE,"Yorkshire and the Humber",NA
+"742","Nov-21","01/11/2021","East.Midlands",692,"East Midlands",2021-11-01,FALSE,"East Midlands",NA
+"743","Nov-21","01/11/2021","West.Midlands",738,"West Midlands",2021-11-01,FALSE,"West Midlands",NA
+"744","Nov-21","01/11/2021","East",996,"East",2021-11-01,TRUE,"East",NA
+"745","Nov-21","01/11/2021","London",1714,"London",2021-11-01,TRUE,"London",NA
+"746","Nov-21","01/11/2021","South.East",1099,"South East",2021-11-01,TRUE,"South East",NA
+"747","Nov-21","01/11/2021","South.West",952,"South West",2021-11-01,FALSE,"South West",NA
+"748","Dec-21","01/12/2021","North.East",588,"North East",2021-12-01,FALSE,"North East",NA
+"749","Dec-21","01/12/2021","North.West",696,"North West",2021-12-01,FALSE,"North West",NA
+"750","Dec-21","01/12/2021","Yorkshire.and.the.Humber",672,"Yorkshire and the Humber",2021-12-01,FALSE,"Yorkshire and the Humber",NA
+"751","Dec-21","01/12/2021","East.Midlands",696,"East Midlands",2021-12-01,FALSE,"East Midlands",NA
+"752","Dec-21","01/12/2021","West.Midlands",742,"West Midlands",2021-12-01,FALSE,"West Midlands",NA
+"753","Dec-21","01/12/2021","East",1000,"East",2021-12-01,TRUE,"East",NA
+"754","Dec-21","01/12/2021","London",1723,"London",2021-12-01,TRUE,"London",NA
+"755","Dec-21","01/12/2021","South.East",1104,"South East",2021-12-01,TRUE,"South East",NA
+"756","Dec-21","01/12/2021","South.West",959,"South West",2021-12-01,FALSE,"South West",NA
+"757","Jan-22","01/01/2022","North.East",585,"North East",2022-01-01,FALSE,"North East",NA
+"758","Jan-22","01/01/2022","North.West",699,"North West",2022-01-01,FALSE,"North West",NA
+"759","Jan-22","01/01/2022","Yorkshire.and.the.Humber",677,"Yorkshire and the Humber",2022-01-01,FALSE,"Yorkshire and the Humber",NA
+"760","Jan-22","01/01/2022","East.Midlands",699,"East Midlands",2022-01-01,FALSE,"East Midlands",NA
+"761","Jan-22","01/01/2022","West.Midlands",745,"West Midlands",2022-01-01,FALSE,"West Midlands",NA
+"762","Jan-22","01/01/2022","East",1003,"East",2022-01-01,TRUE,"East",NA
+"763","Jan-22","01/01/2022","London",1727,"London",2022-01-01,TRUE,"London",NA
+"764","Jan-22","01/01/2022","South.East",1108,"South East",2022-01-01,TRUE,"South East",NA
+"765","Jan-22","01/01/2022","South.West",963,"South West",2022-01-01,FALSE,"South West",NA
+"766","Feb-22","01/02/2022","North.East",587,"North East",2022-02-01,FALSE,"North East",NA
+"767","Feb-22","01/02/2022","North.West",702,"North West",2022-02-01,FALSE,"North West",NA
+"768","Feb-22","01/02/2022","Yorkshire.and.the.Humber",680,"Yorkshire and the Humber",2022-02-01,FALSE,"Yorkshire and the Humber",NA
+"769","Feb-22","01/02/2022","East.Midlands",702,"East Midlands",2022-02-01,FALSE,"East Midlands",NA
+"770","Feb-22","01/02/2022","West.Midlands",749,"West Midlands",2022-02-01,FALSE,"West Midlands",NA
+"771","Feb-22","01/02/2022","East",1007,"East",2022-02-01,TRUE,"East",NA
+"772","Feb-22","01/02/2022","London",1734,"London",2022-02-01,TRUE,"London",NA
+"773","Feb-22","01/02/2022","South.East",1113,"South East",2022-02-01,TRUE,"South East",NA
+"774","Feb-22","01/02/2022","South.West",969,"South West",2022-02-01,FALSE,"South West",NA
+"775","Mar-22","01/03/2022","North.East",593,"North East",2022-03-01,FALSE,"North East",NA
+"776","Mar-22","01/03/2022","North.West",706,"North West",2022-03-01,FALSE,"North West",NA
+"777","Mar-22","01/03/2022","Yorkshire.and.the.Humber",683,"Yorkshire and the Humber",2022-03-01,FALSE,"Yorkshire and the Humber",NA
+"778","Mar-22","01/03/2022","East.Midlands",706,"East Midlands",2022-03-01,FALSE,"East Midlands",NA
+"779","Mar-22","01/03/2022","West.Midlands",746,"West Midlands",2022-03-01,FALSE,"West Midlands",NA
+"780","Mar-22","01/03/2022","East",1011,"East",2022-03-01,TRUE,"East",NA
+"781","Mar-22","01/03/2022","London",1739,"London",2022-03-01,TRUE,"London",NA
+"782","Mar-22","01/03/2022","South.East",1117,"South East",2022-03-01,TRUE,"South East",NA
+"783","Mar-22","01/03/2022","South.West",972,"South West",2022-03-01,FALSE,"South West",NA
+"784","Apr-22","01/04/2022","North.East",595,"North East",2022-04-01,FALSE,"North East",NA
+"785","Apr-22","01/04/2022","North.West",709,"North West",2022-04-01,FALSE,"North West",NA
+"786","Apr-22","01/04/2022","Yorkshire.and.the.Humber",686,"Yorkshire and the Humber",2022-04-01,FALSE,"Yorkshire and the Humber",NA
+"787","Apr-22","01/04/2022","East.Midlands",709,"East Midlands",2022-04-01,FALSE,"East Midlands",NA
+"788","Apr-22","01/04/2022","West.Midlands",749,"West Midlands",2022-04-01,FALSE,"West Midlands",NA
+"789","Apr-22","01/04/2022","East",1014,"East",2022-04-01,TRUE,"East",NA
+"790","Apr-22","01/04/2022","London",1744,"London",2022-04-01,TRUE,"London",NA
+"791","Apr-22","01/04/2022","South.East",1123,"South East",2022-04-01,TRUE,"South East",NA
+"792","Apr-22","01/04/2022","South.West",974,"South West",2022-04-01,FALSE,"South West",NA
+"793","May-22","01/05/2022","North.East",597,"North East",2022-05-01,FALSE,"North East",NA
+"794","May-22","01/05/2022","North.West",713,"North West",2022-05-01,FALSE,"North West",NA
+"795","May-22","01/05/2022","Yorkshire.and.the.Humber",689,"Yorkshire and the Humber",2022-05-01,FALSE,"Yorkshire and the Humber",NA
+"796","May-22","01/05/2022","East.Midlands",712,"East Midlands",2022-05-01,FALSE,"East Midlands",NA
+"797","May-22","01/05/2022","West.Midlands",751,"West Midlands",2022-05-01,FALSE,"West Midlands",NA
+"798","May-22","01/05/2022","East",1018,"East",2022-05-01,TRUE,"East",NA
+"799","May-22","01/05/2022","London",1749,"London",2022-05-01,TRUE,"London",NA
+"800","May-22","01/05/2022","South.East",1125,"South East",2022-05-01,TRUE,"South East",NA
+"801","May-22","01/05/2022","South.West",982,"South West",2022-05-01,FALSE,"South West",NA
+"802","Jun-22","01/06/2022","North.East",600,"North East",2022-06-01,FALSE,"North East",NA
+"803","Jun-22","01/06/2022","North.West",716,"North West",2022-06-01,FALSE,"North West",NA
+"804","Jun-22","01/06/2022","Yorkshire.and.the.Humber",690,"Yorkshire and the Humber",2022-06-01,FALSE,"Yorkshire and the Humber",NA
+"805","Jun-22","01/06/2022","East.Midlands",715,"East Midlands",2022-06-01,FALSE,"East Midlands",NA
+"806","Jun-22","01/06/2022","West.Midlands",757,"West Midlands",2022-06-01,FALSE,"West Midlands",NA
+"807","Jun-22","01/06/2022","East",1022,"East",2022-06-01,TRUE,"East",NA
+"808","Jun-22","01/06/2022","London",1752,"London",2022-06-01,TRUE,"London",NA
+"809","Jun-22","01/06/2022","South.East",1131,"South East",2022-06-01,TRUE,"South East",NA
+"810","Jun-22","01/06/2022","South.West",985,"South West",2022-06-01,FALSE,"South West",NA
+"811","Jul-22","01/07/2022","North.East",602,"North East",2022-07-01,FALSE,"North East",NA
+"812","Jul-22","01/07/2022","North.West",721,"North West",2022-07-01,FALSE,"North West",NA
+"813","Jul-22","01/07/2022","Yorkshire.and.the.Humber",693,"Yorkshire and the Humber",2022-07-01,FALSE,"Yorkshire and the Humber",NA
+"814","Jul-22","01/07/2022","East.Midlands",716,"East Midlands",2022-07-01,FALSE,"East Midlands",NA
+"815","Jul-22","01/07/2022","West.Midlands",759,"West Midlands",2022-07-01,FALSE,"West Midlands",NA
+"816","Jul-22","01/07/2022","East",1026,"East",2022-07-01,TRUE,"East",NA
+"817","Jul-22","01/07/2022","London",1762,"London",2022-07-01,TRUE,"London",NA
+"818","Jul-22","01/07/2022","South.East",1137,"South East",2022-07-01,TRUE,"South East",NA
+"819","Jul-22","01/07/2022","South.West",988,"South West",2022-07-01,FALSE,"South West",NA
+"820","Aug-22","01/08/2022","North.East",605,"North East",2022-08-01,FALSE,"North East",NA
+"821","Aug-22","01/08/2022","North.West",726,"North West",2022-08-01,FALSE,"North West",NA
+"822","Aug-22","01/08/2022","Yorkshire.and.the.Humber",697,"Yorkshire and the Humber",2022-08-01,FALSE,"Yorkshire and the Humber",NA
+"823","Aug-22","01/08/2022","East.Midlands",720,"East Midlands",2022-08-01,FALSE,"East Midlands",NA
+"824","Aug-22","01/08/2022","West.Midlands",762,"West Midlands",2022-08-01,FALSE,"West Midlands",NA
+"825","Aug-22","01/08/2022","East",1028,"East",2022-08-01,TRUE,"East",NA
+"826","Aug-22","01/08/2022","London",1773,"London",2022-08-01,TRUE,"London",NA
+"827","Aug-22","01/08/2022","South.East",1141,"South East",2022-08-01,TRUE,"South East",NA
+"828","Aug-22","01/08/2022","South.West",995,"South West",2022-08-01,FALSE,"South West",NA
+"829","Sep-22","01/09/2022","North.East",607,"North East",2022-09-01,FALSE,"North East",NA
+"830","Sep-22","01/09/2022","North.West",731,"North West",2022-09-01,FALSE,"North West",NA
+"831","Sep-22","01/09/2022","Yorkshire.and.the.Humber",701,"Yorkshire and the Humber",2022-09-01,FALSE,"Yorkshire and the Humber",NA
+"832","Sep-22","01/09/2022","East.Midlands",724,"East Midlands",2022-09-01,FALSE,"East Midlands",NA
+"833","Sep-22","01/09/2022","West.Midlands",765,"West Midlands",2022-09-01,FALSE,"West Midlands",NA
+"834","Sep-22","01/09/2022","East",1032,"East",2022-09-01,TRUE,"East",NA
+"835","Sep-22","01/09/2022","London",1784,"London",2022-09-01,TRUE,"London",NA
+"836","Sep-22","01/09/2022","South.East",1146,"South East",2022-09-01,TRUE,"South East",NA
+"837","Sep-22","01/09/2022","South.West",1002,"South West",2022-09-01,FALSE,"South West",NA
+"838","Oct-22","01/10/2022","North.East",611,"North East",2022-10-01,FALSE,"North East",NA
+"839","Oct-22","01/10/2022","North.West",734,"North West",2022-10-01,FALSE,"North West",NA
+"840","Oct-22","01/10/2022","Yorkshire.and.the.Humber",703,"Yorkshire and the Humber",2022-10-01,FALSE,"Yorkshire and the Humber",NA
+"841","Oct-22","01/10/2022","East.Midlands",728,"East Midlands",2022-10-01,FALSE,"East Midlands",NA
+"842","Oct-22","01/10/2022","West.Midlands",767,"West Midlands",2022-10-01,FALSE,"West Midlands",NA
+"843","Oct-22","01/10/2022","East",1035,"East",2022-10-01,TRUE,"East",NA
+"844","Oct-22","01/10/2022","London",1789,"London",2022-10-01,TRUE,"London",NA
+"845","Oct-22","01/10/2022","South.East",1150,"South East",2022-10-01,TRUE,"South East",NA
+"846","Oct-22","01/10/2022","South.West",1006,"South West",2022-10-01,FALSE,"South West",NA
+"847","Nov-22","01/11/2022","North.East",613,"North East",2022-11-01,FALSE,"North East",NA
+"848","Nov-22","01/11/2022","North.West",740,"North West",2022-11-01,FALSE,"North West",NA
+"849","Nov-22","01/11/2022","Yorkshire.and.the.Humber",706,"Yorkshire and the Humber",2022-11-01,FALSE,"Yorkshire and the Humber",NA
+"850","Nov-22","01/11/2022","East.Midlands",735,"East Midlands",2022-11-01,FALSE,"East Midlands",NA
+"851","Nov-22","01/11/2022","West.Midlands",770,"West Midlands",2022-11-01,FALSE,"West Midlands",NA
+"852","Nov-22","01/11/2022","East",1038,"East",2022-11-01,TRUE,"East",NA
+"853","Nov-22","01/11/2022","London",1804,"London",2022-11-01,TRUE,"London",NA
+"854","Nov-22","01/11/2022","South.East",1156,"South East",2022-11-01,TRUE,"South East",NA
+"855","Nov-22","01/11/2022","South.West",1010,"South West",2022-11-01,FALSE,"South West",NA
+"856","Dec-22","01/12/2022","North.East",617,"North East",2022-12-01,FALSE,"North East",NA
+"857","Dec-22","01/12/2022","North.West",743,"North West",2022-12-01,FALSE,"North West",NA
+"858","Dec-22","01/12/2022","Yorkshire.and.the.Humber",710,"Yorkshire and the Humber",2022-12-01,FALSE,"Yorkshire and the Humber",NA
+"859","Dec-22","01/12/2022","East.Midlands",737,"East Midlands",2022-12-01,FALSE,"East Midlands",NA
+"860","Dec-22","01/12/2022","West.Midlands",775,"West Midlands",2022-12-01,FALSE,"West Midlands",NA
+"861","Dec-22","01/12/2022","East",1043,"East",2022-12-01,TRUE,"East",NA
+"862","Dec-22","01/12/2022","London",1817,"London",2022-12-01,TRUE,"London",NA
+"863","Dec-22","01/12/2022","South.East",1163,"South East",2022-12-01,TRUE,"South East",NA
+"864","Dec-22","01/12/2022","South.West",1016,"South West",2022-12-01,FALSE,"South West",NA
+"865","Jan-23","01/01/2023","North.East",619,"North East",2023-01-01,FALSE,"North East",NA
+"866","Jan-23","01/01/2023","North.West",747,"North West",2023-01-01,FALSE,"North West",NA
+"867","Jan-23","01/01/2023","Yorkshire.and.the.Humber",715,"Yorkshire and the Humber",2023-01-01,FALSE,"Yorkshire and the Humber",NA
+"868","Jan-23","01/01/2023","East.Midlands",739,"East Midlands",2023-01-01,FALSE,"East Midlands",NA
+"869","Jan-23","01/01/2023","West.Midlands",777,"West Midlands",2023-01-01,FALSE,"West Midlands",NA
+"870","Jan-23","01/01/2023","East",1048,"East",2023-01-01,TRUE,"East",NA
+"871","Jan-23","01/01/2023","London",1829,"London",2023-01-01,TRUE,"London",NA
+"872","Jan-23","01/01/2023","South.East",1169,"South East",2023-01-01,TRUE,"South East",NA
+"873","Jan-23","01/01/2023","South.West",1024,"South West",2023-01-01,FALSE,"South West",NA
+"874","Feb-23","01/02/2023","North.East",622,"North East",2023-02-01,FALSE,"North East",NA
+"875","Feb-23","01/02/2023","North.West",751,"North West",2023-02-01,FALSE,"North West",NA
+"876","Feb-23","01/02/2023","Yorkshire.and.the.Humber",718,"Yorkshire and the Humber",2023-02-01,FALSE,"Yorkshire and the Humber",NA
+"877","Feb-23","01/02/2023","East.Midlands",740,"East Midlands",2023-02-01,FALSE,"East Midlands",NA
+"878","Feb-23","01/02/2023","West.Midlands",781,"West Midlands",2023-02-01,FALSE,"West Midlands",NA
+"879","Feb-23","01/02/2023","East",1052,"East",2023-02-01,TRUE,"East",NA
+"880","Feb-23","01/02/2023","London",1839,"London",2023-02-01,TRUE,"London",NA
+"881","Feb-23","01/02/2023","South.East",1176,"South East",2023-02-01,TRUE,"South East",NA
+"882","Feb-23","01/02/2023","South.West",1029,"South West",2023-02-01,FALSE,"South West",NA
+"883","Mar-23","01/03/2023","North.East",624,"North East",2023-03-01,FALSE,"North East",NA
+"884","Mar-23","01/03/2023","North.West",755,"North West",2023-03-01,FALSE,"North West",NA
+"885","Mar-23","01/03/2023","Yorkshire.and.the.Humber",723,"Yorkshire and the Humber",2023-03-01,FALSE,"Yorkshire and the Humber",NA
+"886","Mar-23","01/03/2023","East.Midlands",744,"East Midlands",2023-03-01,FALSE,"East Midlands",NA
+"887","Mar-23","01/03/2023","West.Midlands",786,"West Midlands",2023-03-01,FALSE,"West Midlands",NA
+"888","Mar-23","01/03/2023","East",1057,"East",2023-03-01,TRUE,"East",NA
+"889","Mar-23","01/03/2023","London",1848,"London",2023-03-01,TRUE,"London",NA
+"890","Mar-23","01/03/2023","South.East",1182,"South East",2023-03-01,TRUE,"South East",NA
+"891","Mar-23","01/03/2023","South.West",1035,"South West",2023-03-01,FALSE,"South West",NA
+"892","Apr-23","01/04/2023","North.East",629,"North East",2023-04-01,FALSE,"North East",NA
+"893","Apr-23","01/04/2023","North.West",762,"North West",2023-04-01,FALSE,"North West",NA
+"894","Apr-23","01/04/2023","Yorkshire.and.the.Humber",730,"Yorkshire and the Humber",2023-04-01,FALSE,"Yorkshire and the Humber",NA
+"895","Apr-23","01/04/2023","East.Midlands",748,"East Midlands",2023-04-01,FALSE,"East Midlands",NA
+"896","Apr-23","01/04/2023","West.Midlands",794,"West Midlands",2023-04-01,FALSE,"West Midlands",NA
+"897","Apr-23","01/04/2023","East",1062,"East",2023-04-01,TRUE,"East",NA
+"898","Apr-23","01/04/2023","London",1869,"London",2023-04-01,TRUE,"London",NA
+"899","Apr-23","01/04/2023","South.East",1188,"South East",2023-04-01,TRUE,"South East",NA
+"900","Apr-23","01/04/2023","South.West",1038,"South West",2023-04-01,FALSE,"South West",NA
+"901","May-23","01/05/2023","North.East",629,"North East",2023-05-01,FALSE,"North East",NA
+"902","May-23","01/05/2023","North.West",766,"North West",2023-05-01,FALSE,"North West",NA
+"903","May-23","01/05/2023","Yorkshire.and.the.Humber",734,"Yorkshire and the Humber",2023-05-01,FALSE,"Yorkshire and the Humber",NA
+"904","May-23","01/05/2023","East.Midlands",752,"East Midlands",2023-05-01,FALSE,"East Midlands",NA
+"905","May-23","01/05/2023","West.Midlands",803,"West Midlands",2023-05-01,FALSE,"West Midlands",NA
+"906","May-23","01/05/2023","East",1067,"East",2023-05-01,TRUE,"East",NA
+"907","May-23","01/05/2023","London",1894,"London",2023-05-01,TRUE,"London",NA
+"908","May-23","01/05/2023","South.East",1195,"South East",2023-05-01,TRUE,"South East",NA
+"909","May-23","01/05/2023","South.West",1044,"South West",2023-05-01,FALSE,"South West",NA
+"910","Jun-23","01/06/2023","North.East",632,"North East",2023-06-01,FALSE,"North East",NA
+"911","Jun-23","01/06/2023","North.West",772,"North West",2023-06-01,FALSE,"North West",NA
+"912","Jun-23","01/06/2023","Yorkshire.and.the.Humber",737,"Yorkshire and the Humber",2023-06-01,FALSE,"Yorkshire and the Humber",NA
+"913","Jun-23","01/06/2023","East.Midlands",756,"East Midlands",2023-06-01,FALSE,"East Midlands",NA
+"914","Jun-23","01/06/2023","West.Midlands",808,"West Midlands",2023-06-01,FALSE,"West Midlands",NA
+"915","Jun-23","01/06/2023","East",1072,"East",2023-06-01,TRUE,"East",NA
+"916","Jun-23","01/06/2023","London",1912,"London",2023-06-01,TRUE,"London",NA
+"917","Jun-23","01/06/2023","South.East",1202,"South East",2023-06-01,TRUE,"South East",NA
+"918","Jun-23","01/06/2023","South.West",1052,"South West",2023-06-01,FALSE,"South West",NA
+"919","Jul-23","01/07/2023","North.East",637,"North East",2023-07-01,FALSE,"North East",NA
+"920","Jul-23","01/07/2023","North.West",777,"North West",2023-07-01,FALSE,"North West",NA
+"921","Jul-23","01/07/2023","Yorkshire.and.the.Humber",742,"Yorkshire and the Humber",2023-07-01,FALSE,"Yorkshire and the Humber",NA
+"922","Jul-23","01/07/2023","East.Midlands",760,"East Midlands",2023-07-01,FALSE,"East Midlands",NA
+"923","Jul-23","01/07/2023","West.Midlands",811,"West Midlands",2023-07-01,FALSE,"West Midlands",NA
+"924","Jul-23","01/07/2023","East",1079,"East",2023-07-01,TRUE,"East",NA
+"925","Jul-23","01/07/2023","London",1928,"London",2023-07-01,TRUE,"London",NA
+"926","Jul-23","01/07/2023","South.East",1212,"South East",2023-07-01,TRUE,"South East",NA
+"927","Jul-23","01/07/2023","South.West",1056,"South West",2023-07-01,FALSE,"South West",NA
+"928","Aug-23","01/08/2023","North.East",639,"North East",2023-08-01,FALSE,"North East",NA
+"929","Aug-23","01/08/2023","North.West",783,"North West",2023-08-01,FALSE,"North West",NA
+"930","Aug-23","01/08/2023","Yorkshire.and.the.Humber",745,"Yorkshire and the Humber",2023-08-01,FALSE,"Yorkshire and the Humber",NA
+"931","Aug-23","01/08/2023","East.Midlands",766,"East Midlands",2023-08-01,FALSE,"East Midlands",NA
+"932","Aug-23","01/08/2023","West.Midlands",817,"West Midlands",2023-08-01,FALSE,"West Midlands",NA
+"933","Aug-23","01/08/2023","East",1085,"East",2023-08-01,TRUE,"East",NA
+"934","Aug-23","01/08/2023","London",1942,"London",2023-08-01,TRUE,"London",NA
+"935","Aug-23","01/08/2023","South.East",1220,"South East",2023-08-01,TRUE,"South East",NA
+"936","Aug-23","01/08/2023","South.West",1064,"South West",2023-08-01,FALSE,"South West",NA
+"937","Sep-23","01/09/2023","North.East",641,"North East",2023-09-01,FALSE,"North East",NA
+"938","Sep-23","01/09/2023","North.West",788,"North West",2023-09-01,FALSE,"North West",NA
+"939","Sep-23","01/09/2023","Yorkshire.and.the.Humber",751,"Yorkshire and the Humber",2023-09-01,FALSE,"Yorkshire and the Humber",NA
+"940","Sep-23","01/09/2023","East.Midlands",772,"East Midlands",2023-09-01,FALSE,"East Midlands",NA
+"941","Sep-23","01/09/2023","West.Midlands",823,"West Midlands",2023-09-01,FALSE,"West Midlands",NA
+"942","Sep-23","01/09/2023","East",1091,"East",2023-09-01,TRUE,"East",NA
+"943","Sep-23","01/09/2023","London",1955,"London",2023-09-01,TRUE,"London",NA
+"944","Sep-23","01/09/2023","South.East",1227,"South East",2023-09-01,TRUE,"South East",NA
+"945","Sep-23","01/09/2023","South.West",1071,"South West",2023-09-01,FALSE,"South West",NA
+"946","Oct-23","01/10/2023","North.East",644,"North East",2023-10-01,FALSE,"North East","North East"
+"947","Oct-23","01/10/2023","North.West",793,"North West",2023-10-01,FALSE,"North West","North West"
+"948","Oct-23","01/10/2023","Yorkshire.and.the.Humber",757,"Yorkshire and the Humber",2023-10-01,FALSE,"Yorkshire and the Humber","Yorkshire and the Humber"
+"949","Oct-23","01/10/2023","East.Midlands",777,"East Midlands",2023-10-01,FALSE,"East Midlands","East Midlands"
+"950","Oct-23","01/10/2023","West.Midlands",829,"West Midlands",2023-10-01,FALSE,"West Midlands","West Midlands"
+"951","Oct-23","01/10/2023","East",1098,"East",2023-10-01,TRUE,"East","East"
+"952","Oct-23","01/10/2023","London",1968,"London",2023-10-01,TRUE,"London","London"
+"953","Oct-23","01/10/2023","South.East",1234,"South East",2023-10-01,TRUE,"South East","South East"
+"954","Oct-23","01/10/2023","South.West",1078,"South West",2023-10-01,FALSE,"South West","South West"

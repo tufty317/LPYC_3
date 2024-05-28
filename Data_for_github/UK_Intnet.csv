@@ -1,0 +1,18 @@
+"","Period","Date","Source","Component","Value","Lower.bound","X25..limit","X75..limit","Upper.bound","date","indexed_Intnet","Estimates","Estimates_factor","label"
+"1","YE Jun 12","30/06/2012","Estimates","Net migration",162000,NA,NA,NA,NA,2012-06-30,100,1,"1",NA
+"2","YE Jun 13","30/06/2013","Estimates","Net migration",215000,NA,NA,NA,NA,2013-06-30,132.716049382716,1,"1",NA
+"3","YE Jun 14","30/06/2014","Estimates","Net migration",248000,NA,NA,NA,NA,2014-06-30,153.086419753086,1,"1",NA
+"4","YE Jun 15","30/06/2015","Estimates","Net migration",296000,NA,NA,NA,NA,2015-06-30,182.716049382716,1,"1",NA
+"5","YE Jun 16","30/06/2016","Estimates","Net migration",321000,NA,NA,NA,NA,2016-06-30,198.148148148148,1,"1",NA
+"6","YE Jun 17","30/06/2017","Estimates","Net migration",200000,NA,NA,NA,NA,2017-06-30,123.456790123457,1,"1",NA
+"7","YE Jun 18","30/06/2018","Estimates","Net migration",216000,NA,NA,NA,NA,2018-06-30,133.333333333333,1,"1",NA
+"8","YE Dec 18","31/12/2018","Estimates","Net migration",276000,NA,NA,NA,NA,2018-12-31,170.37037037037,1,"1",NA
+"9","YE Jun 19","30/06/2019","Estimates","Net migration",224000,NA,NA,NA,NA,2019-06-30,138.271604938272,1,"1",NA
+"10","YE Dec 19","31/12/2019","Estimates","Net migration",184000,NA,NA,NA,NA,2019-12-31,113.58024691358,1,"1",NA
+"11","YE Jun 20","30/06/2020","Estimates","Net migration",111000,NA,NA,NA,NA,2020-06-30,68.5185185185185,1,"1",NA
+"12","YE Dec 20","31/12/2020","Estimates","Net migration",93000,NA,NA,NA,NA,2020-12-31,57.4074074074074,1,"1",NA
+"13","YE Jun 21","30/06/2021","Estimates","Net migration",221000,NA,NA,NA,NA,2021-06-30,136.41975308642,1,"1",NA
+"14","YE Dec 21","31/12/2021","Estimates","Net migration",466000,NA,NA,NA,NA,2021-12-31,287.654320987654,1,"1",NA
+"15","YE Jun 22","30/06/2022","Provisional","Net migration",607000,575000,600000,628000,655000,2022-06-30,374.691358024691,0,"0",NA
+"16","YE Dec 22","31/12/2022","Provisional","Net migration",745000,679000,716000,753000,792000,2022-12-31,459.876543209877,0,"0",NA
+"17","YE Jun 23","30/06/2023","Provisional","Net migration",672000,579000,627000,677000,724000,2023-06-30,414.814814814815,0,"0","Net migration"

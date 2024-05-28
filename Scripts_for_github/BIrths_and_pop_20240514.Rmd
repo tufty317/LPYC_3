@@ -1,0 +1,182 @@
+---
+title: "Births modelling, 14 May 2024"
+output: 
+  html_document:
+    css: Wil_style.css
+    theme: default
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+always_allow_html: yes
+---
+
+```{r setup1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(zoo)
+library(data.table)
+library(tidyverse)
+library(gglaplot)
+library(ggplot2)
+library(scales)
+library(readxl)
+library(knitr)
+library(sf)
+library(sp)
+library(kableExtra)
+library(magick)
+library(plotly)    
+library(RColorBrewer)
+library(htmltools)
+library(prettydoc)
+library(rmdformats)
+library(ggrepel)
+
+
+data_dir <- 'C:/Families/Data_for_github/'
+chart_dir <- 'C:/Families/Charts_for_github/'
+
+# Disable scientific notation
+options(scipen=999)
+
+```
+
+
+```{r setup3, include=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+
+#----------------------------------------------------------------
+## THERE'S NO NEED TO RUN THIS CODE
+# IT'S INCLUDED FOR INFORMATION
+
+# GO TO c.line 110 FOR CODE FOR CHARTS
+
+#-----------------------------------------------------------------
+
+
+# Read in data for all births from 1993 to 2021 in London
+
+London_births <- readRDS("C:/Families/London_families_fertility/DATA/births_calendar_year_age_mother_lad.rds") %>%  
+  filter(grepl('E09', gss_code)) %>%
+  data.frame
+
+London_births_grouped <- London_births %>%
+  filter(age_mother !="total") %>%
+  mutate(age_mother = recode(age_mother, 'Under 20'='17', '40 and over'='42')) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Year, age_mother) %>% 
+  summarize(SUM_births = sum(value)) %>%
+  data.frame()
+
+# Read in population data (data are from 1991 and whole UK) and select for London, only women, and from 1993
+
+London_female_pop <-  readRDS("C:/Families/London_families_fertility/DATA/pop_1991_2021_age_0to85plus.rds") %>%
+  filter(grepl('E09000', gss_code)) %>% 
+  filter(year >1992) %>%
+  filter(sex == "female") %>%  
+  data.frame()
+
+# Group the ages to be equivalent to births
+
+London_female_pop_all_recode <- London_female_pop %>%
+  filter(age > 14) %>%
+  filter(age < 45) %>%
+  mutate(age=replace(age, age<20, 17)) %>%
+  mutate(age=replace(age, age>39, 42)) %>%
+  mutate(Age = as.character(age)) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Year, Age) %>% 
+  summarize(SUM_pop = sum(value)) %>%
+  data.frame()
+
+# Merge population and births data 
+merged_London_births_pop_allYears = left_join(London_births_grouped, London_female_pop_all_recode, 
+                                  by=c("Year" = "Year", "age_mother" = "Age")) %>%
+  data.frame()
+
+# sum for plot comparing population and births
+
+total_London_births_pop <- merged_London_births_pop_allYears %>%
+  group_by(Year) %>% 
+  summarize(Total_births = sum(SUM_births), 
+            Total_pop = sum(SUM_pop)) %>%
+  data.frame()
+
+write.csv(total_London_births_pop, paste0(data_dir, "total_London_births_pop.csv"))
+
+```
+
+
+```{r fig_births_and_pop, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## START FROM HERE FOR CHART
+
+#--------------------------------------------------------------------------------
+
+# Read data 
+total_London_births_pop <- 
+  read.csv(paste0(data_dir, "total_London_births_pop.csv")) %>%   
+  data.frame
+
+# Create two dataframes so lines can be labelled
+
+total_London_births_ind <- total_London_births_pop %>%
+  mutate(Year = as.numeric(Year)) %>%
+  mutate(indexed_births = (Total_births/first(Total_births))*100) %>% 
+  mutate(Variable = "Births") %>%
+  arrange(Year) %>%
+  mutate(label = if_else(Year == max(Year), 
+                         as.character(Variable), NA_character_)) %>%
+  data.frame()
+  
+total_London_pop_ind <- total_London_births_pop %>%
+  mutate(Year = as.numeric(Year)) %>%
+  mutate(indexed_pop = (Total_pop/first(Total_pop))*100) %>% 
+ mutate(Variable = "Potential mothers") %>%
+  arrange(Year) %>%
+  mutate(label = if_else(Year == max(Year), 
+                         as.character(Variable), NA_character_)) %>%
+  data.frame()
+
+births_and_pop_line_ind <- 
+  ggplot() +
+  geom_line(data = total_London_births_ind, aes(x = Year, y = indexed_births, group = 1, colour = '#943fab' 
+             ), size = 2) + 
+    geom_label_repel(data = total_London_births_ind, aes(x = Year, y = indexed_births, label = label), 
+                      nudge_x = -0.5, nudge_y = -1, color = '#943fab')+
+    geom_line(data = total_London_pop_ind, aes(x = Year, y = indexed_pop, group = 1,  color = '#63c5b5'
+      ), size = 2) + 
+     geom_label_repel(data = total_London_pop_ind, aes(x = Year, y = indexed_pop, label = label), 
+                      nudge_x = -0.5, nudge_y = -1, color = '#63c5b5')+
+    theme_gla() +
+  theme(axis.text.x=element_text(color = "black", 
+                                 size=11, family = "Arial"),  #, angle=30, vjust=.8, hjust=0.8
+        axis.text.y=element_text(color = "black", size=11, family = "Arial")) +
+    scale_linetype_manual(name='London Zone:', values=c('Inner London'="solid", 'Outer London'="dashed")) +
+    scale_x_continuous(limits = c (1993, 2022), breaks = c(1993, 1996, 1999, 2002, 2005, 2008, 2011, 2014, 2017, 2021)) +     
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+    geom_hline(yintercept=100)+
+    scale_color_manual(values=c('#63c5b5', '#943fab'), guide="none") +
+     theme(legend.title=element_text(size=14, family = "Arial"),
+       legend.text=element_text(size=11, family = "Arial"),
+        axis.text.x=element_text(color = "black", 
+                                 size=11, family = "Arial"),  #, angle=30, vjust=.8, hjust=0.8
+        axis.text.y=element_text(color = "black", size=11, family = "Arial"))
+#+
+#  labs(title= "Births and population, 1993 - 2021, indexed to 1993", 
+#     caption = paste0("Source: ONS, Chart: GLA demography"))
+births_and_pop_line_ind
+
+
+ggsave (filename = (paste0(chart_dir, "21_B_births_and_pop_line_ind.svg")),
+         plot = births_and_pop_line_ind,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+
+```
+
+

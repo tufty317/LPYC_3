@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='648.00pt' height='400.32pt' viewBox='0 0 648.00 400.32'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw2NDguMDB8MC4wMHw0MDAuMzI='>
+    <rect x='0.00' y='0.00' width='648.00' height='400.32' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw2NDguMDB8MC4wMHw0MDAuMzI=)'>
+<rect x='0.000000000000064' y='0.00' width='648.00' height='400.32' style='stroke-width: 1.36; stroke: #FFFFFF; fill: #FFFFFF;' />
+</g>
+<defs>
+  <clipPath id='cpMjcuNjJ8NjQzLjAyfDMxLjYzfDM2MC43OA=='>
+    <rect x='27.62' y='31.63' width='615.40' height='329.15' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMjcuNjJ8NjQzLjAyfDMxLjYzfDM2MC43OA==)'>
+<rect x='27.62' y='31.63' width='615.40' height='329.15' style='stroke-width: 1.36; stroke: none; fill: #FFFFFF;' />
+<polyline points='27.62,345.82 643.02,345.82 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<polyline points='27.62,295.94 643.02,295.94 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<polyline points='27.62,246.07 643.02,246.07 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<polyline points='27.62,196.20 643.02,196.20 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<polyline points='27.62,146.33 643.02,146.33 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<polyline points='27.62,96.46 643.02,96.46 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<polyline points='55.59,263.71 79.92,76.91 104.24,52.05 128.56,91.43 152.89,101.81 177.21,124.16 201.54,174.53 225.86,159.73 250.18,170.06 274.51,184.02 298.83,183.88 323.16,175.08 347.48,202.30 371.80,243.02 396.13,242.96 420.45,276.41 444.78,289.25 469.10,281.29 ' style='stroke-width: 4.27; stroke: #6DA7DE; stroke-linecap: butt;' />
+<polygon points='476.33,278.42 611.06,278.42 610.97,278.41 611.32,278.40 611.66,278.33 611.98,278.21 612.28,278.03 612.55,277.81 612.78,277.55 612.97,277.26 613.11,276.94 613.19,276.60 613.22,276.26 613.22,276.26 613.22,265.48 613.22,265.48 613.19,265.13 613.11,264.79 612.97,264.47 612.78,264.18 612.55,263.92 612.28,263.70 611.98,263.53 611.66,263.40 611.32,263.33 611.06,263.32 476.33,263.32 476.59,263.33 476.24,263.32 475.90,263.36 475.56,263.46 475.25,263.61 474.96,263.80 474.71,264.05 474.50,264.32 474.34,264.63 474.23,264.96 474.18,265.30 474.17,265.48 474.17,276.26 474.18,276.08 474.18,276.43 474.23,276.77 474.34,277.10 474.50,277.41 474.71,277.69 474.96,277.93 475.25,278.13 475.56,278.28 475.90,278.37 476.24,278.41 ' style='stroke-width: 0.53; stroke: #6DA7DE; fill: #FFFFFF;' />
+<text x='543.69' y='274.82' text-anchor='middle' style='font-size: 11.04px;fill: #6DA7DE; font-family: "Arial";' textLength='131.85px' lengthAdjust='spacingAndGlyphs'>Outer London to rest of UK</text>
+<polyline points='55.59,292.90 79.92,179.03 104.24,186.79 128.56,213.02 152.89,217.09 177.21,258.53 201.54,267.37 225.86,263.73 250.18,274.11 274.51,274.39 298.83,281.14 323.16,281.34 347.48,272.64 371.80,305.94 396.13,278.47 420.45,322.75 444.78,331.57 469.10,317.70 ' style='stroke-width: 4.27; stroke: #D82222; stroke-linecap: butt;' />
+<line x1='473.77' y1='300.55' x2='469.31' y2='316.92' style='stroke-width: 1.07; stroke: #D82222;' />
+<polygon points='475.93,305.30 608.21,305.30 608.12,305.30 608.47,305.29 608.81,305.22 609.14,305.09 609.44,304.92 609.71,304.70 609.94,304.44 610.12,304.15 610.26,303.83 610.34,303.49 610.37,303.14 610.37,303.14 610.37,292.36 610.37,292.36 610.34,292.02 610.26,291.68 610.12,291.36 609.94,291.07 609.71,290.81 609.44,290.59 609.14,290.41 608.81,290.29 608.47,290.22 608.21,290.20 475.93,290.20 476.19,290.22 475.85,290.21 475.50,290.25 475.17,290.34 474.85,290.49 474.57,290.69 474.32,290.93 474.11,291.21 473.95,291.52 473.84,291.85 473.78,292.19 473.77,292.36 473.77,303.14 473.78,302.97 473.78,303.32 473.84,303.66 473.95,303.99 474.11,304.30 474.32,304.57 474.57,304.81 474.85,305.01 475.17,305.16 475.50,305.26 475.85,305.30 ' style='stroke-width: 0.53; stroke: #D82222; fill: #FFFFFF;' />
+<text x='542.07' y='301.70' text-anchor='middle' style='font-size: 11.04px;fill: #D82222; font-family: "Arial";' textLength='129.40px' lengthAdjust='spacingAndGlyphs'>Inner London to rest of UK</text>
+<polyline points='55.59,290.21 79.92,227.15 104.24,232.30 128.56,262.43 152.89,273.25 177.21,277.85 201.54,306.00 225.86,311.08 250.18,306.65 274.51,298.25 298.83,303.32 323.16,298.81 347.48,307.54 371.80,315.10 396.13,315.92 420.45,314.22 444.78,323.22 469.10,319.21 ' style='stroke-width: 4.27; stroke: #5EA15D; stroke-linecap: butt;' />
+<line x1='484.50' y1='326.64' x2='470.20' y2='319.74' style='stroke-width: 1.07; stroke: #5EA15D;' />
+<polygon points='486.66,336.73 597.48,336.73 597.40,336.73 597.74,336.71 598.09,336.64 598.41,336.52 598.71,336.35 598.98,336.13 599.21,335.87 599.40,335.57 599.53,335.25 599.62,334.92 599.64,334.57 599.64,334.57 599.64,323.79 599.64,323.79 599.62,323.44 599.53,323.11 599.40,322.79 599.21,322.49 598.98,322.23 598.71,322.01 598.41,321.84 598.09,321.72 597.74,321.65 597.48,321.63 486.66,321.63 486.92,321.65 486.58,321.63 486.23,321.67 485.90,321.77 485.58,321.92 485.30,322.12 485.05,322.36 484.84,322.64 484.68,322.94 484.56,323.27 484.51,323.62 484.50,323.79 484.50,334.57 484.51,334.40 484.51,334.74 484.56,335.09 484.68,335.42 484.84,335.72 485.05,336.00 485.30,336.24 485.58,336.44 485.90,336.59 486.23,336.69 486.58,336.73 ' style='stroke-width: 0.53; stroke: #5EA15D; fill: #FFFFFF;' />
+<text x='542.07' y='333.13' text-anchor='middle' style='font-size: 11.04px;fill: #5EA15D; font-family: "Arial";' textLength='107.94px' lengthAdjust='spacingAndGlyphs'>Inner to Outer London</text>
+<line x1='27.62' y1='345.82' x2='643.02' y2='345.82' style='stroke-width: 1.07; stroke-linecap: butt;' />
+</g>
+<g clip-path='url(#cpMC4wMHw2NDguMDB8MC4wMHw0MDAuMzI=)'>
+<text x='4.98' y='341.88' style='font-size: 11.00px; font-family: "Arial";' textLength='22.64px' lengthAdjust='spacingAndGlyphs'>0.0K</text>
+<text x='4.98' y='292.01' style='font-size: 11.00px; font-family: "Arial";' textLength='22.64px' lengthAdjust='spacingAndGlyphs'>0.5K</text>
+<text x='4.98' y='242.13' style='font-size: 11.00px; font-family: "Arial";' textLength='22.64px' lengthAdjust='spacingAndGlyphs'>1.0K</text>
+<text x='4.98' y='192.26' style='font-size: 11.00px; font-family: "Arial";' textLength='22.64px' lengthAdjust='spacingAndGlyphs'>1.5K</text>
+<text x='4.98' y='142.39' style='font-size: 11.00px; font-family: "Arial";' textLength='22.64px' lengthAdjust='spacingAndGlyphs'>2.0K</text>
+<text x='4.98' y='92.52' style='font-size: 11.00px; font-family: "Arial";' textLength='22.64px' lengthAdjust='spacingAndGlyphs'>2.5K</text>
+<polyline points='-72.01,345.82 27.62,345.82 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<polyline points='-72.01,295.94 27.62,295.94 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<polyline points='-72.01,246.07 27.62,246.07 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<polyline points='-72.01,196.20 27.62,196.20 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<polyline points='-72.01,146.33 27.62,146.33 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<polyline points='-72.01,96.46 27.62,96.46 ' style='stroke-width: 1.00; stroke: #D8D8D8; stroke-linecap: butt;' />
+<text x='55.59' y='374.93' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='6.12px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='152.89' y='374.93' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='6.12px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='250.18' y='374.93' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='6.12px' lengthAdjust='spacingAndGlyphs'>8</text>
+<text x='347.48' y='374.93' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='12.24px' lengthAdjust='spacingAndGlyphs'>12</text>
+<text x='469.10' y='374.93' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='12.24px' lengthAdjust='spacingAndGlyphs'>17</text>
+<text x='4.98' y='22.85' style='font-size: 18.00px; font-weight: bold;fill: #353D42; font-family: "Arial";' textLength='630.41px' lengthAdjust='spacingAndGlyphs'>Net domestic migration by children's age, year ending June 2022, London</text>
+</g>
+</svg>

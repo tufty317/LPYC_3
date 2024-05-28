@@ -1,0 +1,200 @@
+---
+title: "Schools analysis - 28/11/23 and May 2024"
+output: 
+  html_document:
+    css: Wil_style.css
+    theme: default
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+always_allow_html: yes
+---
+
+```{r setup1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(zoo)
+library(data.table)
+library(tidyverse)
+library(gglaplot)
+library(ggplot2)
+library(scales)
+library(readxl)
+library(knitr)
+library(sf)
+library(sp)
+library(kableExtra)
+library(magick)
+
+library(plotly)    
+library(RColorBrewer)
+library(htmltools)
+library(prettydoc)
+library(rmdformats)
+library(ggrepel)
+
+chart_dir <- 'CHARTS/'
+data_dir <- 'DATA/'
+
+# Disable scientific notation
+options(scipen=999)
+
+```
+
+
+```{r setup2, include=FALSE}
+
+#-----------------------------------------------------------------
+
+## NO NEED TO RUN THIS CODE
+# IT'S JUST INCLUDED FOR INFORMATION
+
+# START FROM LINE c.110 FOR CHARTS
+
+#--------------------------------------------------------------
+
+
+# Read data 
+
+boroughcodes <- fread(paste0(data_dir,"InnerLondon.csv")) %>%   
+  data.frame
+
+cityORcounty_codes <- fread(paste0(data_dir,"cityORcounty.csv")) %>%   
+  data.frame
+
+# Input data for headcounts of children and merge with city/county file
+
+input_all_schools_data <- fread(paste0(data_dir,"pupils_lad_type_age_2009to22.csv")) %>%
+  full_join(cityORcounty_codes, by=c("new_la_code"= "la_code"), keep = TRUE)%>% 
+  mutate(across(c(cityORcounty_code, cityORcounty_name), factor)) %>%
+ data.frame() 
+
+# Create dataframe disaggregated by Zone of London
+
+agg_input_london_SF_primary_schools <- input_all_schools_data %>%
+  filter(grepl('E09', new_la_code)) %>%
+  filter(la_name.x != "City of London") %>%
+  filter(age < 11) %>%
+  filter(type == "State-funded") %>%
+  group_by(period_start, cityORcounty_name, period2) %>% 
+  summarise(agg_full_time = sum(full_time)) %>%
+ # mutate(Year = as.character(year)) %>%
+  data.frame()
+
+# Save data 
+write.csv(agg_input_london_SF_primary_schools, paste0(data_dir, "london_SF_primary_schools.csv"))
+
+# Create dataframe for regions
+
+region_SF_primary_schools <- input_all_schools_data %>%
+  filter(la_name.x != "City of London") %>%
+  filter(age < 11) %>%
+  filter(type == "State-funded") %>%
+  group_by(period_start, region_name) %>% 
+  summarise(agg_full_time = sum(full_time)) %>%
+ # mutate(Year = as.character(year)) %>%
+  data.frame()
+
+London_orNot_SF <- region_SF_primary_schools  %>%
+  mutate(london = case_when(region_name == "London" ~ "London",  TRUE ~ "Rest of England")) %>%
+  mutate(london_factor = as.factor(london)) %>%
+   group_by(period_start, london_factor) %>% 
+  summarise(agg_agg_full_time = sum(agg_full_time)) %>%
+  data.frame()
+  
+# Save data 
+write.csv(London_orNot_SF, paste0(data_dir, "London_orNot_SF_primary_schools.csv"))
+
+```
+
+
+```{r fig_London_SF_Prim_schools_line, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## START FROM HERE
+
+agg_input_london_SF <- read.csv(paste0(data_dir, "london_SF_primary_schools.csv")) %>%
+  data.frame
+
+London_orNot_SF <- read.csv(paste0(data_dir, "London_orNot_SF_primary_schools.csv")) %>%
+  data.frame
+
+catcolour2 = rev(c('#d82222', '#6da7de'))
+
+
+Inner_London_SF_schools_agg_ind2009 <- agg_input_london_SF %>%
+    filter(cityORcounty_name == "Inner London") %>%
+    group_by(cityORcounty_name) %>% 
+   mutate(indexed_headcount = (agg_full_time/first(agg_full_time))*100) %>% 
+
+       mutate(label = if_else(period_start == max(period_start), 
+                         as.character(cityORcounty_name), NA_character_)) %>%
+      mutate(period_start_num = as.numeric(period_start)) %>%
+  data.frame()
+
+Outer_London_SF_schools_agg_ind2009 <- agg_input_london_SF %>%
+     filter(cityORcounty_name == "Outer London") %>%
+   group_by(cityORcounty_name) %>% 
+   mutate(indexed_headcount = (agg_full_time/first(agg_full_time))*100) %>% 
+
+      mutate(label = if_else(period_start == max(period_start), 
+                         as.character(cityORcounty_name), NA_character_)) %>%
+      mutate(period_start_num = as.numeric(period_start)) %>%
+  data.frame()
+
+RestofEng_SF_2009 <- London_orNot_SF %>%
+  filter(london_factor == "Rest of England") %>%   
+  group_by(london_factor) %>% 
+   mutate(indexed_headcount = (agg_agg_full_time/first(agg_agg_full_time))*100) %>% 
+
+      mutate(label = if_else(period_start == max(period_start), 
+                         as.character(london_factor), NA_character_)) %>%
+    mutate(period_start_num = as.numeric(period_start)) %>%
+  data.frame()
+
+LondonZone_orNot_SF_2009_lines <-
+   ggplot() +
+  theme_gla() +
+  geom_line(data = Inner_London_SF_schools_agg_ind2009, aes(x = period_start_num, 
+                                                         y = indexed_headcount, group = 1), 
+            color = '#d82222', size = 2) +
+    geom_label_repel(data = Inner_London_SF_schools_agg_ind2009,aes(x = period_start_num, y = indexed_headcount,label = label), nudge_x = 1, color = '#d82222')+
+    geom_line(data = Outer_London_SF_schools_agg_ind2009, aes(x = period_start_num, 
+                                                           y = indexed_headcount, group = 1), 
+              color = '#6da7de', size = 2) +
+    geom_label_repel(data = Outer_London_SF_schools_agg_ind2009, aes(x = period_start_num, y = indexed_headcount,label = label), nudge_x = 1, color = '#6da7de')+
+   geom_line(data = RestofEng_SF_2009, aes(x = period_start_num, 
+                                           y = indexed_headcount, group = 1), 
+             color = '#5ea15d', size = 2) +
+    geom_label_repel(data = RestofEng_SF_2009, aes(x = period_start_num, y = indexed_headcount, label = label), nudge_x = 1, color = '#5ea15d')+
+  geom_hline(yintercept=100)+
+   theme(plot.title = element_text(size = 16)) +
+  theme(legend.position = "right") +
+    scale_x_continuous(breaks = c(2009, 2012, 2015, 2018, 2022), labels = c("2009-10", "2012-13", "2015-16", "2018-19", "2022-23"))  +
+   scale_color_manual(name="", values=c('#d82222','#6da7de','#5ea15d'), labels=c("Inner London", "Outer London","Rest of England and Wales")) +
+   scale_y_continuous(labels = label_number(suffix = "%"))
+ #+ 
+#   labs(title= "Change in state-funded full-time primary school pupils, 2009 - 2022",
+#   subtitle = "Indexed to 2009",
+ #      caption = paste0("Source: ONS, Chart: GLA demography"))
+LondonZone_orNot_SF_2009_lines
+
+
+ggsave (filename = "C:/Families/Charts_for_github/12_A_Schools_Prim_LondonZone_orNot_SF_2009_lines.svg",
+         plot = LondonZone_orNot_SF_2009_lines,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         units = "in")
+
+
+```
+
+
+
+
+           
+
+
+
+

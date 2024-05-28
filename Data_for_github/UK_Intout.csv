@@ -1,0 +1,18 @@
+"","Period","Date","Source","Component","Value","Lower.bound","X25..limit","X75..limit","Upper.bound","date","indexed_Intout","Estimates","Estimates_factor","label"
+"1","YE Jun 12","30/06/2012","Estimates","Emigration",477000,NA,NA,NA,NA,2012-06-30,100,1,"1",NA
+"2","YE Jun 13","30/06/2013","Estimates","Emigration",454000,NA,NA,NA,NA,2013-06-30,95.1781970649895,1,"1",NA
+"3","YE Jun 14","30/06/2014","Estimates","Emigration",489000,NA,NA,NA,NA,2014-06-30,102.51572327044,1,"1",NA
+"4","YE Jun 15","30/06/2015","Estimates","Emigration",482000,NA,NA,NA,NA,2015-06-30,101.04821802935,1,"1",NA
+"5","YE Jun 16","30/06/2016","Estimates","Emigration",511000,NA,NA,NA,NA,2016-06-30,107.127882599581,1,"1",NA
+"6","YE Jun 17","30/06/2017","Estimates","Emigration",518000,NA,NA,NA,NA,2017-06-30,108.595387840671,1,"1",NA
+"7","YE Jun 18","30/06/2018","Estimates","Emigration",541000,NA,NA,NA,NA,2018-06-30,113.417190775681,1,"1",NA
+"8","YE Dec 18","31/12/2018","Estimates","Emigration",549000,NA,NA,NA,NA,2018-12-31,115.094339622642,1,"1",NA
+"9","YE Jun 19","30/06/2019","Estimates","Emigration",597000,NA,NA,NA,NA,2019-06-30,125.157232704403,1,"1",NA
+"10","YE Dec 19","31/12/2019","Estimates","Emigration",605000,NA,NA,NA,NA,2019-12-31,126.834381551363,1,"1",NA
+"11","YE Jun 20","30/06/2020","Estimates","Emigration",625000,NA,NA,NA,NA,2020-06-30,131.027253668763,1,"1",NA
+"12","YE Dec 20","31/12/2020","Estimates","Emigration",569000,NA,NA,NA,NA,2020-12-31,119.287211740042,1,"1",NA
+"13","YE Jun 21","30/06/2021","Estimates","Emigration",488000,NA,NA,NA,NA,2021-06-30,102.30607966457,1,"1",NA
+"14","YE Dec 21","31/12/2021","Estimates","Emigration",424000,NA,NA,NA,NA,2021-12-31,88.8888888888889,1,"1",NA
+"15","YE Jun 22","30/06/2022","Provisional","Emigration",471000,433000,454000,475000,496000,2022-06-30,98.7421383647799,0,"0",NA
+"16","YE Dec 22","31/12/2022","Provisional","Emigration",489000,457000,474000,494000,513000,2022-12-31,102.51572327044,0,"0",NA
+"17","YE Jun 23","30/06/2023","Provisional","Emigration",508000,468000,493000,519000,543000,2023-06-30,106.498951781971,0,"0","Emigration"

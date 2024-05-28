@@ -1,0 +1,606 @@
+---
+title: "SMA analysis, 14 May 2024"
+output: 
+  html_document:
+    css: Wil_style.css
+    theme: default
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+always_allow_html: yes
+---
+
+```{r setup_1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(gglaplot)
+library(ggplot2)
+library(data.table)
+library(lubridate)
+library(tidyr)
+library(png)
+library(stringr)
+library(tidyverse)
+library(plotly)
+library(sf)
+library(scales)
+library(htmlwidgets)
+library(ggplot2)
+library(gglaplot)
+library(ggrepel)
+
+data_dir <- 'C:/Families/Data_for_github/'
+chart_dir <- 'C:/Families/Charts_for_github/'
+
+# Disable scientific notation
+options(scipen=999)
+
+
+```
+
+
+```{r setup_2, include=FALSE}
+
+#-------------------------------------------------------------------------------
+
+## NO NEED TO RUN THIS CODE
+# IT'S JUST INCLUDED FOR INFORMATION
+
+# START FROM LINE c.370 FOR CHARTS
+
+#--------------------------------------------------------------------------------
+
+## SMA FOR ENGLAND AND WALES (excluding London) OVER TIME using data commissioned by GLA from ONS
+
+# Read in data for all births from 1993 to 2021 in England and Wales, then exclude London
+
+EandW_births <- readRDS(paste0(data_dir,"births_calendar_year_age_mother_lad.rds")) %>%   filter(!grepl('E09000', gss_code)) %>%
+  data.frame
+
+# Recode the extreme ages, and group data by year and age of mother 
+# Use mid-point of age group 15-19 for "Under 20" and of age-group 40-44 for "40 and over"
+
+EandW_births_grouped <- EandW_births %>%
+  filter(age_mother !="total") %>%
+  mutate(age_mother = recode(age_mother, 'Under 20'='17', '40 and over'='42')) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Year, age_mother) %>% 
+  summarize(SUM_births = sum(value)) %>%
+  data.frame()
+
+# Read in population data (these data are from 1991 and whole UK), filtering for women only from England and Wales, not including London.
+
+# Start from 1993 to correspond to births data.
+
+
+EandW_female_pop <-  readRDS(paste0(data_dir,"pop_1991_2021_age_0to85plus.rds")) %>% 
+  filter(grepl('W06000', gss_code) | grepl('E08000', gss_code) |  grepl('E07000', gss_code) |  grepl('E06000', gss_code)) %>%
+   filter(year >1992) %>%
+   filter(sex == "female") %>%  
+   data.frame()
+
+# Select only the ages that correspond to the ONS calculation of sub-national TFR 
+# That is, for the group <20 years, use 15-19, and for the group 40 years and over, use 40-44.
+# Label these two groups with the mid-point ages, that is, 17 and 42.
+
+EandW_female_pop_recode <- EandW_female_pop %>%
+  filter(age > 14) %>%
+  filter(age < 45) %>%
+  mutate(age=replace(age, age<20, 17)) %>%
+  mutate(age=replace(age, age>39, 42)) %>%
+  mutate(Age = as.character(age)) %>% 
+  mutate(Year = as.character(year)) %>%
+  summarise(SUM_pop = sum(value), .by = c(Age, Year)) %>%
+  data.frame()
+
+# Merge births and population data
+merged_EandW_births_pop_allYears = left_join(EandW_births_grouped, EandW_female_pop_recode, by=c("Year" = "Year", "age_mother" = "Age")) %>%
+  data.frame()
+
+# Calculate TFR and SMA
+
+EandW_SMA_allYears <- merged_EandW_births_pop_allYears %>%
+  mutate(Age_mother = as.numeric(age_mother)) %>%
+  mutate(Feb_Age_mother = Age_mother+0.5) %>%
+  mutate(EandW_ASFR = SUM_births/SUM_pop) %>%  # calculate fertility rate for each SYA
+  mutate(EandW_ASFR_new = case_when(age_mother == 17 ~ EandW_ASFR*5, 
+                             age_mother == 42 ~ EandW_ASFR*5,
+                             TRUE ~ EandW_ASFR)) %>%   # Note - TRUE is equivalent to an “else” statement
+  mutate(EandW_AgeXASFR_new = EandW_ASFR_new * Age_mother) %>%     # Previous calc
+  mutate(EandW_AgeXASFR_Feb = EandW_ASFR_new * Feb_Age_mother) %>% # New calc in Feb
+  group_by(Year) %>%
+  summarize(SUM_EandW_ASFR_new = sum(EandW_ASFR_new),    
+            SUM_EandW_AgeXASFR_new = sum(EandW_AgeXASFR_new),  # This is previous calc
+            SUM_EandW_AgeXASFR_feb = sum(EandW_AgeXASFR_Feb)) %>% # This is new calc
+  mutate(EandW_TFR = SUM_EandW_ASFR_new) %>% # previous calc
+  mutate(EandW_SMA = (SUM_EandW_AgeXASFR_new / EandW_TFR) +0.5) %>%  # previous calc
+  mutate(EandW_SMA_Feb = (SUM_EandW_AgeXASFR_feb / EandW_TFR)) %>%
+  data.frame()
+
+# NB Adding 0.5 to all ages before calculation has same effect as adding 0.5 to final result.
+
+write.csv(EandW_SMA_allYears, paste0(data_dir, "EandW_SMA_allYears.csv"))
+
+```
+
+
+```{r setup_3, include=FALSE}
+
+#-------------------------------------------------------------------------------
+
+## SMA FOR LONDON OVER TIME (using data commissioned from ONS)
+
+# Read in data for all births from 1993 to 2021 in England
+
+London_births <- readRDS(paste0(data_dir,"births_calendar_year_age_mother_lad.rds")) %>%  filter(grepl('E09000', gss_code)) %>%
+  data.frame
+
+# Recode the extreme ages, and group data by year and age of mother 
+# Use mid-point of age groups 15-19 for "Under 20" and of age-group 40-44 for "40 and over"
+
+London_births_grouped <- London_births %>%
+  filter(age_mother !="total") %>%
+  mutate(age_mother = recode(age_mother, 'Under 20'='17', '40 and over'='42')) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Year, age_mother) %>% 
+  summarize(SUM_births = sum(value)) %>%
+  data.frame()
+
+# Read in population data (these data are from 1991 and whole UK) for London, only women, and from 1993
+
+London_female_pop <-  readRDS(paste0(data_dir,"pop_1991_2021_age_0to85plus.rds")) %>%
+  filter(grepl('E09000', gss_code)) %>% 
+  filter(year >1992) %>%
+  filter(sex == "female") %>%  
+  data.frame()
+
+# Group the ages to be equivalent to births
+
+London_female_pop_all_recode <- London_female_pop %>%
+  filter(age > 14) %>%
+  filter(age < 45) %>%
+  mutate(age2 = case_when(age < 20 ~ 17,
+                          age > 39 ~ 42,
+                          TRUE ~ age )) %>%
+  mutate(Age = as.character(age2)) %>% 
+  mutate(Year = as.character(year)) %>%
+  summarise(SUM_pop = sum(value), .by = c(Age, Year)) %>%
+  data.frame()
+
+# Merge births and population data  
+merged_London_births_pop_allYears = left_join(London_births_grouped, London_female_pop_all_recode,  by=c("Year" = "Year", "age_mother" = "Age")) %>%
+  data.frame()
+
+# Calculate SMA for London using new method at end of August
+London_SMA_allYears <- merged_London_births_pop_allYears %>%
+ mutate(Age_mother = as.numeric(age_mother)) %>%
+  mutate(ASFR = SUM_births/SUM_pop) %>%  # calculate fertility rate for each SYA
+  mutate(ASFR_new = case_when(age_mother == 17 ~ ASFR*5, 
+                             age_mother == 42 ~ ASFR*5,
+                             TRUE ~ ASFR)) %>%   # NEW on 29/08
+  mutate(AgeXASFR_new = ASFR_new * Age_mother) %>%
+  group_by(Year) %>%
+  summarize(SUM_ASFR_new = sum(ASFR_new),    # This is equivalent to TFR
+            SUM_AgeXASFR_new = sum(AgeXASFR_new)) %>%
+  mutate(TFR = SUM_ASFR_new) %>% 
+  mutate(SMA = (SUM_AgeXASFR_new / TFR) +0.5) %>%
+  data.frame()
+
+write.csv(London_SMA_allYears, paste0(data_dir, "London_SMA_allYears.csv"))
+
+# For 2021 in London, SMA is 32.4 (and TFR is 1.43)
+
+```
+
+
+```{r setup_4, include=FALSE}
+
+#----------------------------------------------------------------------------------------
+
+## SMA FOR INDIVIDUAL BOROUGHS OVER TIME  (using data commissioned from ONS)
+  
+# For births data, this time use borough as well as Age and Year to group
+
+London_births_grouped_boroughs <- readRDS(paste0(data_dir,"births_calendar_year_age_mother_lad.rds")) %>%   filter(grepl('E09000', gss_code)) %>%
+  filter(age_mother !="total") %>%
+  mutate(age_mother = recode(age_mother, 'Under 20'='17', '40 and over'='42')) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Year, age_mother, gss_code) %>% 
+  summarize(SUM_births = sum(value)) %>%
+  data.frame()
+
+# For population data, this time use borough as well as Age and Year to group
+London_female_pop_boroughs <- London_female_pop %>%
+  filter(age > 14) %>%
+  filter(age < 45) %>%
+  mutate(age2 = case_when(age < 20 ~ 17,
+                          age > 39 ~ 42,
+                          TRUE ~ age )) %>%
+  mutate(Age = as.character(age2)) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Age, Year, gss_code, gss_name) %>% 
+  summarize(SUM_pop = sum(value)) %>%
+  data.frame()
+
+
+# Merge births and population data
+merged_London_births_pop_allYears_boroughs = left_join(London_births_grouped_boroughs, London_female_pop_boroughs,                                                      by=c("Year" = "Year", "age_mother" = "Age", "gss_code" = "gss_code")) %>%
+  data.frame()
+
+# Calculate SMA
+London_SMA_allYears_boroughs <- merged_London_births_pop_allYears_boroughs %>%
+   mutate(Age_mother = as.numeric(age_mother)) %>%
+  mutate(ASFR = SUM_births/SUM_pop) %>%  # calculate fertility rate for each SYA
+  mutate(ASFR_new = case_when(age_mother == 17 ~ ASFR*5, 
+                             age_mother == 42 ~ ASFR*5,
+                             TRUE ~ ASFR)) %>%   # NEW on 29/08
+  mutate(AgeXASFR_new = ASFR_new * Age_mother) %>%
+  group_by(Year, gss_code, gss_name) %>%  
+  summarize(SUM_ASFR_new = sum(ASFR_new),    # This is equivalent to TFR
+            SUM_AgeXASFR_new = sum(AgeXASFR_new)) %>%
+  mutate(TFR = SUM_ASFR_new) %>% 
+  mutate(SMA = (SUM_AgeXASFR_new / TFR) +0.5) %>%
+  data.frame()
+
+# Merge with zone codes so can colour line plots of SMA over time for individual London boroughs over time
+
+boroughcodes <- read.csv("C:/Migration/Migration_R/DATA/Domestic/InnerLondon.csv") %>%   
+  data.frame
+
+# Merge SMA data with Inner/Outer file
+
+London_SMA_allYears_boroughs_zone <- London_SMA_allYears_boroughs %>%
+  left_join(boroughcodes, by=c("gss_code"="BoroughCode"))%>% 
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  data.frame() 
+
+write.csv(London_SMA_allYears_boroughs_zone, paste0(data_dir, "London_SMA_allYears_boroughs_zone.csv"))
+
+```
+
+
+```{r setup_5, include=FALSE}
+
+
+#---------------------------------------------------------------------------
+
+## SMA FOR INNER AND OUTER LONDON ZONES OVER TIME
+
+boroughcodes <- read.csv(paste0(data_dir,"InnerLondon.csv")) %>%
+  data.frame()
+
+# Births data, this time merge with Inner and Outer codes for grouping (as well as Age and Year)
+# Recode the extreme ages, and group data by year and age of mother 
+# Using mid-point of age groups 15 - 19 for "Under 20" and of age-group 40 - 44 for "40 and over"
+
+# Use London births dataframe from above to read in data for all births from 1993 to 2021
+
+London_births <- readRDS(paste0(data_dir,"births_calendar_year_age_mother_lad.rds")) %>%  filter(grepl('E09000', gss_code)) %>%
+  data.frame
+
+# Group using zone as well this time
+London_births_zone_grouped <- London_births %>%
+  filter(age_mother !="total") %>%
+  left_join(boroughcodes, by=c("gss_code"="BoroughCode"))%>% 
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  mutate(age_mother = recode(age_mother, 'Under 20'='17', '40 and over'='42')) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Year, age_mother, Inner) %>% 
+  summarize(SUM_births = sum(value)) %>%
+  data.frame()
+
+# For population data, this time merge with Inner code so that can group using this (as well as Age and Year)
+
+London_female_pop_zone <- London_female_pop %>%
+  left_join(boroughcodes, by=c("gss_code"="BoroughCode"))%>% 
+  filter(age > 14) %>%
+  filter(age < 45) %>%
+  mutate(age2 = case_when(age < 20 ~ 17,
+                          age > 39 ~ 42,
+                          TRUE ~ age )) %>%
+  mutate(Age = as.character(age2)) %>% 
+  mutate(Year = as.character(year)) %>%
+  summarise(SUM_pop = sum(value), .by = c(Year, Age, Inner)) %>%
+  data.frame()
+
+# Merge births and population data
+merged_London_births_pop_allYears_zone = left_join(London_births_zone_grouped, London_female_pop_zone,                                           by=c("Year" = "Year", "age_mother" = "Age", "Inner" = "Inner")) %>%
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  data.frame()
+
+# Calculate SMA
+London_SMA_allYears_zone <- merged_London_births_pop_allYears_zone %>%
+   mutate(Age_mother = as.numeric(age_mother)) %>%
+  mutate(ASFR = SUM_births/SUM_pop) %>%  # calculate fertility rate for each SYA
+  mutate(ASFR_new = case_when(age_mother == 17 ~ ASFR*5, 
+                             age_mother == 42 ~ ASFR*5,
+                             TRUE ~ ASFR)) %>%   # NEW on 29/08
+  mutate(AgeXASFR_new = ASFR_new * Age_mother) %>%
+  group_by(Year, Inner_factor) %>%  
+  summarize(SUM_ASFR_new = sum(ASFR_new),    # This is equivalent to TFR
+            SUM_AgeXASFR_new = sum(AgeXASFR_new)) %>%
+  mutate(TFR = SUM_ASFR_new) %>% 
+  mutate(SMA = (SUM_AgeXASFR_new / TFR) +0.5) %>%
+  data.frame()
+
+# For Inner London in 2021, SMA is 33.3 and TFR is 1.26
+# For Outer London in 2021, SMA is 31.7 and TFR 1.62
+
+
+write.csv(London_SMA_allYears_zone, paste0(data_dir, "London_SMA_allYears_zone.csv"))
+
+
+```
+
+
+
+```{r setup_6, include=FALSE}
+
+## Create categories for mapping SMA in 2021, and filter for most recent year
+
+London_SMA_allYears_boroughs_zone <- read.csv(paste0(data_dir, "London_SMA_allYears_boroughs_zone.csv")) %>%
+  data.frame
+
+
+SMA_London <- London_SMA_allYears_boroughs_zone %>% 
+  filter(gss_name != "City of London") %>%
+  mutate(year_numeric = as.numeric(Year)) %>%
+  mutate(year_factor = as.factor(Year)) %>%
+  group_by(gss_code, gss_name, Inner_factor) %>% 
+  mutate(lastSMA = last(SMA)) %>%
+  mutate(SMA_Cat = cut(lastSMA, breaks = c(30, 31.4, 32.1, 33.8, 35),
+                             right=FALSE,
+                             labels = c("30.0 -",
+                                        "31.4 -",
+                                        "32.1 -",
+                                        "34.0+"))) %>%
+  filter(Year == "2021") %>%
+  select(-c(SUM_ASFR_new, SUM_AgeXASFR_new, TFR, SMA, Inner)) %>%
+  data.frame()
+
+write.csv(SMA_London, paste0(data_dir, "London_SMA.csv"))
+
+
+```
+
+# Geographical variation
+
+
+```{r fig_London_Map_1, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## START FROM HERE
+
+## Interactive map of SMA in 2021 in London
+
+SMA_London <- read.csv(paste0(data_dir, "London_SMA.csv")) %>%
+  data.frame
+
+# Import LA boundaries for England and Wales
+borough_boundaries <-
+  st_read("C:/Migration/Migration_R/DATA/Domestic/copied_from_Qdrive_20220614/geographical/LAD_DEC_2021_GB_BUC.shp", quiet = TRUE)
+
+# Match boundary data with SMA data 
+
+SMA_London_geog <- SMA_London %>% 
+  left_join(borough_boundaries, by=c("gss_code"="LAD21CD")) %>%
+  data.frame()
+
+catgreen4 = c('#eeeeee', '#acc1aa', '#739272', '#4a6349')
+
+SMA_London_map2 <- SMA_London_geog %>%
+  ggplot()+
+  geom_point(aes(x=BNG_E, y=BNG_N, 
+                 text = paste("Borough: ", gss_name,  
+                              "<br>SMA in 2021: ", 
+                              formatC(lastSMA, format="f", big.mark=",", digits=2))),
+             alpha = 0) +   # alpha = 0 ensures that points are not actually plotted
+  geom_sf(aes(geometry=geometry, fill=SMA_Cat),lwd = 0.2, colour = "black")+
+  #ggla_sf()+
+  #theme_gla()+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(legend.position = "right")+
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())+
+  theme(panel.background = element_blank())+
+  theme(plot.caption = element_text (hjust = 0))+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.x = element_blank(), 
+        axis.ticks.y = element_blank())+
+  theme(legend.text = element_text(size=16)) +
+  theme(legend.title = element_text(size=16)) +
+  theme(legend.key.height= unit(1, 'cm'),
+        legend.key.width= unit(0.7, 'cm')) +
+  scale_fill_manual("SMA in 2021", values = catgreen4)  + 
+  #labs(title= "Standardised mean age of mothers in London, 2021", 
+  #     caption = paste0("Source: Home Office, Chart: GLA demography")) +
+  labs(fill = "")
+SMA_London_map2
+
+ggsave (filename = (paste0(chart_dir, "21_I2_SMA_London_map2.svg")),
+         plot = SMA_London_map2,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+
+```
+
+
+# Time trends
+
+
+```{r fig_London_EandW_SMA, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## Line plot of SMA for London 1993 - 2021 - for inner and outer London and Rest of England and Wales
+
+London_SMA_allYears_zone <- read.csv(paste0(data_dir, "London_SMA_allYears_zone.csv")) %>%
+  data.frame
+
+SMA_Inner_London <- London_SMA_allYears_zone %>%
+  mutate(year_numeric = as.numeric(Year)) %>%
+  mutate(year_factor = as.factor(Year)) %>%
+  filter(Inner_factor == "Inner") %>%
+  mutate(Region = "Inner London") %>%   
+  mutate(label = if_else(year_numeric == max(year_numeric), 
+                         as.character(Region), NA_character_)) %>%
+  data.frame()
+
+SMA_Outer_London <- London_SMA_allYears_zone %>%
+  mutate(year_numeric = as.numeric(Year)) %>%
+  mutate(year_factor = as.factor(Year)) %>%
+  filter(Inner_factor == "Outer") %>%
+    mutate(Region = "Outer London") %>%
+   mutate(label = if_else(year_numeric == max(year_numeric), 
+                         as.character(Region), NA_character_)) %>%
+  data.frame()
+
+SMA_EandW <- EandW_SMA_allYears %>%
+  mutate(year_numeric = as.numeric(Year)) %>%
+  mutate(year_factor = as.factor(Year)) %>%
+  mutate(Region = "Rest of England and Wales") %>%
+   mutate(label = if_else(year_numeric == max(year_numeric), 
+                         as.character(Region), NA_character_)) %>%
+  data.frame()
+
+
+SMA_London_zone_EandW_lines <-
+   ggplot() +
+  theme_gla() +
+  geom_line(data = SMA_Inner_London, aes(x = year_numeric, y = SMA,  group = 1, color = '#d82222' ), size = 2) +
+   geom_label_repel(data = SMA_Inner_London, aes(x = year_numeric, y = SMA, label = label), nudge_x = 0, nudge_y = 0.4, color = '#d82222') +
+    geom_line(data = SMA_Outer_London, aes(x = year_numeric, y = SMA,  group = 1, color = '#6da7de'), size = 2) +
+     geom_label_repel(data = SMA_Outer_London, aes(x = year_numeric, y = SMA, label = label), nudge_x = 0, nudge_y = 0.4, color = '#6da7de')+
+   geom_line(data = SMA_EandW, aes(x = year_numeric, y = EandW_SMA, group = 1, color = "#5ea15d"), size = 2) +
+     geom_label_repel(data = SMA_EandW, aes(x = year_numeric, y = EandW_SMA, label = label), nudge_x = -1.0, nudge_y = -0.8, color = "#5ea15d")+
+     ylim(25, NA) +
+      scale_x_continuous(limits = c (1992, 2023), breaks = c(1993, 1996, 1999, 2002, 2005, 2008, 2011, 2014, 2017, 2021)) +
+      scale_y_continuous(limits = c (27.5, NA)) +
+#  scale_x_discrete(name ="Year", breaks=c("1991", "1996", "2001","2006","2011", "2016", "2021")) +
+   scale_color_manual(name="", values=c( "#5ea15d", '#6da7de','#d82222'), guide="none") +
+  theme(legend.position = "right") +
+  theme(legend.title=element_text(size=14, family = "Arial"),
+        legend.text=element_text(size=11, family = "Arial"),
+        axis.text.x=element_text(color = "black", 
+                                 size=11, family = "Arial"),  #, angle=30, vjust=.8, hjust=0.8
+        axis.text.y=element_text(color = "black", size=11, family = "Arial")) +      theme(plot.title = element_text(size = 16, hjust = 0.5)) 
+# +
+#  labs(title= "Standardised Mean Age of mothers, London and Rest of England & Wales, 1993 - 2021", 
+#     caption = paste0("Source: ONS, Chart: GLA demography"))
+SMA_London_zone_EandW_lines
+
+
+ggsave (filename = (paste0(chart_dir, "21_H_SMA_London_zone_EandW_lines.svg")),
+         plot = SMA_London_zone_EandW_lines,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```
+
+
+
+```{r setup_7, include=FALSE}
+
+# Create categories for mapping change in SMA
+
+SMA_absChange <- London_SMA_allYears_boroughs_zone %>% 
+  filter(gss_name != "City of London") %>%
+  mutate(year_numeric = as.numeric(Year)) %>%
+  mutate(year_factor = as.factor(Year)) %>%
+  group_by(gss_code, gss_name, Inner_factor) %>% 
+  mutate(firstSMA = first(SMA)) %>%
+  mutate(lastSMA = last(SMA)) %>%
+  mutate(AbsChange_SMA = (lastSMA - firstSMA)) %>%
+  mutate(SMA_AbsChangeCat = cut(AbsChange_SMA, breaks = c(1, 2.5, 3.5, 4.5, 6),
+                      right=FALSE,
+                      labels = c("1.0 -",
+                                 "2.5 -",
+                                 "3.5 -",
+                                 "4.5+"))) %>%
+  filter(Year == "2021") %>%
+  select(-c(SUM_ASFR_new, SUM_AgeXASFR_new, TFR, SMA, year_numeric, year_factor, Inner)) %>%
+  data.frame()
+
+write.csv(SMA_absChange, paste0(data_dir, "AbsChange_SMA.csv"))
+
+
+```
+
+
+```{r fig_London_SMA_Map2, fig.height = 5, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## START FROM HERE
+
+# Map of absolute change in SMA between 1993 and 2021 
+
+# Import LA boundaries for England and Wales - these are simplified
+borough_boundaries <-
+  st_read("C:/Migration/Migration_R/DATA/Domestic/copied_from_Qdrive_20220614/geographical/LAD_DEC_2021_GB_BUC.shp", quiet = TRUE)
+
+
+SMA_absChange.csv <- read.csv(paste0(data_dir, "AbsChange_SMA.csv")) %>%
+  data.frame
+
+SMA_absChange_geog <- SMA_absChange %>% 
+  left_join(borough_boundaries, by=c("gss_code"="LAD21CD")) %>%
+  data.frame()
+
+catgreen4 = c('#eeeeee', '#acc1aa', '#739272', '#4a6349')
+
+SMA_absChange_map <- SMA_absChange_geog %>%
+  ggplot()+
+  geom_point(aes(x=BNG_E, y=BNG_N, 
+                 text = paste("Borough: ", gss_name,  
+                              "<br>SMA in 1993: ", 
+                              formatC(firstSMA, format="f", big.mark=",", digits=2),
+                              "<br>SMA in 2021: ", 
+                              formatC(lastSMA, format="f", big.mark=",", digits=2),
+                              "<br>Change in SMA between 1993 and 2021: ", 
+                              formatC(AbsChange_SMA, format="f", big.mark=",", digits=2))), 
+             alpha = 0)+   # alpha = 0 ensures that points are not actually plotted
+  geom_sf(aes(geometry=geometry, fill=SMA_AbsChangeCat),lwd = 0.2, colour = "black")+
+  #ggla_sf()+
+  #theme_gla()+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(legend.position = "right")+
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())+
+  theme(panel.background = element_blank())+
+  theme(plot.caption = element_text (hjust = 0))+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.x = element_blank(), 
+        axis.ticks.y = element_blank())+
+  theme(legend.text = element_text(size=16)) +
+  theme(legend.title = element_text(size=16)) +
+  theme(legend.key.height= unit(1, 'cm'),
+        legend.key.width= unit(0.7, 'cm')) +
+  scale_fill_manual("Change\nin SMA", values = catgreen4) 
+# + 
+#  labs(title= "Change in SMA, 1993 - 2021, London", 
+#       caption = paste0("Source: Home Office, Chart: GLA demography")) 
+#  labs(fill = "Change in SMA")
+SMA_absChange_map
+
+ggsave (filename = (paste0(chart_dir, "21_I1_SMA_absChange_map.svg")),
+         plot = SMA_absChange_map,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```
+

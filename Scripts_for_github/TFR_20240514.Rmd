@@ -1,0 +1,641 @@
+---
+title: "TFR analysis, 29 Aug 2023 and May 2024"
+output: 
+  html_document:
+    css: Wil_style.css
+    theme: default
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+always_allow_html: yes
+---
+
+```{r setup1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(zoo)
+library(data.table)
+library(tidyverse)
+library(gglaplot)
+library(ggplot2)
+library(scales)
+library(readxl)
+library(knitr)
+library(sf)
+library(sp)
+library(kableExtra)
+library(magick)
+library(plotly)    
+library(RColorBrewer)
+library(htmltools)
+library(prettydoc)
+library(rmdformats)
+library(ggrepel)
+
+data_dir <- 'DATA/'
+chart_dir <- 'C:/Families/Charts/'
+
+
+# Disable scientific notation
+options(scipen=999)
+
+```
+
+```{r setup2, include=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+
+#---------------------------------------------------------------------------------
+
+### THIS CODE IS INCLUDED FOR INFORMATION.
+# TO CREATE THE PLOTS GO DOWN TO THE INSTRUCTION: "START HERE" at around line #370
+
+#----------------------------------------------------------------------------------
+
+
+## Calculating ASFR and TFR FOR ENGLAND AND WALES (excluding London) using data commissioned from ONS
+
+# Read in data for all births from 1993 to 2021 in England and Wales, excluding London
+
+EandW_births <- readRDS(paste0(data_dir,"births_calendar_year_age_mother_lad.rds")) %>%   filter(!grepl('E09000', gss_code)) %>%
+  data.frame
+
+# Recode the extreme ages, and group data by year and age of mother 
+# Label using mid-point of age groups 15 - 19 for "Under 20" and of age-group 40 - 44 for "40 and over"
+
+EandW_births_grouped <- EandW_births %>%
+  filter(age_mother !="total") %>%
+  mutate(age_mother = recode(age_mother, 'Under 20'='17', '40 and over'='42')) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Year, age_mother) %>% 
+  summarize(SUM_births = sum(value)) %>%
+  data.frame()
+
+# Read in population data (these data are from 1991 and whole UK), selecting for only English and Welsh women but not selecting London
+# Filter to start from 1993 to correspond to births data.
+
+EandW_female_pop <-  readRDS(paste0(data_dir,"pop_1991_2021_age_0to85plus.rds")) %>% 
+  filter(grepl('W06000', gss_code) | grepl('E08000', gss_code) |  grepl('E07000', gss_code) |  grepl('E06000', gss_code)) %>%
+   filter(year >1992) %>%
+   filter(sex == "female") %>%  
+   data.frame()
+
+# Select only the ages that correspond to the ONS calculation of sub-national TFR 
+# That is, for the group <20 years, use 15-19, and for the group 40 years and over, use 40-44.
+# Label these two groups with the mid-point ages, that is, 17 and 42.
+
+EandW_female_pop_all_recode <- EandW_female_pop %>%
+  filter(age > 14) %>%
+  filter(age < 45) %>%
+  mutate(age=replace(age, age<20, 17)) %>%
+  mutate(age=replace(age, age>39, 42)) %>%
+  mutate(Age = as.character(age)) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Year, Age) %>% 
+  summarize(SUM_pop = sum(value)) %>%
+  data.frame()
+  
+# Merge population and births data 
+merged_EandW_births_pop_allYears = left_join(EandW_births_grouped, EandW_female_pop_all_recode, 
+                                  by=c("Year" = "Year", "age_mother" = "Age")) %>%
+  data.frame()
+
+#-------------------------------------------------------
+
+# Calculate Age Specific Fertility Rate
+EandW_ASFR_allYears <- merged_EandW_births_pop_allYears %>%
+  mutate(EandW_ASFR = (SUM_births/SUM_pop)) %>%
+  mutate(EandW_ASFR_perK = ((SUM_births/SUM_pop) *1000)) %>%
+  data.frame()
+
+write.csv(EandW_ASFR_allYears, "C:/Families/Data_for_github/EandW_ASFR_allYears.csv")
+#-------------------------------------------------------
+
+# Calculate Total Fertility Rate
+EandW_TFR_allYears <- EandW_ASFR_allYears %>%
+   mutate(EandW_ASFR_new = case_when(age_mother == 17 ~ EandW_ASFR*5, 
+                             age_mother == 42 ~ EandW_ASFR*5,
+                             TRUE ~ EandW_ASFR)) %>%   # NEW on 29/08
+  group_by(Year) %>% 
+  summarise(EandW_TFR = sum(EandW_ASFR_new)) %>%
+  data.frame()
+
+write.csv(EandW_TFR_allYears, "C:/Families/Data_for_github/EandW_TFR_allYears.csv")
+
+#-------------------------------------------------------
+
+# Calculate Standardised Mean Age at birth of child 
+EandW_SMA_allYears <- merged_EandW_births_pop_allYears %>%
+ mutate(Age_mother = as.numeric(age_mother)) %>%
+  mutate(EandW_ASFR = SUM_births/SUM_pop) %>%  # calculate fertility rate for each SYA
+  mutate(EandW_ASFR_new = case_when(age_mother == 17 ~ EandW_ASFR*5, 
+                             age_mother == 42 ~ EandW_ASFR*5,
+                             TRUE ~ EandW_ASFR)) %>%   # NEW on 29/08
+  mutate(EandW_AgeXASFR_new = EandW_ASFR_new * Age_mother) %>%
+  group_by(Year) %>%
+  summarize(SUM_EandW_ASFR_new = sum(EandW_ASFR_new),    # This is equivalent to TFR
+            SUM_EandW_AgeXASFR_new = sum(EandW_AgeXASFR_new)) %>%
+  mutate(EandW_TFR = SUM_EandW_ASFR_new) %>% 
+  mutate(EandW_SMA = (SUM_EandW_AgeXASFR_new / EandW_TFR) +0.5) %>%
+  data.frame()
+
+# write.csv(EandW_SMA_allYears, "C:/Families/Data_for_github/EandW_SMA_allYears.csv")
+
+```
+
+
+```{r setup3, include=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+
+boroughcodes <- read.csv(paste0(data_dir,"InnerLondon.csv")) %>%   
+  data.frame
+
+## Calculating ASFR and TFR FOR LONDON OVER TIME, using data commissioned from ONS
+
+# Read in data for all births from 1993 to 2021 in England
+
+London_births <- readRDS("C:/Families/Data/Births_by_SYA_1993-2021/births_calendar_year_age_mother_lad.rds") %>%
+ filter(grepl('E09', gss_code)) %>%
+ data.frame
+
+# Group using zones of London
+
+London_births_zone_grouped <- London_births %>%
+  filter(age_mother !="total") %>%
+  left_join(boroughcodes, by=c("gss_code"="BoroughCode"))%>% 
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  mutate(age_mother = recode(age_mother, 'Under 20'='17', '40 and over'='42')) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Year, age_mother, Inner) %>% 
+  summarize(SUM_births = sum(value)) %>%
+  data.frame()
+
+# Read in population data (data are from 1991 and whole UK) and select for London, only women, and from 1993
+
+London_female_pop <-  readRDS(paste0(data_dir,"pop_1991_2021_age_0to85plus.rds")) %>%
+  filter(grepl('E09000', gss_code)) %>% 
+  filter(year >1992) %>%
+  filter(sex == "female") %>%  
+  data.frame()
+
+# Select only the ages that correspond to the ONS calculation of sub-national TFR 
+# That is, for the group <20 years, use 15-19, and for the group 40 years and over, use 40-44.
+# Label these two groups with the mid-point ages, that is, 17 and 42.
+# Merge with Zone code and group using this (as well as Age and Year)
+
+London_female_pop_zone <- London_female_pop %>%
+  left_join(boroughcodes, by=c("gss_code"="BoroughCode"))%>% 
+  filter(age > 14) %>%
+  filter(age < 45) %>%
+  mutate(age2 = case_when(age < 20 ~ 17,
+                          age > 39 ~ 42,
+                          TRUE ~ age )) %>%
+  mutate(Age = as.character(age2)) %>% 
+  mutate(Year = as.character(year)) %>%
+  summarise(SUM_pop = sum(value), .by = c(Year, Age, Inner)) %>%
+  data.frame()
+
+# Merge population and births data 
+merged_London_births_pop_allYears_zone = left_join(London_births_zone_grouped, London_female_pop_zone, 
+                                  by=c("Year" = "Year", "age_mother" = "Age", "Inner" = "Inner")) %>%
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  data.frame()
+
+#-------------------------------------------------------------
+
+# Calculate ASFR for each zone
+London_ASFR_allYears_zone <- merged_London_births_pop_allYears_zone %>%
+  mutate(London_zone_ASFR = (SUM_births/SUM_pop)) %>%
+  mutate(London_zone_ASFR_perK = ((SUM_births/SUM_pop) *1000)) %>%
+  data.frame()
+
+write.csv(London_ASFR_allYears_zone, "C:/Families/Data_for_github/London_ASFR_allYears_zone.csv")
+
+#--------------------------------------------------------------------
+
+# Calculate TFR for each zone
+London_TFR_allYears_zone <- London_ASFR_allYears_zone %>%
+  mutate(London_zone_ASFR_new = case_when(age_mother == 17 ~ London_zone_ASFR*5, 
+                             age_mother == 42 ~ London_zone_ASFR*5,
+                             TRUE ~ London_zone_ASFR)) %>%   # NEW on 29/08
+  group_by(Year, Inner) %>% 
+  summarise(London_zone_TFR = sum(London_zone_ASFR_new)) %>%
+  data.frame()
+
+write.csv(London_TFR_allYears_zone, "C:/Families/Data_for_github/London_TFR_allYears_zone.csv")
+
+```
+
+```{r setup4, include=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+
+## Calculating ASFR and TFR FOR INDIVIDUAL LONDON BOROUGHS using data commissioned from ONS
+
+# For births data, use borough as well as Age and Year to group
+London_births_grouped_boroughs <- readRDS(paste0(data_dir,"births_calendar_year_age_mother_lad.rds")) %>%  
+  filter(grepl('E09000', gss_code)) %>%
+  filter(age_mother !="total") %>%
+  mutate(age_mother = recode(age_mother, 'Under 20'='17', '40 and over'='42')) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Year, age_mother, gss_code, gss_name) %>% 
+  summarize(SUM_births = sum(value)) %>%
+  data.frame()
+
+# Use London population data from code above, selected for London, only women, and from 1993
+
+# Use borough as well as Age and Year to group population data
+London_female_pop_boroughs <- London_female_pop %>%
+  filter(age > 14) %>%
+  filter(age < 45) %>%
+  mutate(age=replace(age, age<20, 17)) %>%
+  mutate(age=replace(age, age>39, 42)) %>%
+  mutate(Age = as.character(age)) %>% 
+  mutate(Year = as.character(year)) %>%
+  group_by(Year, Age, gss_code, gss_name) %>% 
+  summarize(SUM_pop = sum(value)) %>%
+  data.frame()
+
+# Merge grouped births and grouped population data
+merged_London_births_pop_allYears_boroughs = 
+  left_join(London_births_grouped_boroughs, London_female_pop_boroughs,   
+            by=c("Year" = "Year", "age_mother" = "Age", "gss_code" = "gss_code", "gss_name" = "gss_name")) %>%
+  data.frame()
+
+#------------------------------------------------------------------------------
+
+# Calculate ASFR for each borough 
+London_ASFR_allYears_boroughs <- merged_London_births_pop_allYears_boroughs %>%
+  mutate(Age_mother = as.numeric(age_mother)) %>%
+  mutate(ASFR_perK = (SUM_births/SUM_pop)*1000) %>%  # calculate ASFR for each SYA
+  mutate(ASFR = SUM_births/SUM_pop) %>%  # calculate ASFR for each SYA
+  data.frame()
+
+# Read in codes for zone of each borough
+boroughcodes <- read.csv(paste0(data_dir,"InnerLondon.csv")) %>%   
+  data.frame
+
+# Join data with Inner/Outer file
+London_ASFR_allYears_boroughs_zone <- London_ASFR_allYears_boroughs %>%
+  left_join(boroughcodes, by=c("gss_code"="BoroughCode"))%>% 
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  data.frame() 
+
+# write.csv(London_ASFR_allYears_boroughs, "C:/Families/Data_for_github/London_ASFR_allYears_boroughs.csv", row.names=FALSE)
+
+#-----------------------------------------------------------------------
+
+# Calculate TFR for each borough 
+London_TFR_allYears_boroughs <- London_ASFR_allYears_boroughs %>%
+  mutate(ASFR_new = case_when(age_mother == 17 ~ ASFR*5, 
+                             age_mother == 42 ~ ASFR*5,
+                             TRUE ~ ASFR)) %>%   # NEW on 29/08
+  group_by(Year, gss_code, gss_name) %>% 
+  summarise(TFR = sum(ASFR)) %>%
+  data.frame()
+
+# Create categories for mapping TFR in 2021
+
+London_TFR_2021_boroughs <- London_TFR_allYears_boroughs %>% 
+  filter(Year == "2021") %>%
+  mutate(TFRCat = cut(TFR, breaks = c(0.50, 1.00, 1.20, 1.40, 1.60, 2.00),
+                      right=FALSE,
+                      labels = c("0.5 -",
+                                 "1.0 -",
+                                 "1.2 -",
+                                 "1.4 -",
+                                 "1.6+"))) %>%
+  data.frame()
+
+write.csv(London_TFR_2021_boroughs, "C:/Families/Data_for_github/London_TFR_2021_boroughs.csv")
+
+#----------------------------------------------------------------------
+
+London_TFR_allYears_boroughs_zone <- London_TFR_allYears_boroughs %>%
+  left_join(boroughcodes, by=c("gss_code"="BoroughCode"))%>% 
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+    data.frame() 
+
+# write.csv(London_TFR_allYears_boroughs, "C:/Families/Data_for_github/London_TFR_allYears_boroughs.csv", row.names=FALSE)
+
+```
+
+
+```{r setup5, include=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+
+## Calculating SMA for INDIVIDUAL LONDON BOROUGHS using data commissioned from ONS
+
+London_SMA_allYears_boroughs <- merged_London_births_pop_allYears_boroughs %>%
+  mutate(Age_mother = as.numeric(age_mother)) %>%
+  mutate(ASFR = SUM_births/SUM_pop) %>%  # calculate fertility rate for each SYA
+  mutate(ASFR_new = case_when(age_mother == 17 ~ ASFR*5, 
+                             age_mother == 42 ~ ASFR*5,
+                             TRUE ~ ASFR)) %>%   # NEW on 29/08
+  mutate(AgeXASFR_new = ASFR_new * Age_mother) %>%
+  group_by(Year, gss_code, gss_name) %>%
+  summarize(SUM_ASFR_new = sum(ASFR_new),
+            SUM_AgeXASFR_new = sum(AgeXASFR_new)) %>%
+  mutate(TFR = SUM_ASFR_new) %>% 
+  mutate(SMA = (SUM_AgeXASFR_new / TFR) +0.5) %>%
+  data.frame()
+
+# Merge SMA data with Inner/Outer file
+
+London_SMA_allYears_boroughs_zone <- London_SMA_allYears_boroughs %>%
+  left_join(boroughcodes, by=c("gss_code"="BoroughCode"))%>% 
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  data.frame() 
+
+#write.csv(London_SMA_allYears_boroughs_zone, "C:/Families/Data_for_github/London_SMA_allYears_boroughs_zone.csv")
+
+#--------------------------------------------------
+
+# Calculate change for scatterplot
+
+London_SMA_absChange <- London_SMA_allYears_boroughs_zone %>%
+  filter(gss_name != "City of London") %>%
+  mutate(year_numeric = as.numeric(Year)) %>%
+  mutate(year_factor = as.factor(Year)) %>%
+  group_by(gss_code, gss_name, Inner_factor) %>% 
+  mutate(firstSMA = first(SMA)) %>%
+  mutate(lastSMA = last(SMA)) %>%
+  mutate(AbsChange_SMA = (lastSMA - firstSMA)) %>%
+  mutate(firstTFR = first(TFR)) %>%
+  mutate(lastTFR = last(TFR)) %>%
+  mutate(AbsChange_TFR = (lastTFR - firstTFR)) %>%
+  filter(year_factor == "2021") %>% 
+  data.frame
+
+write.csv(London_SMA_absChange, "C:/Families/Data_for_github/London_SMA_absChange.csv")
+
+```
+
+
+```{r fig_London_zone_EandW_ASFR, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## START HERE FOR ASFR PLOT
+
+## Line plot of ASFR for inner and outer London and rest of England and Wales
+
+EandW_ASFR_allYears <- read.csv( "C:/Families/Data_for_github/EandW_ASFR_allYears.csv")
+
+London_ASFR_allYears_zone <- read.csv( "C:/Families/Data_for_github/London_ASFR_allYears_zone.csv")
+
+EandW_ASFR_allYears <- EandW_ASFR_allYears %>%
+  mutate(Region = "Rest of England and Wales") %>%
+  filter(Year == "2021") %>%
+  mutate(age_numeric = as.numeric(age_mother)) %>%
+  mutate(label = if_else(age_numeric == max(age_numeric), 
+                         as.character(Region), NA_character_)) %>%
+  data.frame()
+
+London_ASFR_allYears_Inner <- London_ASFR_allYears_zone %>%
+  mutate(age_numeric = as.numeric(age_mother)) %>%
+  filter(Year == "2021") %>%
+  filter(Inner == "1") %>%
+  mutate(Region = "Inner London") %>%
+    mutate(label = if_else(age_numeric == max(age_numeric), 
+                         as.character(Region), NA_character_)) %>%
+  select (-c(Inner)) %>%
+  data.frame()
+
+London_ASFR_allYears_Outer <- London_ASFR_allYears_zone %>%
+  mutate(age_numeric = as.numeric(age_mother)) %>%
+  filter(Year == "2021") %>%
+  filter(Inner == "0") %>%
+  mutate(Region = "Outer London") %>%
+  mutate(label = if_else(age_numeric == max(age_numeric), 
+                         as.character(Region), NA_character_)) %>%
+  select (-c(Inner)) %>%
+  data.frame()
+
+ASFR_London_zone_EandW_lines <-
+   ggplot() +
+  theme_gla() +
+  geom_line(data = London_ASFR_allYears_Inner, aes(age_numeric, y = London_zone_ASFR_perK,  group = 1, color = '#d82222'), size = 2) +
+    geom_label_repel(data = London_ASFR_allYears_Inner, aes(age_numeric, y = London_zone_ASFR_perK, label = label), nudge_x = 5, color = '#d82222')+
+    geom_line(data = London_ASFR_allYears_Outer, aes(age_numeric, y = London_zone_ASFR_perK,  group = 1, color = '#6da7de'), size = 2) +
+    geom_label_repel(data = London_ASFR_allYears_Outer, aes(age_numeric, y = London_zone_ASFR_perK, label = label), nudge_x = 5, color = '#6da7de')+
+   geom_line(data = EandW_ASFR_allYears, aes(age_numeric, y = EandW_ASFR_perK,  group = 1, color = "#5ea15d"), size = 2) +
+   geom_label_repel(data = EandW_ASFR_allYears, aes(age_numeric, y = EandW_ASFR_perK, label = label), nudge_x = 5, nudge_y = -5, color = "#5ea15d")+
+   theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(legend.position = "right") +
+  scale_y_continuous(limits = c(0, 120)) +
+  scale_x_continuous(breaks = c(20, 25, 30, 35, 40)) +  
+   scale_color_manual(name="", values=c( "#5ea15d", '#6da7de','#d82222'), guide="none") 
+   #+
+   #labs(title= "Age-specific fertility rate, London zone and Rest of England and Wales, 2021",
+  #     caption = paste0("Source: ONS, Chart: GLA demography"))
+ASFR_London_zone_EandW_lines
+
+ggsave (filename = "C:/Families/Charts_for_github/21_E_ASFR_London_zone_EandW_lines.svg",
+         plot = ASFR_London_zone_EandW_lines,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```
+
+```{r fig_London_zone_EandW_TFR, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## START HERE FOR TFR PLOT
+
+## Line plot of TFR for inner and outer London and rest of England and Wales
+
+EandW_TFR_allYears <- read.csv( "C:/Families/Data_for_github/EandW_TFR_allYears.csv")
+
+London_TFR_allYears_zone <- read.csv( "C:/Families/Data_for_github/London_TFR_allYears_zone.csv")
+
+London_TFR_allYears_Inner <- London_TFR_allYears_zone %>%
+  filter(Inner == "1") %>%
+  mutate(Region = "Inner London") %>%
+    mutate(Year = as.numeric(Year)) %>%
+   mutate(label = if_else(Year == max(Year), 
+                         as.character(Region), NA_character_)) %>%
+  select (-c(Inner)) %>%
+  data.frame()
+
+London_TFR_allYears_Outer <- London_TFR_allYears_zone %>%
+  filter(Inner == "0") %>%
+  mutate(Region = "Outer London") %>%
+    mutate(Year = as.numeric(Year)) %>%
+  mutate(label = if_else(Year == max(Year), 
+                         as.character(Region), NA_character_)) %>%
+  select (-c(Inner)) %>%
+  data.frame()
+
+EandW_TFR_allYears_new <- EandW_TFR_allYears %>%
+  mutate(Region = "Rest of England and Wales") %>%
+    mutate(Year = as.numeric(Year)) %>%
+  mutate(label = if_else(Year == max(Year), 
+                         as.character(Region), NA_character_)) %>%
+  data.frame()
+
+TFR_London_zone_EandW_lines <-
+   ggplot() +
+  theme_gla() +
+  geom_line(data = London_TFR_allYears_Inner, aes(Year, y = London_zone_TFR,  group = 1, color = '#d82222' ), size = 2) +
+      geom_label_repel(data = London_TFR_allYears_Inner, aes(Year, y = London_zone_TFR, label = label), nudge_x = 3, color = '#d82222')+
+    geom_line(data = London_TFR_allYears_Outer, aes(Year, y = London_zone_TFR,  group = 1, color = '#6da7de'), size = 2 ) +
+      geom_label_repel(data = London_TFR_allYears_Outer, aes(Year, y = London_zone_TFR, label = label), nudge_x = 3, color = '#6da7de')+
+   geom_line(data = EandW_TFR_allYears_new, aes(Year, y = EandW_TFR,  group = 1, color = "#5ea15d"), size = 2) +
+      geom_label_repel(data = EandW_TFR_allYears_new, aes(Year, y = EandW_TFR, label = label), nudge_x = 1, nudge_y = -0.1, color = "#5ea15d")+
+#  ylim(1.2, 2.4) +
+  #    geom_hline(yintercept=1)+
+   scale_x_continuous(limits = c (1992, 2025), breaks = c(1993, 1996, 1999, 2002, 2005, 2008, 2011, 2014, 2017, 2021)) +  
+   scale_color_manual(name="", values=c( "#5ea15d", '#6da7de','#d82222'), guide="none") +
+  theme(legend.position = "right") +
+  theme(legend.title=element_text(size=14, family = "Arial"),
+        legend.text=element_text(size=11, family = "Arial"),
+        axis.text.x=element_text(color = "black", 
+                                 size=11, family = "Arial"),  #, angle=30, vjust=.8, hjust=0.8
+        axis.text.y=element_text(color = "black", size=11, family = "Arial")) +      theme(plot.title = element_text(size = 16, hjust = 0.5)) 
+   #+
+  #labs(title= "Total fertility rate, London and Rest of England & Wales, 1993 - 2021", 
+    # caption = paste0("Source: ONS, Chart: GLA demography"))
+TFR_London_zone_EandW_lines
+
+ggsave (filename = "C:/Families/Charts_for_github/21_C_TFR_London_zone_EandW_lines.svg",
+         plot = TFR_London_zone_EandW_lines,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```
+
+
+```{r fig_London_SMA, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+
+## START HERE FOR SCATTERPLOTS
+
+## Scatterplot of absolute change in SMA between 1993 and 2021 v. SMA in 1993 for individual London boroughs
+
+catcolour2 = c('#ee266d', '#6da7de')
+
+London_SMA_absChange <- read.csv( "C:/Families/Data_for_github/London_SMA_absChange.csv")
+
+SMA_absChange_scatterplot1 <- London_SMA_absChange %>%
+   ggplot(aes(x = AbsChange_SMA, y = AbsChange_TFR, color=Inner_factor)) +
+  geom_smooth(method='lm', se = FALSE, linewidth=0.5) +  #linetype="dashed"
+  geom_point(shape=18,  size = 4) +
+  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0) +
+  scale_color_manual(name='London Zone:', values = catcolour2) +
+  scale_y_continuous(limits = c(-1.2, 0.3), breaks =c(-1.2, -0.9, -0.6, -0.3, 0, 0.3)) +  
+  scale_x_continuous(limits = c(0, 6), breaks =c(0, 2, 4, 6)) +  
+  theme_gla(x_axis_title = TRUE,  y_axis_title = TRUE, free_y_facets = TRUE)+
+  theme(legend.position = "right") +
+  labs(x = "Change in SMA value between 1993 and 2021", 
+       y = "Change in TFR value between 1993 and 2021") +
+  geom_text_repel(aes(label = gss_name), size = 4) 
+   #+
+  #labs(title= "Scatterplot of changes (1993 - 2021) in TFR v. in SMA for London boroughs",
+  #     caption = paste0("Source: ONS, Chart: GLA demography"))
+SMA_absChange_scatterplot1
+
+ggsave (filename = "C:/Families/Charts_for_github/21_J_SMA_London_change_1993_scatterplot_withtrendline.svg",
+         plot = SMA_absChange_scatterplot1,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```
+
+```{r fig_London_SMA_9, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## Scatterplot of TFR  v. SMA in 2021 for individual London boroughs
+
+catcolour2 = c('#ee266d', '#6da7de')
+
+TFR_vSMA_scatterplot <- London_SMA_absChange %>%
+  filter(gss_name != "City of London") %>%
+  mutate(year_numeric = as.numeric(Year)) %>%
+  mutate(year_factor = as.factor(Year)) %>%
+  filter(year_factor == "2021") %>% 
+  ggplot(aes(x = SMA, y = TFR, color=Inner_factor)) +
+  geom_smooth(method='lm', se = FALSE, linewidth=0.5) +  #linetype="dashed"
+  geom_point(shape=18,  size = 4) +
+  scale_color_manual(name='London Zone:', values = catcolour2) +
+  scale_y_continuous(limits = c(1, 2), breaks =c(1, 1.2, 1.4, 1.6, 1.8, 2.0)) +  
+  scale_x_continuous(limits = c(29, 35), breaks =c(29, 31, 33, 35)) +  
+  theme_gla(x_axis_title = TRUE,  y_axis_title = TRUE, free_y_facets = TRUE)+
+  theme(legend.position = "right") + labs(x = "SMA value in 2021", 
+       y = "TFR value in 2021") +
+  geom_text_repel(aes(label = gss_name), size = 4) 
+   #+
+  #labs(title= "Scatterplot of TFR v. SMA for London boroughs, 2021", 
+  #     caption = paste0("Source: ONS, Chart: GLA demography"))
+TFR_vSMA_scatterplot
+
+
+ggsave (filename = "C:/Families/Charts_for_github/21_K_TFR_vSMA_scatterplot_withtrendline.svg",
+         plot = TFR_vSMA_scatterplot,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```
+
+```{r fig_London_TFR_4, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## START FROM HERE TO MAP TFR IN LONDON FOR 2021
+
+borough_boundaries_2021 <-
+  st_read("C:/Migration/Migration_R/DATA/Domestic/copied_from_Qdrive_20220614/geographical/LAD_DEC_2021_GB_BUC.shp", quiet = TRUE)
+
+London_TFR_2021_boroughs <- read.csv("C:/Families/Data_for_github/London_TFR_2021_boroughs.csv")
+
+London_TFR_2021_boroughs_geog <- London_TFR_2021_boroughs %>% 
+  left_join(borough_boundaries_2021, by=c("gss_code"="LAD21CD"))%>%
+  data.frame()
+    
+catgreen5 = rev(c('#3f633e', '#578555', '#7aa677', '#a6c6a2', '#d8e4d6'))
+
+names(catgreen5) <- levels(London_TFR_2021_boroughs_geog$TFRCat)
+
+London_TFR_2021_map <- London_TFR_2021_boroughs_geog %>%
+  ggplot()+
+  geom_point(aes(x=BNG_E, y=BNG_N, 
+            text = paste("Borough: ", gss_name,
+                       "<br>TFR: ", 
+                       formatC(TFR, format="f", big.mark=",", digits=2 ))), alpha = 0)+   # alpha = 0 ensures that points are not actually plotted
+  geom_sf(aes(geometry=geometry, fill=TFRCat),lwd = 0.2, colour = "black")+
+   #ggla_sf()+
+  #theme_gla()+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(legend.position = "right")+
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())+
+  theme(panel.background = element_blank())+
+  theme(plot.caption = element_text (hjust = 0))+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.x = element_blank(), 
+        axis.ticks.y = element_blank())+
+    theme(legend.text = element_text(size=16)) +
+  theme(legend.title = element_text(size=16)) +
+  theme(legend.key.height= unit(1, 'cm'),
+        legend.key.width= unit(0.7, 'cm')) +
+  scale_fill_manual(values = catgreen5) + 
+  #labs(title= "Total Fertility Rate, London, 2021", 
+  #     caption = paste0("Source: ONS, Chart: GLA demography")) +
+         labs(fill = "TFR")
+London_TFR_2021_map
+
+ggsave (filename = "C:/Families/Charts_for_github/21_D_TFR_2021_map.svg",
+         plot = London_TFR_2021_map,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```

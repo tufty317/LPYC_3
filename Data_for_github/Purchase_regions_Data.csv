@@ -1,0 +1,235 @@
+"","Code","Name","Year","Ratio","highlight_flag","Region_factor","label"
+"1","E12000001","North East",1997,2.86,FALSE,"North East",NA
+"2","E12000001","North East",1998,2.81,FALSE,"North East",NA
+"3","E12000001","North East",1999,2.81,FALSE,"North East",NA
+"4","E12000001","North East",2000,2.68,FALSE,"North East",NA
+"5","E12000001","North East",2001,2.68,FALSE,"North East",NA
+"6","E12000001","North East",2002,2.73,FALSE,"North East",NA
+"7","E12000001","North East",2003,3.17,FALSE,"North East",NA
+"8","E12000001","North East",2004,4.28,FALSE,"North East",NA
+"9","E12000001","North East",2005,4.81,FALSE,"North East",NA
+"10","E12000001","North East",2006,5.5,FALSE,"North East",NA
+"11","E12000001","North East",2007,5.7,FALSE,"North East",NA
+"12","E12000001","North East",2008,5.5,FALSE,"North East",NA
+"13","E12000001","North East",2009,4.95,FALSE,"North East",NA
+"14","E12000001","North East",2010,5.02,FALSE,"North East",NA
+"15","E12000001","North East",2011,4.67,FALSE,"North East",NA
+"16","E12000001","North East",2012,4.5,FALSE,"North East",NA
+"17","E12000001","North East",2013,4.62,FALSE,"North East",NA
+"18","E12000001","North East",2014,4.69,FALSE,"North East",NA
+"19","E12000001","North East",2015,4.76,FALSE,"North East",NA
+"20","E12000001","North East",2016,4.72,FALSE,"North East",NA
+"21","E12000001","North East",2017,4.63,FALSE,"North East",NA
+"22","E12000001","North East",2018,4.76,FALSE,"North East",NA
+"23","E12000001","North East",2019,4.66,FALSE,"North East",NA
+"24","E12000001","North East",2020,4.55,FALSE,"North East",NA
+"25","E12000001","North East",2021,5,FALSE,"North East",NA
+"26","E12000001","North East",2022,4.43,FALSE,"North East","North East"
+"27","E12000002","North West",1997,2.98,FALSE,"North West",NA
+"28","E12000002","North West",1998,2.95,FALSE,"North West",NA
+"29","E12000002","North West",1999,2.95,FALSE,"North West",NA
+"30","E12000002","North West",2000,2.9,FALSE,"North West",NA
+"31","E12000002","North West",2001,2.88,FALSE,"North West",NA
+"32","E12000002","North West",2002,3.03,FALSE,"North West",NA
+"33","E12000002","North West",2003,3.46,FALSE,"North West",NA
+"34","E12000002","North West",2004,4.43,FALSE,"North West",NA
+"35","E12000002","North West",2005,5.09,FALSE,"North West",NA
+"36","E12000002","North West",2006,5.77,FALSE,"North West",NA
+"37","E12000002","North West",2007,5.96,FALSE,"North West",NA
+"38","E12000002","North West",2008,5.79,FALSE,"North West",NA
+"39","E12000002","North West",2009,5.18,FALSE,"North West",NA
+"40","E12000002","North West",2010,5.38,FALSE,"North West",NA
+"41","E12000002","North West",2011,5.14,FALSE,"North West",NA
+"42","E12000002","North West",2012,5.06,FALSE,"North West",NA
+"43","E12000002","North West",2013,4.96,FALSE,"North West",NA
+"44","E12000002","North West",2014,5.27,FALSE,"North West",NA
+"45","E12000002","North West",2015,5.41,FALSE,"North West",NA
+"46","E12000002","North West",2016,5.47,FALSE,"North West",NA
+"47","E12000002","North West",2017,5.62,FALSE,"North West",NA
+"48","E12000002","North West",2018,5.61,FALSE,"North West",NA
+"49","E12000002","North West",2019,5.62,FALSE,"North West",NA
+"50","E12000002","North West",2020,5.59,FALSE,"North West",NA
+"51","E12000002","North West",2021,6.28,FALSE,"North West",NA
+"52","E12000002","North West",2022,5.75,FALSE,"North West","North West"
+"53","E12000003","Yorkshire and The Humber",1997,3.1,FALSE,"Yorkshire and The Humber",NA
+"54","E12000003","Yorkshire and The Humber",1998,3.02,FALSE,"Yorkshire and The Humber",NA
+"55","E12000003","Yorkshire and The Humber",1999,3.08,FALSE,"Yorkshire and The Humber",NA
+"56","E12000003","Yorkshire and The Humber",2000,3.01,FALSE,"Yorkshire and The Humber",NA
+"57","E12000003","Yorkshire and The Humber",2001,3.02,FALSE,"Yorkshire and The Humber",NA
+"58","E12000003","Yorkshire and The Humber",2002,3.1,FALSE,"Yorkshire and The Humber",NA
+"59","E12000003","Yorkshire and The Humber",2003,3.66,FALSE,"Yorkshire and The Humber",NA
+"60","E12000003","Yorkshire and The Humber",2004,4.71,FALSE,"Yorkshire and The Humber",NA
+"61","E12000003","Yorkshire and The Humber",2005,5.29,FALSE,"Yorkshire and The Humber",NA
+"62","E12000003","Yorkshire and The Humber",2006,5.94,FALSE,"Yorkshire and The Humber",NA
+"63","E12000003","Yorkshire and The Humber",2007,6.2,FALSE,"Yorkshire and The Humber",NA
+"64","E12000003","Yorkshire and The Humber",2008,5.94,FALSE,"Yorkshire and The Humber",NA
+"65","E12000003","Yorkshire and The Humber",2009,5.25,FALSE,"Yorkshire and The Humber",NA
+"66","E12000003","Yorkshire and The Humber",2010,5.59,FALSE,"Yorkshire and The Humber",NA
+"67","E12000003","Yorkshire and The Humber",2011,5.33,FALSE,"Yorkshire and The Humber",NA
+"68","E12000003","Yorkshire and The Humber",2012,5.19,FALSE,"Yorkshire and The Humber",NA
+"69","E12000003","Yorkshire and The Humber",2013,5.21,FALSE,"Yorkshire and The Humber",NA
+"70","E12000003","Yorkshire and The Humber",2014,5.53,FALSE,"Yorkshire and The Humber",NA
+"71","E12000003","Yorkshire and The Humber",2015,5.55,FALSE,"Yorkshire and The Humber",NA
+"72","E12000003","Yorkshire and The Humber",2016,5.63,FALSE,"Yorkshire and The Humber",NA
+"73","E12000003","Yorkshire and The Humber",2017,5.73,FALSE,"Yorkshire and The Humber",NA
+"74","E12000003","Yorkshire and The Humber",2018,5.81,FALSE,"Yorkshire and The Humber",NA
+"75","E12000003","Yorkshire and The Humber",2019,5.71,FALSE,"Yorkshire and The Humber",NA
+"76","E12000003","Yorkshire and The Humber",2020,5.64,FALSE,"Yorkshire and The Humber",NA
+"77","E12000003","Yorkshire and The Humber",2021,6.31,FALSE,"Yorkshire and The Humber",NA
+"78","E12000003","Yorkshire and The Humber",2022,5.73,FALSE,"Yorkshire and The Humber","Yorkshire and The Humber"
+"79","E12000004","East Midlands",1997,3.23,FALSE,"East Midlands",NA
+"80","E12000004","East Midlands",1998,3.29,FALSE,"East Midlands",NA
+"81","E12000004","East Midlands",1999,3.34,FALSE,"East Midlands",NA
+"82","E12000004","East Midlands",2000,3.37,FALSE,"East Midlands",NA
+"83","E12000004","East Midlands",2001,3.54,FALSE,"East Midlands",NA
+"84","E12000004","East Midlands",2002,4.05,FALSE,"East Midlands",NA
+"85","E12000004","East Midlands",2003,4.99,FALSE,"East Midlands",NA
+"86","E12000004","East Midlands",2004,6.01,FALSE,"East Midlands",NA
+"87","E12000004","East Midlands",2005,6.52,FALSE,"East Midlands",NA
+"88","E12000004","East Midlands",2006,6.7,FALSE,"East Midlands",NA
+"89","E12000004","East Midlands",2007,7.03,FALSE,"East Midlands",NA
+"90","E12000004","East Midlands",2008,6.51,FALSE,"East Midlands",NA
+"91","E12000004","East Midlands",2009,5.71,FALSE,"East Midlands",NA
+"92","E12000004","East Midlands",2010,5.97,FALSE,"East Midlands",NA
+"93","E12000004","East Midlands",2011,5.85,FALSE,"East Midlands",NA
+"94","E12000004","East Midlands",2012,5.83,FALSE,"East Midlands",NA
+"95","E12000004","East Midlands",2013,5.86,FALSE,"East Midlands",NA
+"96","E12000004","East Midlands",2014,6.22,FALSE,"East Midlands",NA
+"97","E12000004","East Midlands",2015,6.59,FALSE,"East Midlands",NA
+"98","E12000004","East Midlands",2016,6.69,FALSE,"East Midlands",NA
+"99","E12000004","East Midlands",2017,6.91,FALSE,"East Midlands",NA
+"100","E12000004","East Midlands",2018,7.12,FALSE,"East Midlands",NA
+"101","E12000004","East Midlands",2019,6.96,FALSE,"East Midlands",NA
+"102","E12000004","East Midlands",2020,6.93,FALSE,"East Midlands",NA
+"103","E12000004","East Midlands",2021,7.66,FALSE,"East Midlands",NA
+"104","E12000004","East Midlands",2022,7.26,FALSE,"East Midlands","East Midlands"
+"105","E12000005","West Midlands",1997,3.47,FALSE,"West Midlands",NA
+"106","E12000005","West Midlands",1998,3.41,FALSE,"West Midlands",NA
+"107","E12000005","West Midlands",1999,3.53,FALSE,"West Midlands",NA
+"108","E12000005","West Midlands",2000,3.53,FALSE,"West Midlands",NA
+"109","E12000005","West Midlands",2001,3.75,FALSE,"West Midlands",NA
+"110","E12000005","West Midlands",2002,4.28,FALSE,"West Midlands",NA
+"111","E12000005","West Midlands",2003,5.05,FALSE,"West Midlands",NA
+"112","E12000005","West Midlands",2004,5.98,FALSE,"West Midlands",NA
+"113","E12000005","West Midlands",2005,6.42,FALSE,"West Midlands",NA
+"114","E12000005","West Midlands",2006,6.76,FALSE,"West Midlands",NA
+"115","E12000005","West Midlands",2007,6.97,FALSE,"West Midlands",NA
+"116","E12000005","West Midlands",2008,6.64,FALSE,"West Midlands",NA
+"117","E12000005","West Midlands",2009,6.01,FALSE,"West Midlands",NA
+"118","E12000005","West Midlands",2010,6.38,FALSE,"West Midlands",NA
+"119","E12000005","West Midlands",2011,6.13,FALSE,"West Midlands",NA
+"120","E12000005","West Midlands",2012,5.99,FALSE,"West Midlands",NA
+"121","E12000005","West Midlands",2013,6.05,FALSE,"West Midlands",NA
+"122","E12000005","West Midlands",2014,6.4,FALSE,"West Midlands",NA
+"123","E12000005","West Midlands",2015,6.49,FALSE,"West Midlands",NA
+"124","E12000005","West Midlands",2016,6.54,FALSE,"West Midlands",NA
+"125","E12000005","West Midlands",2017,6.68,FALSE,"West Midlands",NA
+"126","E12000005","West Midlands",2018,6.92,FALSE,"West Midlands",NA
+"127","E12000005","West Midlands",2019,6.91,FALSE,"West Midlands",NA
+"128","E12000005","West Midlands",2020,6.87,FALSE,"West Midlands",NA
+"129","E12000005","West Midlands",2021,7.57,FALSE,"West Midlands",NA
+"130","E12000005","West Midlands",2022,7.05,FALSE,"West Midlands","West Midlands"
+"131","E12000006","East",1997,3.67,TRUE,"East",NA
+"132","E12000006","East",1998,3.79,TRUE,"East",NA
+"133","E12000006","East",1999,4.01,TRUE,"East",NA
+"134","E12000006","East",2000,4.33,TRUE,"East",NA
+"135","E12000006","East",2001,4.78,TRUE,"East",NA
+"136","E12000006","East",2002,5.55,TRUE,"East",NA
+"137","E12000006","East",2003,6.67,TRUE,"East",NA
+"138","E12000006","East",2004,7.54,TRUE,"East",NA
+"139","E12000006","East",2005,7.88,TRUE,"East",NA
+"140","E12000006","East",2006,8.03,TRUE,"East",NA
+"141","E12000006","East",2007,8.48,TRUE,"East",NA
+"142","E12000006","East",2008,8.24,TRUE,"East",NA
+"143","E12000006","East",2009,7.26,TRUE,"East",NA
+"144","E12000006","East",2010,7.79,TRUE,"East",NA
+"145","E12000006","East",2011,7.62,TRUE,"East",NA
+"146","E12000006","East",2012,7.57,TRUE,"East",NA
+"147","E12000006","East",2013,7.61,TRUE,"East",NA
+"148","E12000006","East",2014,8.02,TRUE,"East",NA
+"149","E12000006","East",2015,8.53,TRUE,"East",NA
+"150","E12000006","East",2016,8.92,TRUE,"East",NA
+"151","E12000006","East",2017,9.81,TRUE,"East",NA
+"152","E12000006","East",2018,9.95,TRUE,"East",NA
+"153","E12000006","East",2019,9.63,TRUE,"East",NA
+"154","E12000006","East",2020,9.68,TRUE,"East",NA
+"155","E12000006","East",2021,10.42,TRUE,"East",NA
+"156","E12000006","East",2022,9.9,TRUE,"East","East"
+"157","E12000007","London",1997,3.96,TRUE,"London",NA
+"158","E12000007","London",1998,4.28,TRUE,"London",NA
+"159","E12000007","London",1999,4.72,TRUE,"London",NA
+"160","E12000007","London",2000,5.24,TRUE,"London",NA
+"161","E12000007","London",2001,5.99,TRUE,"London",NA
+"162","E12000007","London",2002,6.85,TRUE,"London",NA
+"163","E12000007","London",2003,7.59,TRUE,"London",NA
+"164","E12000007","London",2004,8.07,TRUE,"London",NA
+"165","E12000007","London",2005,8.21,TRUE,"London",NA
+"166","E12000007","London",2006,8.43,TRUE,"London",NA
+"167","E12000007","London",2007,8.85,TRUE,"London",NA
+"168","E12000007","London",2008,9.04,TRUE,"London",NA
+"169","E12000007","London",2009,7.99,TRUE,"London",NA
+"170","E12000007","London",2010,8.62,TRUE,"London",NA
+"171","E12000007","London",2011,9,TRUE,"London",NA
+"172","E12000007","London",2012,8.96,TRUE,"London",NA
+"173","E12000007","London",2013,9.27,TRUE,"London",NA
+"174","E12000007","London",2014,10.1,TRUE,"London",NA
+"175","E12000007","London",2015,11.38,TRUE,"London",NA
+"176","E12000007","London",2016,12.8,TRUE,"London",NA
+"177","E12000007","London",2017,13.27,TRUE,"London",NA
+"178","E12000007","London",2018,13,TRUE,"London",NA
+"179","E12000007","London",2019,12.97,TRUE,"London",NA
+"180","E12000007","London",2020,12.58,TRUE,"London",NA
+"181","E12000007","London",2021,13.54,TRUE,"London",NA
+"182","E12000007","London",2022,12.82,TRUE,"London","London"
+"183","E12000008","South East",1997,4.24,TRUE,"South East",NA
+"184","E12000008","South East",1998,4.42,TRUE,"South East",NA
+"185","E12000008","South East",1999,4.67,TRUE,"South East",NA
+"186","E12000008","South East",2000,5.08,TRUE,"South East",NA
+"187","E12000008","South East",2001,5.58,TRUE,"South East",NA
+"188","E12000008","South East",2002,6.4,TRUE,"South East",NA
+"189","E12000008","South East",2003,7.51,TRUE,"South East",NA
+"190","E12000008","South East",2004,8.15,TRUE,"South East",NA
+"191","E12000008","South East",2005,8.45,TRUE,"South East",NA
+"192","E12000008","South East",2006,8.69,TRUE,"South East",NA
+"193","E12000008","South East",2007,8.92,TRUE,"South East",NA
+"194","E12000008","South East",2008,8.71,TRUE,"South East",NA
+"195","E12000008","South East",2009,7.73,TRUE,"South East",NA
+"196","E12000008","South East",2010,8.45,TRUE,"South East",NA
+"197","E12000008","South East",2011,8.41,TRUE,"South East",NA
+"198","E12000008","South East",2012,8.25,TRUE,"South East",NA
+"199","E12000008","South East",2013,8.49,TRUE,"South East",NA
+"200","E12000008","South East",2014,8.9,TRUE,"South East",NA
+"201","E12000008","South East",2015,9.34,TRUE,"South East",NA
+"202","E12000008","South East",2016,10.08,TRUE,"South East",NA
+"203","E12000008","South East",2017,10.61,TRUE,"South East",NA
+"204","E12000008","South East",2018,10.81,TRUE,"South East",NA
+"205","E12000008","South East",2019,10.4,TRUE,"South East",NA
+"206","E12000008","South East",2020,10.31,TRUE,"South East",NA
+"207","E12000008","South East",2021,11.22,TRUE,"South East",NA
+"208","E12000008","South East",2022,10.69,TRUE,"South East","South East"
+"209","E12000009","South West",1997,3.98,FALSE,"South West",NA
+"210","E12000009","South West",1998,4.04,FALSE,"South West",NA
+"211","E12000009","South West",1999,4.35,FALSE,"South West",NA
+"212","E12000009","South West",2000,4.66,FALSE,"South West",NA
+"213","E12000009","South West",2001,5.19,FALSE,"South West",NA
+"214","E12000009","South West",2002,5.91,FALSE,"South West",NA
+"215","E12000009","South West",2003,7.16,FALSE,"South West",NA
+"216","E12000009","South West",2004,8.06,FALSE,"South West",NA
+"217","E12000009","South West",2005,8.34,FALSE,"South West",NA
+"218","E12000009","South West",2006,8.57,FALSE,"South West",NA
+"219","E12000009","South West",2007,8.94,FALSE,"South West",NA
+"220","E12000009","South West",2008,8.73,FALSE,"South West",NA
+"221","E12000009","South West",2009,7.71,FALSE,"South West",NA
+"222","E12000009","South West",2010,8.21,FALSE,"South West",NA
+"223","E12000009","South West",2011,7.95,FALSE,"South West",NA
+"224","E12000009","South West",2012,7.83,FALSE,"South West",NA
+"225","E12000009","South West",2013,7.84,FALSE,"South West",NA
+"226","E12000009","South West",2014,8.12,FALSE,"South West",NA
+"227","E12000009","South West",2015,8.41,FALSE,"South West",NA
+"228","E12000009","South West",2016,8.6,FALSE,"South West",NA
+"229","E12000009","South West",2017,8.85,FALSE,"South West",NA
+"230","E12000009","South West",2018,9,FALSE,"South West",NA
+"231","E12000009","South West",2019,8.86,FALSE,"South West",NA
+"232","E12000009","South West",2020,8.87,FALSE,"South West",NA
+"233","E12000009","South West",2021,9.87,FALSE,"South West",NA
+"234","E12000009","South West",2022,9.22,FALSE,"South West","South West"

@@ -1,0 +1,269 @@
+---
+title: "Housing purchase costs analysis, Dec 5 2023 and May 2024"
+output: 
+  html_document:
+    css: Wil_style.css
+    theme: default
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+always_allow_html: yes
+---
+
+```{r setup_1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(gglaplot)
+library(ggplot2)
+library(data.table)
+library(lubridate)
+library(tidyr)
+library(png)
+library(stringr)
+library(tidyverse)
+library(plotly)
+library(sf)
+library(scales)
+library(htmlwidgets)
+library(ggplot2)
+library(gglaplot)
+library(ggrepel)
+
+data_dir <- 'DATA/'
+chart_dir <- 'C:/Families/Charts_for_github/'
+
+# Disable scientific notation
+options(scipen=999)
+
+
+```
+
+
+
+```{r setup_2, include=FALSE}
+
+#-----------------------------------------------------------------
+
+## NO NEED TO RUN THIS CODE
+# IT'S JUST INCLUDED FOR INFORMATION
+
+# START FROM LINE c.150 FOR CHARTS
+
+#--------------------------------------------------------------
+
+
+# DATA FROM ONS WEBSITE
+
+# Ratio of lower quartile house price to lower quartile gross annual (where available) workplace-based earnings by local authority district, England and Wales, 1997 to 2022
+
+## Regions
+
+Purchase_Regions_Data_wide <- read.csv(paste0(data_dir,"ONS_Purchase_Regions_wide.csv")) %>%  
+ data.frame()
+
+Purchase_Regions_Data_long <- Purchase_Regions_Data_wide %>%
+  pivot_longer(
+    cols = starts_with("X"),
+    names_to = "year",
+    values_to = "ratio") %>%
+    mutate(Year = as.numeric(gsub("X", "", year))) %>%
+    mutate(Ratio = as.numeric(ratio)) %>%
+   select (-c(year, ratio)) %>%
+   data.frame()
+
+Purchase_Regions_Data_long_ed <- Purchase_Regions_Data_long %>%
+    filter(Name != "England and Wales") %>%
+    filter(Code != "E92000001") %>%
+    filter(Name != "Wales") %>%
+    mutate(highlight_flag = ifelse(Name == 'London'|Name == 'South East'|Name == 'East', T, F)) %>%    
+    mutate(Region_factor = as.factor(Name)) %>%
+    group_by(Region_factor) %>% 
+    mutate(label = if_else(Year == max(Year), 
+                         as.character(Region_factor), NA_character_)) %>%
+ data.frame()
+
+Purchase_regions_Data_label <- Purchase_Regions_Data_long_ed %>%
+  filter(grepl('E12000', Code)) %>%
+  mutate(label = if_else(Year == max(Year), as.character(Name),NA_character_)) %>%
+  data.frame()
+
+write.csv(Purchase_regions_Data_label, paste0(data_dir, "Purchase_regions_Data.csv"))
+
+
+## Local authorities
+
+Purchase_LAsEng_Data_wide <- read.csv(paste0(data_dir,"ONS_Purchase_LAs_allEng_wide.csv")) %>%  
+ data.frame()
+
+Purchase_LAsEng_Data_long <- Purchase_LAsEng_Data_wide %>%
+  pivot_longer(
+    cols = starts_with("X"),
+    names_to = "year",
+    values_to = "ratio") %>%
+    mutate(Year = as.numeric(gsub("X", "", year))) %>%
+    mutate(Ratio = as.numeric(ratio)) %>%
+   select (-c(year, ratio)) %>%
+   data.frame()
+
+Purchase_LAsEng_2022 <- Purchase_LAsEng_Data_long %>% 
+ filter(Year == 2022) %>%
+    data.frame()
+
+# Join London boroughs data with Inner/Outer file
+
+boroughcodes <- read.csv(paste0(data_dir,"InnerLondon.csv")) %>%   
+  data.frame
+
+Purchase_Boroughs_Data_Zone <- Purchase_LAsEng_Data_long %>%
+  left_join(boroughcodes, by=c("La_code"="BoroughCode"))%>% 
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  data.frame()
+
+Purchase_Boroughs_2022 <- Purchase_LAsEng_Data_long %>% 
+ filter(Year == 2022) %>%
+  left_join(boroughcodes, by=c("La_code"="BoroughCode"))%>% 
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  data.frame()
+
+# Create categories for mapping
+Purchase_LAsEng_cat <- Purchase_LAsEng_Data_long %>% 
+   mutate(Ratio_Cat = cut(Ratio, breaks = c(0, 12.5, 14, 16.5, 40),
+                             right=FALSE,
+                             labels = c(" 0.0 -",
+                                        "12.5 -",
+                                        "14.0 -",
+                                        "16.5+"))) %>%
+ filter(!is.na(Ratio)) %>%
+  data.frame()
+
+write.csv(Purchase_LAsEng_cat, paste0(data_dir, "Purchase_LAsEng_cat.csv"))
+
+```
+
+# Current geographical variation
+
+
+```{r fig_London_Ratio_map, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## START FROM HERE 
+
+Purchase_LAsEng_cat <- read.csv(paste0(data_dir, "Purchase_LAsEng_cat.csv")) %>%
+  data.frame
+
+# Import LA boundaries for England and Wales
+LAs_boundaries <-
+  st_read("C:/Migration/Migration_R/DATA/Domestic/copied_from_Qdrive_20220614/geographical/LAD_DEC_2021_GB_BUC.shp", quiet = TRUE)
+
+# Import Region boundaries for UK
+
+south_region_boundaries <-
+  st_read("C:/Geographical/England_Region_Boundaries/RGN_DEC_2022_EN_BUC.shp", quiet = TRUE) %>%
+    mutate(London = ifelse((RGN22CD=="E12000007"), "yes", "no")) %>%
+    filter(RGN22CD=="E12000006" | RGN22CD=="E12000007" | RGN22CD=="E12000008" )
+
+# Match boundary data with ratio data 
+
+Purchase_LAsEng_geog <- Purchase_LAsEng_cat %>% 
+  left_join(LAs_boundaries, by=c("La_code"="LAD21CD")) %>%
+  data.frame()
+
+catgreen4 = rev(c('#527450', '#759a72', '#a1c09e', '#d8e4d6'))
+
+Ratio_South_LAs_map <- Purchase_LAsEng_geog %>%
+   filter(Year == 2022) %>%
+  ggplot()+
+  geom_point(aes(x=BNG_E, y=BNG_N,
+                 text = paste("LA name: ",  La_name,
+                               "<br>Ratio: ",
+                              formatC(Ratio, format="f", big.mark=",", digits=2))),
+             alpha = 0) +   # alpha = 0 ensures that points are not actually plotted
+   geom_sf(aes(geometry=geometry, fill=Ratio_Cat),lwd = 0.1, colour = "black" ) +
+  geom_sf(data = south_region_boundaries, aes(x=LONG, y=LAT, geometry=geometry), alpha = 0.01, lwd = 1.0, colour = "black")+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(legend.position = "right")+
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())+
+  theme(panel.background = element_blank())+
+  theme(plot.caption = element_text (hjust = 0))+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(legend.text = element_text(size=16)) +
+  theme(legend.title = element_text(size=16)) +
+  theme(legend.key.height= unit(1, 'cm'),
+        legend.key.width= unit(0.7, 'cm')) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.x = element_blank(), 
+        axis.ticks.y = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=2))+
+  scale_fill_manual(values = catgreen4) + 
+#  labs(title= "Ratio of lower quartile house price to lower quartile gross annual earnings", 
+#       caption = paste0("Source: ONS, Chart: GLA demography")) +
+  labs(fill = "Ratio") +
+  guides(alpha="none") +
+  coord_sf(xlim = c(480000,580000), ylim = c(130000, 220000)) 
+
+Ratio_South_LAs_map
+
+ggsave (filename = "C:/Families/Charts_for_github/42_C2_Purchase_ratio_South_LAs_map.svg",
+         plot = Ratio_South_LAs_map,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```
+
+
+# Time trends
+
+
+```{r fig_Region_Rents_LQ, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## START FROM HERE 
+
+# Line plot of lower quartile house price to lower quartile gross annual earnings in England's regions
+
+Purchase_regions_Data_label <- read.csv(paste0(data_dir, "Purchase_regions_Data.csv")) %>%
+  data.frame
+
+colour_palette = c( "#eb861e", "#6da7de", "#943fa6", "#5ea15d", "#dee000","#63c5b5", "#d82222",  "#ff38ba",  "#ee266d", "#9e0059")
+
+
+Ratio_regions_line <- Purchase_regions_Data_label %>%
+  ggplot(aes(x = Year, y = Ratio, group = Name, color = Name, size=highlight_flag, text = paste("Year: ", Year,
+                          "<br>Region: ", Name,
+                          "<br>Ratio: ", round(Ratio, digits = 2)))) +
+  geom_line() +
+  theme_gla() +
+  geom_label_repel(aes(x = Year, y = Ratio, label = label, color = Region_factor, alpha = highlight_flag), nudge_x = 0.5, size = 3)+
+      scale_y_continuous(limits=c(3, NA), breaks = c(3, 6, 9, 12, 15)) +
+      scale_x_continuous(limits=c(2011, 2023), breaks = c(2011, 2014, 2017, 2020, 2022)) +
+    scale_color_manual(name='', values = colour_palette, guide = FALSE) +
+    scale_size_manual( values = c(0.2, 2), guide = FALSE) +
+   scale_alpha_manual( values = c(0, 1), guide = FALSE) +
+    theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+    theme(axis.text.x=element_text(color = "black", 
+                                 size=11, family = "Arial"), # vjust=.8, hjust=0.8, angle = 45
+        axis.text.y=element_text(color = "black", size=11, family = "Arial"))
+#+
+#  labs(title= "Ratio of lower quartile house price to lower quartile gross annual #earnings", 
+#       caption = paste0("Source: ONS, Chart: GLA demography"))
+Ratio_regions_line
+
+
+ggsave (filename = "C:/Families/Charts_for_github/42_B_Purchase_ratio_regions_lines.svg",
+         plot = Ratio_regions_line,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```
+
+
+

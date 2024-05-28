@@ -1,0 +1,228 @@
+---
+title: "Rentals cost analysis, 24 Oct, 4 Dec 2023 and May 2024"
+output: 
+  html_document:
+    css: Wil_style.css
+    theme: default
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+always_allow_html: yes
+---
+
+```{r setup_1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(gglaplot)
+library(ggplot2)
+library(data.table)
+library(lubridate)
+library(tidyr)
+library(png)
+library(stringr)
+library(tidyverse)
+library(plotly)
+library(sf)
+library(scales)
+library(htmlwidgets)
+library(ggplot2)
+library(gglaplot)
+library(ggrepel)
+
+data_dir <- 'DATA/'
+chart_dir <- 'C:/Families/Charts/'
+
+
+```
+
+
+```{r setup_2, include=FALSE}
+
+#-----------------------------------------------------------------
+
+## NO NEED TO RUN THIS CODE
+# IT'S JUST INCLUDED FOR INFORMATION
+
+# START FROM LINE c.110 FOR CHARTS
+
+#--------------------------------------------------------------
+
+# DATA FROM ONS WEBSITE
+
+Rentals_Regions_NewData <- read.csv(paste0(data_dir,"ONS_Rents_Regions_NewData.csv"), header = TRUE) %>% 
+  data.frame()
+
+# convert data from wide to long format
+Rentals_Data_Regions <- Rentals_Regions_NewData %>% 
+  pivot_longer(
+    cols = `North.East`:`South.West`, 
+    names_to = "Region",
+    values_to = "Price") %>%
+ mutate(New_region =  gsub("\\.", " ", Region)) %>%
+   mutate(Final_date = as.Date(New_date, format = "%d/%m/%Y")) %>%
+     mutate(highlight_flag = ifelse(New_region == 'London'|New_region == 'South East'|New_region == 'East', T, F)) %>%      mutate(Region_factor = as.factor(New_region)) %>%
+      group_by(Region_factor) %>% 
+ mutate(label = if_else(Final_date == max(Final_date), 
+                         as.character(Region_factor), NA_character_)) %>%
+   data.frame()
+
+
+write.csv(Rentals_Data_Regions, paste0(data_dir, "Rentals_Data_Regions.csv"))
+
+
+# -------------------------------------------------------------
+
+Rentals_Boroughs_Data <- read.csv(paste0(data_dir,"ONS_Rents_LAs_all.csv")) %>%  
+ data.frame()
+
+# Join London boroughs data with Inner/Outer file
+
+boroughcodes <- read.csv(paste0(data_dir,"InnerLondon.csv")) %>%   
+  data.frame
+
+Rentals_Boroughs_Data_Zone <- Rentals_Boroughs_Data %>%
+  left_join(boroughcodes, by=c("Area_Code"="BoroughCode"))%>% 
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  data.frame()
+
+Rentals_LAsEng_Data <- read.csv(paste0(data_dir,"ONS_Rents_LAs_allEng.csv")) %>%  
+ data.frame()
+
+# Create categories for mapping
+
+Rentals_LAsEng_Data_cat <- Rentals_LAsEng_Data %>% 
+  filter(!grepl('E12000', Area_Code)) %>% 
+  mutate(Lower_quartile_num = as.numeric(Lower_quartile)) %>%
+  mutate(Rentals_Cat = cut(Lower_quartile_num, breaks = c(300, 1200, 1350, 1650, 3000),
+                             right=FALSE,
+                             labels = c("300 -",
+                                        "1200 -",
+                                        "1350 -",
+                                        "1650+"))) %>%
+  data.frame()
+
+
+write.csv(Rentals_LAsEng_Data_cat, paste0(data_dir, "Rentals_LAsEng_Data_cat.csv"))
+
+```
+
+
+```{r fig_London_rents_map, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+### START HERE
+
+catgreen4 = rev(c('#527450', '#759a72', '#a1c09e', '#d8e4d6'))
+
+# Import LA boundaries for England and Wales
+LAs_boundaries <-
+  st_read("C:/Migration/Migration_R/DATA/Domestic/copied_from_Qdrive_20220614/geographical/LAD_DEC_2021_GB_BUC.shp", quiet = TRUE)
+
+# Import Region boundaries for UK
+
+south_region_boundaries <-
+  st_read("C:/Geographical/England_Region_Boundaries/RGN_DEC_2022_EN_BUC.shp", quiet = TRUE) %>%
+    mutate(London = ifelse((RGN22CD=="E12000007"), "yes", "no")) %>%
+    filter(RGN22CD=="E12000006" | RGN22CD=="E12000007" | RGN22CD=="E12000008" )
+
+# read in data
+
+Rentals_LAsEng_Data_cat <- read.csv(paste0(data_dir, "Rentals_LAsEng_Data_cat.csv")) %>%
+  data.frame
+
+# match with boundary data
+Rentals_LAs_geog <- Rentals_LAsEng_Data_cat %>% 
+  left_join(LAs_boundaries, by=c("Area_Code"="LAD21CD")) %>%
+  data.frame()
+
+Rentals_South_LAs_map <- Rentals_LAs_geog %>%
+    filter(!is.na(Lower_quartile_num)) %>%
+   mutate(Rentals_Cat = fct_reorder(Rentals_Cat, Lower_quartile_num)) %>%
+   ggplot()+
+  geom_point(aes(x=BNG_E, y=BNG_N,
+                 text = paste("LA name: ",  Area_Name,
+                               "<br>Lower_quartile monthly rent: ",
+                              formatC(Lower_quartile_num, format="f", big.mark=",", digits=2))),
+             alpha = 0) +   # alpha = 0 ensures that points are not actually plotted
+   geom_sf(aes(geometry=geometry, fill=Rentals_Cat),lwd = 0.1, colour = "black" ) +
+  geom_sf(data = south_region_boundaries, aes(x=LONG, y=LAT, geometry=geometry), alpha = 0.01, lwd = 0.7, colour = "black")+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(legend.position = "right")+
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())+
+  theme(panel.background = element_blank())+
+  theme(plot.caption = element_text (hjust = 0))+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(legend.text = element_text(size=16)) +
+  theme(legend.title = element_text(size=16)) +
+  theme(legend.key.height= unit(1, 'cm'),
+        legend.key.width= unit(0.7, 'cm')) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.x = element_blank(), 
+        axis.ticks.y = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=2))+
+  scale_fill_manual(name = "Monthly rent\n(pounds)", values = catgreen4) + 
+#  labs(title= "Lower quartile monthly rent for 2 bedroom flat, London, March 2023", 
+#       caption = paste0("Source: ONS, Chart: GLA demography")) +
+ # labs(fill = "") +
+  coord_sf(xlim = c(480000,580000), ylim = c(130000, 220000)) 
+
+Rentals_South_LAs_map
+
+ggsave (filename = "C:/Families/Charts_for_github/42_C1_Rentals_South_LAs_map.svg",
+         plot = Rentals_South_LAs_map,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+
+
+```
+
+
+```{r fig_Region_Rents_Line, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## Line plot of median monthly rent for 2 bedroom flat in England's regions
+
+colour_palette = c("#eb861e","#6da7de", "#943fa6", "#d82222", "#5ea15d","#63c5b5", "#dee000",   "#ff38ba", "#ee266d")
+
+# read in data
+
+Rentals_Data_Regions <- read.csv(paste0(data_dir, "Rentals_Data_Regions.csv")) %>%
+   mutate(Final_date = as.Date(New_date, format = "%d/%m/%Y")) %>%
+    data.frame
+
+Rents_regions_line <- Rentals_Data_Regions %>%
+  ggplot() +
+  geom_line(aes(x = Final_date, y = Price, group = Region_factor, color = Region_factor, size=highlight_flag)) +
+  geom_label_repel(aes(x = Final_date, y = Price, label = label, color = Region_factor, alpha = highlight_flag), nudge_x = 300)+
+  scale_size_manual( values = c(0.2, 2)) +
+  scale_alpha_manual( values = c(0, 1)) +
+  theme_gla() +
+    scale_x_date(date_breaks = "2 years", date_labels="%b\n%Y")+
+   scale_color_manual(values = colour_palette, guide="none") + 
+  theme( legend.position="none",
+    axis.text.x=element_text(color = "black", 
+                                 size=11, family = "Arial"), # vjust=.8, hjust=0.8, angle = 45
+        axis.text.y=element_text(color = "black", size=11, family = "Arial")) 
+#+ 
+#  labs(title= "Average Price Index of Private Rents, January 2015 to September 2023", 
+#       caption = paste0("Source: ONS, Chart: GLA demography"))
+Rents_regions_line
+
+
+ggsave (filename = "C:/Families/Charts_for_github/42_A_Rents_regions_line_NewData.svg",
+         plot = Rents_regions_line,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+
+```

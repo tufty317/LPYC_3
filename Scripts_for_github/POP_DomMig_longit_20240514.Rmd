@@ -1,0 +1,98 @@
+---
+title: "Domestic Migration, 14 May 2024"
+output: 
+  html_document:
+    css: Wil_style.css
+    theme: default
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+always_allow_html: yes
+---
+
+
+```{r setup1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+
+library(dplyr)
+library(gglaplot)
+library(ggplot2)
+library(data.table)
+library(lubridate)
+library(tidyr)
+library(png)
+library(stringr)
+library(tidyverse)
+library(plotly)
+library(sf)
+library(scales)
+library(htmlwidgets)
+library(ggplot2)
+library(gglaplot)
+library(ggrepel)
+
+
+data_dir <- 'C:/Families/Data_for_github/'
+chart_dir <- 'C:/Families/Charts_for_github/'
+
+# Disable scientific notation
+options(scipen=999)
+
+
+```
+
+
+```{r setup2, include=FALSE}
+
+## For TRENDS CHART
+
+london_longit_net_wide <- fread(paste0(data_dir, "london_domMig_longit_wide_corrected.csv")) %>%
+  data.frame()
+
+london_longit_net_long  <- london_longit_net_wide %>% 
+  pivot_longer(cols = starts_with("sumvalue"), names_to = "Variable", values_to = "Value") %>%
+  data.frame()
+  
+london_longit_only_net  <- london_longit_net_long %>% 
+  filter(Variable == "sumvaluenetK") %>%
+  mutate(Direction= recode(Variable, "sumvaluenetK"="Net domestic migration")) %>%
+  data.frame()
+
+london_longit_inandout  <- london_longit_net_long %>%
+  subset(Variable == "sumvalueoutK" | Variable == "sumvalueinK") %>%
+  mutate(Direction= recode(Variable, "sumvalueoutK"="Migration from London", 
+                           "sumvalueinK"="Migration to London")) %>%
+  data.frame()
+  
+
+```
+
+
+```{r fig_London_domMig_1, fig.height = 5, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+# chart with no y axis title, static version
+
+london_longit_net_static <- london_longit_inandout %>%
+  ggplot(aes(x=year, y=Value, fill=Direction)) +  
+        theme_gla() +
+  geom_bar(stat = "identity", position = position_dodge(0.9)) + 
+    geom_line(data = london_longit_only_net, aes(x = year, Y = Value), size = 1)  +
+  scale_x_continuous(limits = c (2001, 2023), breaks = c (2002, 2006, 2010, 2014, 2018, 2022)) +
+   scale_y_continuous(limits = c (-200, 500), breaks = c (-200, -100, 0, 100, 200, 300, 400, 500), labels = label_number(suffix = "K", prefix = ""))  +
+   scale_fill_manual(values=c('#943fa6','#63c5b5','black')) +
+  theme(legend.position = "top") 
+
+london_longit_net_static
+
+ggsave (filename = (paste0(chart_dir, "22_B_dom_mig_longit_net_corrected.svg")),
+         plot = london_longit_net_static,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```
+

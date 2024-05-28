@@ -1,0 +1,104 @@
+---
+title: "ASFR and TFR using COB data, 14/05/24"
+output: 
+  html_document:
+    css: Wil_style.css
+    theme: default
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+always_allow_html: yes
+---
+
+```{r setup1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(zoo)
+library(data.table)
+library(tidyverse)
+library(gglaplot)
+library(ggplot2)
+library(scales)
+library(readxl)
+library(knitr)
+library(sf)
+library(sp)
+library(kableExtra)
+library(magick)
+library(plotly)    
+library(RColorBrewer)
+library(htmltools)
+library(prettydoc)
+library(rmdformats)
+library(ggrepel)
+
+
+data_dir <- 'C:/Families/Data_for_github/'
+chart_dir <- 'C:/Families/Charts_for_github/'
+
+# Disable scientific notation
+options(scipen=999)
+
+```
+
+
+```{r setup2, include=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+
+# Read in data 
+
+TFR_data_wide <- read.csv(paste0(chart_dir, "ASFR_Mothers_BornInorOutsideUK.csv")) %>%
+  filter(Age_group == "TFR") %>%   
+  data.frame
+
+# reshape
+TFR_data_long <- TFR_data_wide %>% 
+  pivot_longer(
+    cols = `X2021`:`X2004`, 
+    names_to = "Year",
+    values_to = "TFR")
+
+```
+
+
+```{r fig_London_TFR, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+# Line plot of TFR by year and location of mothers' birth
+
+level_order <- c('Under 20', '20 to 24', '25 - 29', '30 to 34', '35 to 39', '40 and over')
+
+TFR_data_long_label <- TFR_data_long %>%
+  mutate(Year_new = as.numeric(gsub("X","", Year))) %>%
+  mutate(Location_factor = factor(Location, labels = c('All women', 'Inside UK', 'Outside UK'))) %>%
+  mutate(label = if_else(Year_new == max(Year_new), 
+                         as.character(Location_factor), NA_character_)) %>%
+  data.frame()
+
+
+TFR_line_time <- TFR_data_long_label %>%
+  filter(Location_factor != "All women") %>%
+  ggplot(aes(x = Year_new, y = TFR, group = Location_factor, colour = Location_factor, 
+                                                text = paste("Year  :", Year_new,
+                                                          "<br>Location of birth : ", Location,
+                                                           "<br>TFR: ", round(TFR, digits = 3))
+             ), size = 2) +
+  geom_label_repel(aes(x = Year_new, y = TFR, label = label), nudge_x = 0, nudge_y = 0.05) +  
+  scale_color_manual(name="", values=c("#5ea15d","#eb861e"), guide="none") +
+  theme_gla() +
+ # theme(legend.position = "right") +
+  geom_line(size = 2) + 
+  scale_x_continuous(limits = c (2004, 2023), breaks = c(2004, 2007, 2010, 2013, 2016, 2019, 2022)) 
+#  +
+#  labs(title= "Total fertility rate by location of mothers' birth, 2004 - 2021", 
+#       caption = paste0("Source: ONS, Chart: GLA demography"))
+TFR_line_time
+
+ggsave (filename = (paste0(chart_dir, "21_N_TFR_COB_line.svg")),
+         plot = TFR_line_time,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```

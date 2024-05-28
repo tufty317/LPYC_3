@@ -1,0 +1,314 @@
+---
+title: "School pupils mapping, 19/09/23, 7/12/23 and May 2024"
+output: 
+  html_document:
+    css: Wil_style.css
+    theme: default
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+always_allow_html: yes
+---
+
+```{r setup1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(zoo)
+library(data.table)
+library(tidyverse)
+library(gglaplot)
+library(ggplot2)
+library(scales)
+library(readxl)
+library(knitr)
+library(sf)
+library(sp)
+library(kableExtra)
+library(magick)
+
+library(plotly)    
+library(RColorBrewer)
+library(htmltools)
+library(prettydoc)
+library(rmdformats)
+
+
+library(flexdashboard)
+library(bslib)
+library(leaflet)
+library(DT)
+library(crosstalk) 
+library(dplyr)
+library(gglaplot)
+library(ggplot2)
+library(data.table)
+library(tidyr)
+library(stringr)
+library(tidyverse)
+library(plotly)
+library(sf)
+library(htmlwidgets)
+library(knitr)
+library(leaflet.extras)
+library(leaflegend)
+library(leaflet.providers)
+library(lubridate)
+library(maps)
+library(scales)
+library(forcats)
+
+data_dir <- 'DATA/'
+chart_dir <- 'CHARTS/'
+
+# Disable scientific notation
+options(scipen=999)
+
+```
+
+
+```{r setup2, include=FALSE}
+
+#-----------------------------------------------------------------
+
+## NO NEED TO RUN THIS CODE
+# IT'S JUST INCLUDED FOR INFORMATION
+
+# START FROM LINE c.150 FOR CHARTS
+
+#--------------------------------------------------------------
+
+
+input_all_schools_data <- fread(paste0(data_dir,"pupils_lad_type_age_2009to22.csv")) %>%
+  data.frame() 
+
+## Primary school headcount
+
+primary_schools_change <- input_all_schools_data %>%
+  filter(age < 11) %>%
+  filter(type == "State-funded") %>%
+  filter(la_name != "City of London") %>%
+  filter(time_period > 201516) %>%
+  group_by(new_la_code) %>% 
+  mutate(indexed_headcount = (full_time/first(full_time))*100) %>%
+  filter(time_period == 202223) %>%
+  filter(new_la_code != "E06000053") %>%
+  arrange(new_la_code) %>%
+  data.frame() 
+
+Primary_schools_cats <- primary_schools_change %>% 
+       mutate(indexed_hc_Cat5 = cut(indexed_headcount, breaks = c(76, 83, 90, 96, 103, 110, 117, 150),
+                      right=FALSE,
+                      labels = c("76 -",
+                                 "83 - ",
+                                 "90 - ",
+                                 "96 - ",
+                                 "103 - ",
+                                 "110 - ",
+                                 "117+ "))) %>%
+  data.frame()
+
+# Save data 
+write.csv(Primary_schools_cats, paste0(data_dir, "Primary_schools_cats.csv"))
+
+#-----------------------------------------------------------------------
+
+## Secondary  school headcount
+
+Secondary_schools_change <- input_all_schools_data %>%
+  filter(time_period > 201516) %>%
+  filter(la_name != "City of London") %>%
+  filter(age > 10) %>%
+  filter(type == "State-funded") %>%
+  group_by(new_la_code) %>% 
+  mutate(indexed_headcount = (full_time/first(full_time))*100) %>%
+  filter(time_period == 202223) %>%
+  filter(new_la_code != "E06000053") %>%
+  arrange(new_la_code) %>%
+  data.frame()   
+
+Secondary_schools_cats <- Secondary_schools_change %>% 
+      mutate(indexed_hc_Cat5 = cut(indexed_headcount, breaks = c(76, 83, 90, 96, 103, 110, 117, 150),
+                      right=FALSE,
+                      labels = c("76 -",
+                                 "83 - ",
+                                 "90 - ",
+                                 "96 - ",
+                                 "103 - ",
+                                 "110 - ",
+                                 "117+ "))) %>%
+  data.frame()
+
+# Save data 
+write.csv(Secondary_schools_cats, paste0(data_dir, "Secondary_schools_cats.csv"))
+
+
+```
+
+
+```{r fig_London_primary_pupils_map, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## START FROM HERE
+
+# Read data
+
+Primary_schools_cats <- read.csv(paste0(data_dir, "Primary_schools_cats.csv")) %>%
+  data.frame
+
+# Import Region boundaries for UK
+south_region_boundaries <-
+  st_read("C:/Geographical/England_Region_Boundaries/RGN_DEC_2022_EN_BUC.shp", quiet = TRUE) %>%
+    mutate(London = ifelse((RGN22CD=="E12000007"), "yes", "no")) %>%
+    filter(RGN22CD=="E12000006" | RGN22CD=="E12000007" | RGN22CD=="E12000008" )
+
+# Import LA boundaries for England 
+borough_boundaries <-
+  st_read(paste0(data_dir,"local_education_authorities.shp"), quiet = TRUE)
+
+# Colours for categories
+
+londonmap7_diverge2 = rev(c('#943fa6', '#b47bbe', '#d2b4d6', '#eeeeee', '#c3e1db', '#96d3c8', '#63c5b5'))
+
+# Match schools data with geographical data
+
+Primary_schools_geog <- Primary_schools_cats %>% 
+    left_join(borough_boundaries, by=c('new_la_code' = 'new_la_cod')) %>%
+      data.frame()
+
+Primary_schools_change_map <- Primary_schools_geog %>%
+     mutate(indexed_hc_Cat5 = fct_reorder(indexed_hc_Cat5, indexed_headcount)) %>%
+  ggplot() +
+  geom_sf(aes(geometry=geometry, fill=indexed_hc_Cat5), lwd = 0.1)+
+    geom_sf(data = south_region_boundaries, aes(x=LONG, y=LAT, geometry=geometry), alpha = 0.01, lwd = 0.7, colour = "black")+
+  theme(legend.position = "right")+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(legend.position = "right") +
+  #theme(legend.title = element_blank()) +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  theme(panel.background = element_blank()) +
+  theme(plot.caption = element_text (hjust = 0)) +
+  theme(plot.title = element_text(size = 16)) +  #, hjust = 0.5
+  theme(plot.subtitle = element_text(size = 12)) + #, hjust= 0.5
+  theme(plot.caption = element_text(size = 10, hjust= 0)) +
+  theme(legend.text = element_text(size=16)) +
+  theme(legend.title = element_text(size=16)) +
+  theme(legend.key.height= unit(1, 'cm'),
+        legend.key.width= unit(0.7, 'cm')) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.x = element_blank(), 
+        axis.ticks.y = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=2)) +
+    scale_fill_manual("% value\nin 2016-17", values = londonmap7_diverge2, 
+                      limits = levels(Primary_schools_geog$indexed_hc_Cat5)) + 
+    #labs(title = "Change in Primary school headcount in London, 2016-17 to 2022-23", 
+  #      subtitle = "Indexed to academic year 2016-17",
+  #      caption = "Source: DFE, Chart: GLA demography") +
+    coord_sf(xlim = c(480000,580000), ylim = c(130000, 220000))
+
+Primary_schools_change_map
+
+ggsave (filename = "C:/Families/Charts_for_github/12_B1_Schools_LondonAndAround_Primary_change_map.svg",
+         plot = Primary_schools_change_map,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+ggsave (filename = "C:/Families/Charts_for_github/12_B1_Schools_LondonAndAround_Primary_change_map.png",
+         plot = Primary_schools_change_map,
+         device = "png",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```
+
+
+```{r fig_London_Secondary_schools_map, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+## Now do map for secondary schools too
+
+# Read data
+
+Secondary_schools_cats <- read.csv(paste0(data_dir, "Secondary_schools_cats.csv")) %>%
+  data.frame
+
+# Import Region boundaries for UK
+south_region_boundaries <-
+  st_read("C:/Geographical/England_Region_Boundaries/RGN_DEC_2022_EN_BUC.shp", quiet = TRUE) %>%
+    mutate(London = ifelse((RGN22CD=="E12000007"), "yes", "no")) %>%
+    filter(RGN22CD=="E12000006" | RGN22CD=="E12000007" | RGN22CD=="E12000008" )
+
+# Import LA boundaries for England 
+borough_boundaries <-
+  st_read(paste0(data_dir,"local_education_authorities.shp"), quiet = TRUE)
+
+# Merge secondary schools data with boundaries data
+Secondary_schools_geog <- Secondary_schools_cats %>% 
+    left_join(borough_boundaries, by=c('new_la_code' = 'new_la_cod')) %>%
+    data.frame()
+
+# Manually label categories and colours
+
+catLabels = c("76 -", "83 - ", "90 - ", "96 - ", "103 - ",
+              "110 - ", "117+ ")
+
+catColours = rev(c('#943fa6', '#b47bbe', '#d2b4d6', '#eeeeee', '#c3e1db', '#96d3c8', '#63c5b5'))
+
+
+Secondary_schools_change_map <- Secondary_schools_geog %>%
+  mutate(indexed_hc_Cat5 = fct_reorder(indexed_hc_Cat5, indexed_headcount)) %>%
+  ggplot() +
+  geom_sf(aes(geometry=geometry, fill=indexed_hc_Cat5),  lwd = 0.1)+
+    geom_sf(data = south_region_boundaries, aes(x=LONG, y=LAT, geometry=geometry), alpha = 0.01, lwd = 0.7, colour = "black")+
+  theme(plot.title = element_text(size = 16, hjust = 0.5)) +
+  theme(legend.position = "right") +
+  #theme(legend.title = element_blank()) +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  theme(panel.background = element_blank()) +
+  theme(plot.caption = element_text (hjust = 0)) +
+  theme(plot.title = element_text(size = 16)) +  #, hjust = 0.5
+  theme(plot.subtitle = element_text(size = 12)) + #, hjust= 0.5
+  theme(plot.caption = element_text(size = 10, hjust= 0)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.x = element_blank(), 
+        axis.ticks.y = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=2)) +
+    scale_fill_manual("% value\nin 2016-17", values =catColours, 
+                      limits = catLabels, guide = "none") +
+ # labs(title = "Change in Secondary school headcount in London, 2016-17 to 2022-23", 
+#       subtitle = "Indexed to academic year 2016-17",
+#       caption = "Source: DFE, Chart: GLA demography") +
+    coord_sf(xlim = c(480000,580000), ylim = c(130000, 220000))
+
+Secondary_schools_change_map
+
+ggsave (filename = "C:/Families/Charts_for_github/12_B2_Schools_LondonAndAround_Secondary_change_map.svg",
+         plot = Secondary_schools_change_map,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+ggsave (filename = "C:/Families/Charts_for_github/12_B2_Schools_LondonAndAround_Secondary_change_map.png",
+         plot = Secondary_schools_change_map,
+         device = "png",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+
+```
+

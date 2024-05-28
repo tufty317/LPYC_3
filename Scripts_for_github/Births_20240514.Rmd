@@ -1,0 +1,208 @@
+---
+title: "Births analysis, 14 May 2024"
+output: 
+  html_document:
+    css: Wil_style.css
+    theme: default
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+always_allow_html: yes
+---
+
+```{r setup_1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(gglaplot)
+library(ggplot2)
+library(data.table)
+library(lubridate)
+library(tidyr)
+library(png)
+library(stringr)
+library(tidyverse)
+library(plotly)
+library(sf)
+library(scales)
+library(htmlwidgets)
+library(ggplot2)
+library(gglaplot)
+library(ggrepel)
+library(readr)
+
+
+data_dir <- 'C:/Families/Data_for_github/'
+chart_dir <- 'C:/Families/Charts_for_github/'
+
+
+```
+
+```{r setup_2, include=FALSE}
+
+#----------------------------------------------------------------
+## THERE'S NO NEED TO RUN THIS CODE
+# IT'S INCLUDED FOR INFORMATION
+
+# GO TO c.line 110 FOR CODE FOR CHARTS
+
+#-----------------------------------------------------------------
+
+
+# Import zone codes so can plot separate lines for zones
+boroughcodes <- read.csv("C:/Migration/Migration_R/DATA/Domestic/InnerLondon.csv") %>%   
+  data.frame
+
+#--------------------------------------------------------------------------------
+
+# Read in data for all births from 1993 to 2021 in England, select for London and convert years to dates
+London_births <- readRDS("C:/Families/Data/Births_by_SYA_1993-2021/births_calendar_year_age_mother_lad.rds") %>%  filter(grepl('E09000', gss_code)) %>%
+  data.frame
+
+# Merge data from 1993 with Inner/Outer file, group using zone, and only include data from 2012 or earlier
+London_ONS_births_zone_grouped <- London_births %>%
+  filter(age_mother =="total") %>%
+  left_join(boroughcodes, by=c("gss_code"="BoroughCode"))%>% 
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  group_by(year, Inner_factor) %>% 
+  summarize(SUM_births = sum(value)) %>%
+  filter(year < 2013) %>%
+  data.frame()
+
+write.csv(London_ONS_births_zone_grouped, paste0(data_dir, "London_ONS_births_pre2013.csv"))
+
+
+#--------------------------------------------------------------------------------
+
+# Read in data from MYE 2022
+
+MYE_births_wide <- read.csv("C:/Families/London_families_Births/DATA/London_Boroughs_births_2012 to 2022_fromMYE.csv") %>%  
+  rename_all(~stringr::str_replace(.,"^X",""))
+   data.frame
+
+# Convert data to long format   
+MYE_births_long <- MYE_births_wide %>% 
+  pivot_longer(
+    cols = `2012`:`2022`, 
+    names_to = "year",
+    values_to = "Value") %>%
+    data.frame()
+
+# Select for London, merge MYE data with Inner/Outer file, and group by year and zone
+London_MYE_births_zone <- MYE_births_long %>%
+  filter(laname23 !="LONDON") %>%
+  left_join(boroughcodes, by=c("ladcode23"="BoroughCode"))%>% 
+  mutate(Inner_factor= recode(Inner, "1"="Inner", "0"="Outer")) %>%
+  group_by(year, Inner_factor) %>% 
+  summarize(SUM_births = sum(Value)) %>%
+  data.frame()
+
+write.csv(London_MYE_births_zone, paste0(data_dir, "London_MYE_births_zone_post2012.csv"))
+
+```
+
+
+```{r setup_3, include=FALSE}
+
+## START FROM HERE
+
+#--------------------------------------------------------------------------------
+# Read data from 1993 to 2012
+London_ONS_births_zone_grouped <- 
+  read.csv(paste0(data_dir, "London_ONS_births_pre2013.csv")) %>%   
+  data.frame
+
+# Create two separate dataframes for plotting, so that the lines can be labelled
+Inner_London_ONS_births <- London_ONS_births_zone_grouped %>%
+  mutate(year_numeric = as.numeric(year)) %>%
+  mutate(year_factor = as.factor(year)) %>%
+  filter(Inner_factor == "Inner") %>%
+  mutate(Region = "Inner London") %>%   
+#  mutate(label = if_else(year_numeric == max(year_numeric), 
+#                         as.character(Region), NA_character_)) %>%
+  data.frame()
+
+Outer_London_ONS_births <- London_ONS_births_zone_grouped %>%
+  mutate(year_numeric = as.numeric(year)) %>%
+  mutate(year_factor = as.factor(year)) %>%
+  filter(Inner_factor == "Outer") %>%
+  mutate(Region = "Outer London") %>%   
+#  mutate(label = if_else(year_numeric == max(year_numeric), 
+#                         as.character(Region), NA_character_)) %>%
+  data.frame()
+
+#--------------------------------------------------------------------------------
+# Read data from 2012
+London_MYE_births_zone <- 
+  read.csv(paste0(data_dir, "London_MYE_births_zone_post2012.csv")) %>%   
+  data.frame
+
+# Create two separate dataframes for plotting, so that the lines can be labelled
+
+Inner_London_MYE_births <- London_MYE_births_zone %>%
+  mutate(year_numeric = as.numeric(year)) %>%
+  mutate(year_factor = as.factor(year)) %>%
+  filter(Inner_factor == "Inner") %>%
+  mutate(Region = "Inner London") %>%   
+  mutate(label = if_else(year_numeric == max(year_numeric), 
+                         as.character(Region), NA_character_)) %>%
+  data.frame()
+
+Outer_London_MYE_births <- London_MYE_births_zone %>%
+  mutate(year_numeric = as.numeric(year)) %>%
+  mutate(year_factor = as.factor(year)) %>%
+  filter(Inner_factor == "Outer") %>%
+  mutate(Region = "Outer London") %>%   
+  mutate(label = if_else(year_numeric == max(year_numeric), 
+                         as.character(Region), NA_character_)) %>%
+  data.frame()
+
+#--------------------------------------------------------------------------------
+   
+```
+
+
+```{r fig_London_births1, fig.height = 5.56, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+# Plotting births from both datasets, starting at zero, disaggregated by zone of london
+
+Births_London_abs_zone_line <- ggplot() +
+     geom_line(data = Inner_London_MYE_births, 
+               aes(x = year_numeric, y = SUM_births/1000, 
+                   group = 1, color = '#d82222' ), size = 2) +
+   geom_label_repel(data = Inner_London_MYE_births, 
+                    aes(x = year_numeric, y = SUM_births/1000, label = label), 
+                    nudge_x = 2, nudge_y = 0, color = '#d82222') +
+    geom_line(data = Outer_London_MYE_births, 
+              aes(x = year_numeric, y = SUM_births/1000,  
+                  group = 1, color = '#6da7de'), size = 2) +
+     geom_label_repel(data = Outer_London_MYE_births, 
+                      aes(x = year_numeric, y = SUM_births/1000, label = label), 
+                      nudge_x = 2, nudge_y = 0, color = '#6da7de')+
+   geom_line(data = Inner_London_ONS_births, 
+               aes(x = year_numeric, y = SUM_births/1000, 
+                   group = 1, color = '#d82222' ), size = 2) +
+      geom_line(data = Outer_London_ONS_births, 
+              aes(x = year_numeric, y = SUM_births/1000,  
+                  group = 1, color = '#6da7de'), size = 2) +
+   theme_gla() +
+   scale_y_continuous(limits = c (0, NA)) +
+   scale_color_manual(name="", values=c( '#6da7de','#d82222'), guide="none") +
+    scale_x_continuous(limits = c (1992, 2025), breaks = c(1993, 1996, 1999, 2002, 2005, 2008, 2011, 2014, 2017, 2020, 2022)) +
+     theme(legend.title=element_text(size=14, family = "Arial"),
+        legend.text=element_text(size=11, family = "Arial"),
+        axis.text.x=element_text(color = "black", 
+                                 size=11, family = "Arial"), # vjust=.8, hjust=0.8, angle = 45
+        axis.text.y=element_text(color = "black", size=11, family = "Arial")) 
+Births_London_abs_zone_line
+
+
+ggsave (filename = (paste0(chart_dir, "1_A_Births_London_abs_line_zero.svg")),
+         plot = Births_London_abs_zone_line,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         height = 5.56,
+         units = "in")
+
+```
