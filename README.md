@@ -9,10 +9,10 @@ The charts without titles are included in the folder Charts_for_Github.
 
 Some data files could not be uploaded as they are larger than Github's maximum permitted. These can be provided on request. 
 
-For this and any other queries and comments please contact Veronica Tuffrey at the Greater London Authority
+For this query and any others please contact Veronica Tuffrey at the Greater London Authority
 (Veronica.Tuffrey@london.gov.uk)
 
-Number;	Script; Data file(s);
+CHART NUMBER; SCRIPT NAME; DATA FILE(s) -
 
 11_A;	Schools_boroughs_lines_primary_20240514.Rmd;	london_SF_primary_schools.csv;
                                                 London_orNot_SF_primary_schools.csv
