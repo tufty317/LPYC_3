@@ -1,13 +1,15 @@
 # LPYC
 Data and scripts for the charts in report London's Population of Young Children
-London’s population of young children
 
 This project contains scripts for creating the charts in the report “London’s population of young children – current and future”.
-The report is available on the GLA Datastore, available here (add link) 
+The report is available on the GLA Datastore, available here https://data.london.gov.uk/dataset/london-s-population-of-young-children---current-and-future
 
 Links to the original data sources are provided in the report. This folder only includes the data (in the folder Data_for_Github) needed to create the charts, together with the R scripts (in the folder Scripts_for_Github).
+Also the charts without titles are included in the folder Charts_for_Github. 
 
-For any queries or comments please contact Veronica Tuffrey
+Some data files could not be uploaded as they are larger than Github's maximum permitted. Please contact Veronica who can provide these on request. 
+
+For this and any other queries and comments please contact Veronica Tuffrey at the Greater London Authority
 (Veronica.Tuffrey@london.gov.uk)
 
 Number;	Script;					Data file(s);
@@ -65,6 +67,7 @@ Number;	Script;					Data file(s);
 22_D;	POP_DomMig_2022_0-10_20240516.Rmd;		london_within_2002to2022.csv;
 						london_origin_2002to2022.csv;
                                                 london_destination_2002to2022.csv
+THESE DATA FILES WERE TOO LARGE TO BE UPLOADED - please contact Veronica
 						
 22_E;	POP_DomMig_2022_AgeGroup_20240516.Rmd;	london_within_2022.csv;
                                                 london_origin_2022.csv;	
