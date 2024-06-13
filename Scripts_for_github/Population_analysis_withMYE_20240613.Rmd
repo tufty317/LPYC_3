@@ -47,7 +47,7 @@ options(scipen=999)
 
 ## Import MYE population data
 
-input_MYE2022data <- fread(paste0(data_dir,"MYE22_London_CompsofChange.csv")) %>% 
+input_MYE2022data <- fread("Q:/Teams/D&PA/Demography/Londons_young_children/LPYC_Github/Data_for_github/MYE22_London_CompsofChange.csv") %>% 
     data.frame()
 
 MYE2022_IMdata <- input_MYE2022data %>%
@@ -70,9 +70,6 @@ MYE2022_IMdata_netzero <- MYE2022_IMdata %>%
     names_prefix = "Flow",
     values_to = "Value",
     values_drop_na = TRUE) %>%
-#   mutate("Flow" = str_replace_all(Flow, fixed("Int_out_K"), "Emigration")) %>%
-#  mutate("Flow" = str_replace_all(Flow, fixed("Int_in_K"), "Immigration")) %>%
-#  mutate("Flow" = str_replace_all(Flow, fixed("Int_net_K"), "Net international migration")) %>%
    data.frame()
 
 ```
