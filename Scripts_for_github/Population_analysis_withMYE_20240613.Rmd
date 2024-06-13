@@ -1,0 +1,102 @@
+---
+title: "Population, 29 Nov 2023 and May 2024"
+output: 
+  html_document:
+    css: Wil_style.css
+    theme: default
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+always_allow_html: yes
+---
+
+```{r setup1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(bslib)
+library(DT)
+library(dplyr)
+library(gglaplot)
+library(ggplot2)
+library(data.table)
+library(tidyr)
+library(stringr)
+library(tidyverse)
+library(plotly)
+library(sf)
+library(htmlwidgets)
+library(knitr)
+library(lubridate)
+library(maps)
+library(scales)
+library(forcats)
+library(svglite)
+
+data_dir <- 'DATA/'
+chart_dir <- 'CHARTS/'
+
+
+# Disable scientific notation
+options(scipen=999)
+
+```
+
+
+```{r setup2, include=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+
+## Import MYE population data
+
+input_MYE2022data <- fread(paste0(data_dir,"MYE22_London_CompsofChange.csv")) %>% 
+    data.frame()
+
+MYE2022_IMdata <- input_MYE2022data %>%
+  mutate(Int_A_in_K = International.Migration.Inflow/1000) %>% 
+  mutate(Int_B_out_K = International.Migration.Outflow/1000) %>%
+  mutate(Int_C_net_K = International.Migration.Net/1000) %>%
+  mutate(Name = fct_reorder(Name, Int_C_net_K)) %>%
+  data.frame()
+
+MYE2022_IMdata_Net <- MYE2022_IMdata %>% 
+  select(Int_C_net_K, Name) %>%
+  data.frame()
+
+
+MYE2022_IMdata_netzero <- MYE2022_IMdata %>% 
+  mutate(Int_C_net_K = replace(Int_C_net_K, Int_C_net_K != 0, 0)) %>%
+  pivot_longer(
+    cols = c(Int_A_in_K, Int_B_out_K, Int_C_net_K),
+    names_to = "Flow",
+    names_prefix = "Flow",
+    values_to = "Value",
+    values_drop_na = TRUE) %>%
+#   mutate("Flow" = str_replace_all(Flow, fixed("Int_out_K"), "Emigration")) %>%
+#  mutate("Flow" = str_replace_all(Flow, fixed("Int_in_K"), "Immigration")) %>%
+#  mutate("Flow" = str_replace_all(Flow, fixed("Int_net_K"), "Net international migration")) %>%
+   data.frame()
+
+```
+
+
+```{r fig_int_mig_line_abs2, fig.height = 9, fig.width = 9,  echo=FALSE, warning=FALSE, message=FALSE}
+
+colours = c("Immigration" = "#943fa6", "Emigration" = "#63c5b5", "Net International migration" = "black")
+
+int_mig_bar <- ggplot() +
+  geom_bar(data=MYE2022_IMdata_netzero, aes(x=Value, y=Name, fill=Flow), stat="identity", position=position_dodge()) +
+  geom_point(data = MYE2022_IMdata_Net, aes(x= Int_C_net_K, y = Name), Colour = "black", size = 2) +
+ theme_gla()  +
+  scale_fill_manual(name = "Migration", values=c( "#943fa6", "#63c5b5", "black"), labels = c("Immigration", "Emigration", "Net International Migration"))
+  
+int_mig_bar
+
+
+ggsave (filename = "Q:/Teams/D&PA/Demography/Londons_young_children/LPYC_Github/Charts_for_github/23_C_Int_mig_London_boroughs.svg",
+         plot = int_mig_bar,
+         device = "svg",
+         dpi=600,
+         width = 9,
+         units = "in")
+
+
+```
